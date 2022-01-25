@@ -22,13 +22,24 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 console.log(app);
-
-document.getElementById("button1").addEventListener("onclick", queryTables());
+queryGetMenu();
+// document.getElementById("button1").addEventListener("onclick", queryGetMenu());
 //Query
 async function queryTables() {
     const q1 = query(collection(db, "Table"), where("isAvailable", "==", true));
     const querySnapshot = await getDocs(q1);
     querySnapshot.forEach((doc) => {
         console.log(doc.id, " => ", doc.data());
+    });
+}
+
+async function queryGetMenu(){
+    let count = 1;
+    const q2 = query(collection(db, "Item"))
+    const querySnapshot = await getDocs(q2);
+    querySnapshot.forEach((doc) => {
+        console.log(doc.id, " => ", doc.data().ItemName);
+        document.getElementById(count.toString()).innerHTML = doc.data().ItemName;
+        count++;
     });
 }
