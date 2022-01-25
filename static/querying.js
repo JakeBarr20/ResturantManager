@@ -39,7 +39,10 @@ async function queryGetMenu(){
     const querySnapshot = await getDocs(q2);
     querySnapshot.forEach((doc) => {
         console.log(doc.id, " => ", doc.data().ItemName);
-        document.getElementById(count.toString()).innerHTML = doc.data().ItemName;
+        let button = document.createElement("button");
+        button.id = count.toString();
+        button.innerHTML = doc.data().ItemName;
+        document.body.appendChild(button)
         count++;
     });
 }
