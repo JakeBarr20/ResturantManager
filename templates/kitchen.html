@@ -5,17 +5,52 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KitchenScreen</title>
-    <h1>Order</h1>
+    <h1>Preperation  |  Delivery</h1>
+    <style>
+      h1 {
+        margin-left: 500px;
+        word-spacing: 60px;
+      }
+
+      .new {
+          background-color: khaki;
+          margin: 20px;
+          
+        }
+
+      .doing {
+          background-color: plum;
+          margin: 20px;
+          margin-left: 200px;
+
+      }
+    </style>
 </head>
 <body>
-    <textarea>Order 1
-        Item:
-        Quantity:
-        Status:
-        TableNum:
-        Time:
-    </textarea>
-    <button>Cancel</button>
-    <button>Confirm</button>
+    <form>
+        <textarea class = new rows = "8" cols = "30">Order 1
+          Item:
+          Quantity:
+          Status:
+          TableNum:
+          Time:
+        </textarea>
+
+        <textarea class = new rows = "8" cols = "30">Order 2
+          Item:
+          Quantity:
+          Status:
+          TableNum:
+          Time:
+        </textarea>
+
+        <textarea class = doing rows = "8" cols = "30">Order 3
+            Item:
+            Quantity:
+            Status:
+            TableNum:
+            Time:
+          </textarea>
+    </form>    
 </body>
 </html>
