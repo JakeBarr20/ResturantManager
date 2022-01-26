@@ -42,7 +42,16 @@ async function queryGetMenu(){
         let button = document.createElement("button");
         button.id = count.toString();
         button.innerHTML = doc.data().ItemName;
-        document.body.appendChild(button)
+        button.onclick = function() {
+            var Order = document.getElementById(button.id).innerHTML;
+            var listNode = document.getElementById('OrderList');
+            var newNode = document.createElement("LI");
+            var textNode = document.createTextNode(Order);
+            newNode.appendChild(textNode);
+            listNode.appendChild(newNode);
+            return false;
+        }
+        document.body.appendChild(button);
         count++;
     });
 }
