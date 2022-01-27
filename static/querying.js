@@ -38,7 +38,6 @@ async function queryGetMenu(){
     const q2 = query(collection(db, "Item"))
     const querySnapshot = await getDocs(q2);
     querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data().ItemName);
         let button = document.createElement("button");
         button.id = count.toString();
         button.innerHTML = doc.data().ItemName;
