@@ -7,50 +7,89 @@
     <title>KitchenScreen</title>
     <h1>Preperation  |  Delivery</h1>
     <style>
+      button {
+        font-size: 15px;
+        font-weight: 200;
+        letter-spacing: 1px;
+        outline: 0;
+        border: 1px solid black;
+        cursor: pointer;
+        position: relative;
+        background-color: rgba(0, 0, 0, 0);
+      }
+      .textarea-container {
+          position:relative;
+      }
+
+      .textarea-container textarea {
+        box-sizing: border-box;
+        display:inline-block;
+      }
+
+      .textarea-container button {
+          position:absolute;
+          top: 15%;
+          right: 86.5%;
+      }
+
       h1 {
-        margin-left: 500px;
-        word-spacing: 60px;
+          margin-left: 500px;
+          word-spacing: 60px;
       }
 
       .new {
           background-color: khaki;
           margin: 20px;
-          
         }
 
       .doing {
           background-color: plum;
           margin: 20px;
-          margin-left: 200px;
-
       }
     </style>
 </head>
 <body>
     <form>
-        <textarea class = new rows = "8" cols = "30">Order 1
-          Item:
-          Quantity:
-          Status:
-          TableNum:
-          Time:
-        </textarea>
-
-        <textarea class = new rows = "8" cols = "30">Order 2
-          Item:
-          Quantity:
-          Status:
-          TableNum:
-          Time:
-        </textarea>
-
-        <textarea class = doing rows = "8" cols = "30">Order 3
+        <div class = "textarea-container">
+            <textarea class = doing rows = "8" cols = "30">Order 1
             Item:
             Quantity:
             Status:
             TableNum:
             Time:
-          </textarea>
-    </form>    
+            </textarea>
+            <button>=></button>
+        </div>
+
+        <div class = "textarea-container">
+            <textarea class = new id = test rows = "8" cols = "30">Order 2
+            Item:
+            Quantity:
+            Status:
+            TableNum:
+            Time:
+            </textarea>
+            <button type = "button" id = testb>=></button>
+
+        </div>
+
+        <div class = "textarea-container">
+            <textarea class = new rows = "8" cols = "30">Order 3
+              Item:
+              Quantity:
+              Status:
+              TableNum:
+              Time:
+            </textarea>
+            <button>=></button>
+        </div>  
+    </form>  
+    <script>
+        document.getElementById("testb").addEventListener("click", classToggle);
+        function classToggle(){
+            document.getElementById("test").classList.toggle("doing");
+            
+        }
+    </script>  
 </body>
 </html>
