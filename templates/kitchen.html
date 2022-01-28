@@ -22,14 +22,16 @@
       }
 
       .textarea-container textarea {
+        float:left;
         box-sizing: border-box;
-        display:inline-block;
       }
 
       .textarea-container button {
           position:absolute;
-          top: 15%;
-          right: 86.5%;
+          float:left;
+          margin-top: 30px;
+          margin-left: -60px;
+          z-index: 100;
       }
 
       h1 {
@@ -49,7 +51,6 @@
     </style>
 </head>
 <body>
-    <form>
         <div class = "textarea-container">
             <textarea class = doing rows = "8" cols = "30">Order 1
             Item:
@@ -82,8 +83,7 @@
               Time:
             </textarea>
             <button>=></button>
-        </div>  
-    </form>  
+        </div>    
     <script>
         document.getElementById("testb").addEventListener("click", classToggle);
         function classToggle(){
