@@ -1,0 +1,84 @@
+.card {
+    max-height: 400px;
+    min-height: 400px;
+    min-width: 250px;
+    max-width: 250px;
+
+    /*doesn't work anymore*/
+    margin-top: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.card-header {
+    color: aliceblue;
+    border-color: transparent;
+    width: 100%;
+    height: 2cm;
+}
+
+.card-img-overlay {
+    color: blanchedalmond;
+}
+
+.card-body {
+    text-align: left;
+    width: 100%;
+}
+
+.list-group {
+    max-height: 200px;
+    margin-bottom: 20px;
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+}
+
+.card-footer {
+    text-align: right;
+    background-color: white;
+}
+
+.left {
+    float: left;
+    color: grey;
+    position: absolute;
+    bottom: 3mm;
+    left: 3mm;
+}
+
+.right {
+    float: right;
+    position: absolute;
+    top: 3mm;
+    right: 2mm;
+}
+
+.btn-primary-outline {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    color: white;
+}
+
+.prep {
+    background-color: rebeccapurple;
+}
+.todo {
+    background-color: orange;
+}
+
+#smaller {
+    font-size: 14px;
+}
+
+#larger {
+    font-size: 18px;
+}
+
+#deliver-btn {
+    background-color: green;
+}
+
+
+
