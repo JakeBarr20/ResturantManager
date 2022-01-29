@@ -52,44 +52,45 @@
 </head>
 <body>
         <div class = "textarea-container">
-            <textarea class = doing rows = "8" cols = "30">Order 1
+            <textarea class = new id = 1t rows = "8" cols = "30">Order 1
             Item:
             Quantity:
             Status:
             TableNum:
             Time:
             </textarea>
-            <button>=></button>
+            <button type = "button" id = 1b>=></button>
         </div>
 
         <div class = "textarea-container">
-            <textarea class = new id = test rows = "8" cols = "30">Order 2
+            <textarea class = new id = 2t rows = "8" cols = "30">Order 2
             Item:
             Quantity:
             Status:
             TableNum:
             Time:
             </textarea>
-            <button type = "button" id = testb>=></button>
+            <button type = "button" id = 2b>=></button>
 
         </div>
 
         <div class = "textarea-container">
-            <textarea class = new rows = "8" cols = "30">Order 3
+            <textarea class = new id = 3t rows = "8" cols = "30">Order 3
               Item:
               Quantity:
               Status:
               TableNum:
               Time:
             </textarea>
-            <button>=></button>
+            <button type = "button" id = 3b>=></button>
         </div>    
     <script>
-        document.getElementById("testb").addEventListener("click", classToggle);
-        function classToggle(){
-            document.getElementById("test").classList.toggle("doing");
-            
-        }
+        document.getElementById("1b").addEventListener("click", classToggle1);
+        document.getElementById("2b").addEventListener("click", classToggle2);
+        document.getElementById("3b").addEventListener("click", classToggle3);
+        function classToggle1(){document.getElementById("1t").classList.toggle("doing");}
+        function classToggle2(){document.getElementById("2t").classList.toggle("doing");}
+        function classToggle3(){document.getElementById("3t").classList.toggle("doing");}
     </script>  
 </body>
 </html>
