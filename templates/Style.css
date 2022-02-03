@@ -44,7 +44,7 @@
     color: grey;
     position: absolute;
     bottom: 3mm;
-    left: 3mm;
+    left: 5mm;
 }
 
 .right {
@@ -59,6 +59,8 @@
     border-color: transparent;
     box-shadow: none;
     color: white;
+    transform: translateY(-20px);
+    margin-right: -30px;
 }
 
 .prep {
@@ -79,3 +81,4 @@
 #deliver-btn {
     background-color: green;
 }
+
