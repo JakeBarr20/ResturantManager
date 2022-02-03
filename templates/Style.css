@@ -1,3 +1,25 @@
+.edit-order {
+    max-height: 130px;
+    min-height: 130px;
+    min-width: 810px;
+    max-width: 810px;
+    color:black;
+    background-color: orange;
+    border-color:transparent;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.box {
+    max-height: 22px;
+    min-height: 22px;
+    min-width: 810px;
+    max-width: 810px;
+    background-color: rgb(212, 138, 0);
+    border-radius: 10px;
+}
+
 .card {
     max-height: 400px;
     min-height: 400px;
@@ -12,7 +34,7 @@
 }
 
 .card-header {
-    color: aliceblue;
+    color: black;
     border-color: transparent;
     width: 100%;
     height: 2cm;
