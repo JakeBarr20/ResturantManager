@@ -5,17 +5,43 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <h1>Welcome to our menu</h1>
+    <h1>Submenus</h1>
     <script type = "module" src = static/querying.js></script>
+    <style>
+    .submenu {
+        background-color: #FCAE1E;
+        width:  250px;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 24px;
+        margin: 4px 2px;
+        opacity: 0.6;
+        transition: 0.3s;
+        cursor: pointer;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    }
+    .submenu:hover {opacity: 1}
+    body{
+        background-color: lemonchiffon;
+    }
+    </style>
     </head>
     <body>
-        <div>
-            <!-- for loop for amount of sub menus there are-->
-        <button type = "button">Submenu</button>
-        </div>
+        <form>
+            <div>
+            <button type = "button" class = "submenu" onclick="window.location.href='burgers';">Burgers</button> <br>
+            <button type = "button" class = "submenu" onclick="window.location.href='chicken';">Chicken</button> <br>
+            <button type = "button" class = "submenu" onclick="window.location.href='meals';">Meals</button> <br>
+            <button type = "button" class = "submenu" onclick="window.location.href='drinks';">Drinks</button> <br>
+            <button type = "button" class = "submenu" onclick="window.location.href='kebab';">Kebab</button> <br>
+            </div>
+        </form>
         {%block content%}
         {%endblock%}
-    <h1> Orders </h1>
     <ul id="OrderList">
     </ul>
     </body>

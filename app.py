@@ -34,5 +34,25 @@ def waiterUI():
 def kitchenStaffUI():
     return '<h1>kitchen staff</h1>'
 
+@app.route('/burgers')
+def burgerMenu():
+    return render_template("burgers.html")
+
+@app.route('/chicken')
+def chickenMenu():
+    return render_template("chicken.html")
+
+@app.route('/meals')
+def mealsMenu():
+    return render_template("meals.html")
+
+@app.route('/drinks')
+def drinksMenu():
+    return render_template("drinks.html")
+
+@app.route('/kebab')
+def kebabMenu():
+    return render_template("kebab.html")
+
 if __name__ == '__main__':
     app.run(debug=True)
