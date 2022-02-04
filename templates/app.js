@@ -1,13 +1,14 @@
-function toggleOrder(iconID) {
-    console.log('hellog')
-    let orderNum = iconID.substring(2);
-    if(document.getElementById(iconID).className=="fa fa-toggle-on fa-2x"){
-        document.getElementById(iconID).className = "fa fa-toggle-off fa-2x";
-        document.getElementById("card-head"+orderNum).className = 'card-header todo';
-        document.getElementById("deliver-btn"+orderNum).style.display = "none";
+function AddToOrder(){
+    tableID = document.getElementById("validationDefault01").value;
+    item = document.getElementById("validationDefault02").value;
+    if (document.getElementById("AddCheckbutton").checked){ 
+        var node = document.createElement('li');
+        node.className = 'list-group-item';
+        node.appendChild(document.createTextNode(item));
+        document.getElementById(tableID).appendChild(node);
     }else{
-        document.getElementById(iconID).className = "fa fa-toggle-on fa-2x";
-        document.getElementById("card-head"+orderNum).className = 'card-header prep';
-        document.getElementById("deliver-btn"+orderNum).style.display = "block";
+        var l = document.getElementById(tableID).value;
+        l.removeChild(l.childNodes[l.indexOf(item)]);
     }
+   
 }
