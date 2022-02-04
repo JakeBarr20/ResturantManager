@@ -1,8 +1,8 @@
 .edit-order {
     max-height: 130px;
     min-height: 130px;
-    min-width: 810px;
-    max-width: 810px;
+    min-width: 1500px;
+    max-width: 1500px;
     color:black;
     background-color: orange;
     border-color:transparent;
@@ -14,8 +14,8 @@
 .box {
     max-height: 22px;
     min-height: 22px;
-    min-width: 810px;
-    max-width: 810px;
+    min-width: 1500px;
+    max-width: 1500px;
     background-color: rgb(212, 138, 0);
     border-radius: 10px;
 }
