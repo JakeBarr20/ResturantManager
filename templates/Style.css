@@ -72,6 +72,27 @@
     right: 2mm;
 }
 
+.cancel-button {
+    word-spacing: normal;
+    text-align: center;
+    text-shadow: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color:white;
+    font-weight: normal;
+    width: 95px;
+    height: 38px;
+    opacity: 1;
+    cursor: pointer;
+    display: center;
+    align-items: center;
+    background: red;
+    border-radius: 5px;
+    background: #e62222;
+    margin-left: 20px;
+    font-size: 15px;
+    transform: translateY(-8px);
+}
+
 .btn-primary-outline {
     background-color: transparent;
     border-color: transparent;

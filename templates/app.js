@@ -1,3 +1,4 @@
+
 function AddToOrder(){
     orderID = document.getElementById("validationDefault01").value;
     item = document.getElementById("validationDefault02").value;
@@ -22,3 +23,4 @@ function getIndex(){
         }
         alert("Item not in list");
 }
+
