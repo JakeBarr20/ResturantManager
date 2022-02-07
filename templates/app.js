@@ -1,8 +1,8 @@
-
 function AddToOrder(){
     orderID = document.getElementById("validationDefault01").value;
     item = document.getElementById("validationDefault02").value;
     if (document.getElementById("AddCheckbutton").checked){ 
+        if(item="james"){item = "1x Donut";}
         var node = document.createElement('li');
         node.className = 'list-group-item';
         node.appendChild(document.createTextNode(item));
@@ -24,3 +24,6 @@ function getIndex(){
         alert("Item not in list");
 }
 
+function RemoveFromDatabase(){
+    alert("hui");
+}

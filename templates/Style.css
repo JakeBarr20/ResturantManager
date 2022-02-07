@@ -1,8 +1,8 @@
 .edit-order {
     max-height: 130px;
     min-height: 130px;
-    min-width: 1500px;
-    max-width: 1500px;
+    min-width: 1300px;
+    max-width: 1300px;
     color:black;
     background-color: orange;
     border-color:transparent;
@@ -11,11 +11,22 @@
     border-radius: 5px;
 }
 
+.tables {
+    max-height: 130px;
+    min-height: 130px;
+    min-width: 325px;
+    max-width: 325px;
+    background-color: orange;
+    z-index: 100%;
+    margin-left:1330px;
+    transform: translateY(-150px);
+    border-radius: 5px;
+}
 .box {
     max-height: 22px;
     min-height: 22px;
-    min-width: 1500px;
-    max-width: 1500px;
+    min-width: 1300px;
+    max-width: 1300px;
     background-color: rgb(212, 138, 0);
     border-radius: 10px;
 }
@@ -26,6 +37,7 @@
     min-width: 250px;
     max-width: 250px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom:20px;
     
 }
 

@@ -15,17 +15,18 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <!-- Scripts -->
+  <script type="module" src="db.js"></script>
   <script type="text/javascript" src="app.js"></script>
 </head>
 
-<body style="background-color:rgb(243, 237, 237);">
+<body style="background-color:white;">
     <nav class="navbar navbar-dark bg-dark">
         <!-- Add Navbar content , sort out margins in between cards, make cards easily addable (i.e. reproducable without repeating code)-->
     </nav>
 
     <div class="edit-order">
         <div class = "box">
-            <h5 class=card-title>Edit order</h5>
+            <h5 class=card-title>Edit Order</h5>
         </div> 
         <form>
             <div class="form-row">
@@ -45,22 +46,29 @@
                 </div>
               </div>
 
-              <div class="form-check" style = "position:relative; left:1175px; top:-70px; ">
+              <div class="form-check" style = "position:relative; left:1050px; top:-70px; ">
                 <input class="form-check-input" type="radio" name="Checkbuttons" id="AddCheckbutton" value="option1">
                 <label class="form-check-label" for="AddCheckbutton">
                   Add
                 </label>
               </div>
-              <div class="form-check"  style = "position:relative; left:1126px; top:-30px;">
+              <div class="form-check"  style = "position:relative; left:1000px; top:-30px;">
                 <input class="form-check-input" type="radio" name="Checkbuttons" id="RemoveCheckbutton" value="option2">
                 <label class="form-check-label" for="RemoveCheckbutton">
                   Remove
                 </label>
               </div>
-
+              <div class = "tables">
+                <div class = "box" style="min-width: 325px;">
+                    <h5 class=card-title>Available Tables</h5>
+                </div> 
+              </div>
             </div>
           </form>
-    </div>    
+    </div>  
+    
+
+    </div>
 
     <div class="card-deck">
         <div class="card" id="card78">
@@ -84,7 +92,7 @@
                 <a style="background-color: green;" href="#" class="btn btn-primary-outline"><i class="fa fa-check"></i> Confirm</a>
                 </button>
                 <button data-dismiss="alert" data-target="#card78" type="button" class="cancel-button close" aria-label="Close" style="
-                background-color:red;">
+                background-color:red;" onclick = "RemoveFromDatabase()">
                     <i class="fa fa-times"></i> Cancel
                     <span aria-hidden="true"></span>
                 </button>
@@ -140,11 +148,21 @@
             </div>
             <small class="left">15 minutes ago</small>
         </div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        
     </div>
     
     <br>
     <br>
-    <button type="button" class="btn btn-primary btn-lg btn-block">VIEW AVAILABLE TABLES</button>
+   
     <br>
     <br>
     
