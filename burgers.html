@@ -10,70 +10,40 @@
         border-radius: 10px;
         margin:20px;
     }
-    #container {
-        position: fixed;
-        left: 0%;
-        top: 10%; 
-    }
-    #sub2 {
-        position: fixed;
-        left: 0%;
-        top: 30%;  
-    }
-    #sub3 {
-        position: fixed;
-        left: 0%;
-        top: 50%;
-    }
-    #sub4 {
-        position: fixed;
-        left: 0%;
-        top: 70%;
-    }
-    #sub5 {
-        position: fixed;
-        left: 0%;
-        top: 90%;
-    }
-    #sub6 {
+    #item1{
         position: fixed;
         left: 20%;
         top: 10%;
     }
-    #sub7 {
+    #item2 {
         position: fixed;
-        left: 40%;
+        left: 50%;
         top: 10%;
     }
-    #sub8 {
+    #item3{
         position: fixed;
         left: 20%;
         top: 30%;
     }
-    #sub9 {
+    #item4 {
         position: fixed;
         left: 50%;
         top: 30%;
     }
-    #sub10 {
+    #item5 {
         position: fixed;
         left: 20%;
         top: 50%;
     }
-    #sub11 {
+    #item6 {
         position: fixed;
-        left: 60%;
+        left: 50%;
         top: 50%;
     }
     #counter {
         position: fixed;
         left: 40%;
         top: 80%;
-    }
-    #increment {
-        position: fixed;
-        left: 30%;
-        top: 89%;
     }
     #sentence{
         position: fixed;
@@ -88,21 +58,36 @@
     <script>
         var data = 0;
         var x = 0;
-        function increase() {
+        function increase(id) {
 	     document.getElementById("counting").innerText = data;
-	     x = document.getElementById("b").value;
+	     x = document.getElementById(id).value;
              data = parseFloat(data) + parseFloat(x);
              document.getElementById("counting").innerText = data;
             }
     </script>
-    <div id="increment">
-         <button onClick="increase()" value= 1.50 id = "b">Click me</button>
+    <div id="item2">
+         <button onClick="increase(this.id)" value= 2.00 id = "1">HAMBURGER £2.00</button>
     </div>
     <div id = "counter">
-        <h2 id = "counting"></h2>
+        <h2 id = "counting">0.0</h2>
     </div>
     <div id = "sentence">
         <h>BALANCE: £</h>
+    </div>
+    <div id = "item1">
+        <button onClick="increase(this.id)" value= 2.50 id = "2">CHEESEBURGER £2.50 </button>
+    </div>
+    <div id = "item3">
+        <button onClick="increase(this.id)" value= 3.00 id = "3">CHICKEN BURGER £3.00 </button>
+    </div>
+    <div id = "item4">
+        <button onClick="increase(this.id)" value= 3.00 id = "3">DOUBLE CHEESEBURGER £3.00 </button>
+    </div>
+    <div id = "item5">
+        <button onClick="increase(this.id)" value= 5.00 id = "3">TOWER BURGER £5.00 </button>
+    </div>
+    <div id = "item6">
+        <button onClick="increase(this.id)" value= 3.00 id = "3">VEGAN BURGER £3.00 </button>
     </div>
     
 <script type="text/javascript">(function(){window['__CF$cv$params']={r:'6d9efdb7e8ea76c9',m:'pPdcLke3bVHHpqIcN62NJhfy1BJdduj7sj3eK3RCtME-1644261789-0-AVPhzeQPMnJaZ/HPe1f7uPaEDov7Veu3REnpqEp3M6i8/3Vq054gJFpjDxH98qaRRLvWAUU57KJ5tHSQa1/v2kesxVeiyuk7BrQevITYx2c12zf90z2N6jlUNZv5B7aXqDjUw1EYjpCStwZrewDTOiY5O0hnzDG3wbnXgATTLLAVsfrxwUSC1Ckmevf6lemrww==',s:[0x455170a1e6,0x94ab213475],}})();</script></body>
