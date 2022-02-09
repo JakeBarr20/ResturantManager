@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Burger</title>
+<style>
+    
+    button {
+        font-size: 40px;
+        padding:10px;
+        border-radius: 10px;
+        margin:20px;
+    }
+    #item1{
+        position: fixed;
+        left: 20%;
+        top: 10%;
+    }
+    #item2 {
+        position: fixed;
+        left: 50%;
+        top: 10%;
+    }
+    #item3{
+        position: fixed;
+        left: 20%;
+        top: 30%;
+    }
+    #item4 {
+        position: fixed;
+        left: 50%;
+        top: 30%;
+    }
+    #item5 {
+        position: fixed;
+        left: 20%;
+        top: 50%;
+    }
+    #item6 {
+        position: fixed;
+        left: 50%;
+        top: 50%;
+    }
+    #counter {
+        position: fixed;
+        left: 40%;
+        top: 80%;
+    }
+    #sentence{
+        position: fixed;
+        left: 30%;
+        top: 84%;
+    }
+</style>
+<h1>Burger Menu</h1>
+
+<script async src='/cdn-cgi/bm/cv/669835187/api.js'></script></head>
+<body>
+    <script>
+        var data = 0;
+        var x = 0;
+        function increase(id) {
+	     document.getElementById("counting").innerText = data;
+	     x = document.getElementById(id).value;
+             data = parseFloat(data) + parseFloat(x);
+             document.getElementById("counting").innerText = data;
+            }
+    </script>
+    <div id="item2">
+         <button onClick="increase(this.id)" value= 2.00 id = "1">HAMBURGER £2.00</button>
+    </div>
+    <div id = "counter">
+        <h2 id = "counting">0.0</h2>
+    </div>
+    <div id = "sentence">
+        <h>BALANCE: £</h>
+    </div>
+    <div id = "item1">
+        <button onClick="increase(this.id)" value= 2.50 id = "2">CHEESEBURGER £2.50 </button>
+    </div>
+    <div id = "item3">
+        <button onClick="increase(this.id)" value= 3.00 id = "3">CHICKEN BURGER £3.00 </button>
+    </div>
+    <div id = "item4">
+        <button onClick="increase(this.id)" value= 3.00 id = "3">DOUBLE CHEESEBURGER £3.00 </button>
+    </div>
+    <div id = "item5">
+        <button onClick="increase(this.id)" value= 5.00 id = "3">TOWER BURGER £5.00 </button>
+    </div>
+    <div id = "item6">
+        <button onClick="increase(this.id)" value= 3.00 id = "3">VEGAN BURGER £3.00 </button>
+    </div>
+    
+<script type="text/javascript">(function(){window['__CF$cv$params']={r:'6d9efdb7e8ea76c9',m:'pPdcLke3bVHHpqIcN62NJhfy1BJdduj7sj3eK3RCtME-1644261789-0-AVPhzeQPMnJaZ/HPe1f7uPaEDov7Veu3REnpqEp3M6i8/3Vq054gJFpjDxH98qaRRLvWAUU57KJ5tHSQa1/v2kesxVeiyuk7BrQevITYx2c12zf90z2N6jlUNZv5B7aXqDjUw1EYjpCStwZrewDTOiY5O0hnzDG3wbnXgATTLLAVsfrxwUSC1Ckmevf6lemrww==',s:[0x455170a1e6,0x94ab213475],}})();</script></body>
+</html>
