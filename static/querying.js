@@ -22,14 +22,15 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 console.log(app);
-queryGetMenu();
-// document.getElementById("button1").addEventListener("onclick", queryGetMenu());
+queryTables();
+
 //Query
 async function queryTables() {
-    const q1 = query(collection(db, "Table"), where("isAvailable", "==", true));
+    const q1 = query(collection(db, "Orders"), where("Status", "==", "Preparing"));
     const querySnapshot = await getDocs(q1);
     querySnapshot.forEach((doc) => {
-        console.log(doc.id, " => ", doc.data());
+        //tyhfghgdfgd
+        console.log(doc.id, " => ", doc.data().food);
     });
 }
 

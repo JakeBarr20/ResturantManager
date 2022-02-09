@@ -1,3 +1,23 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js";
+import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyD_-a7AcOzc2g4awLO2PeneU8enHKBw7cU",
+    authDomain: "restaurant-database-92c17.firebaseapp.com",
+    projectId: "restaurant-database-92c17",
+    storageBucket: "restaurant-database-92c17.appspot.com",
+    messagingSenderId: "673538791861",
+    appId: "1:673538791861:web:3eb8b2c76a041fa64be1fc",
+    measurementId: "G-5PQJ0CN4YQ"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const db = getFirestore(app);
+console.log(app);
+
 // Toggle icon button on card, changes color and unhides button
 function toggleOrder(iconID) {
     if (document.getElementById(iconID)) {
@@ -20,7 +40,7 @@ let cardContainer;
 var order = [{},{},{},{}];
 
 // Create a card with all its content
-function createOrderCard(orderID) {
+async function createOrderCard(doc) {
     // Card Head
     let cardHead = document.createElement('div');
     cardHead.className = 'card-header todo';
@@ -34,7 +54,6 @@ function createOrderCard(orderID) {
 
     let iconBtn = document.createElement('i');
     iconBtn.setAttribute('id', 'tg' + orderNum);
-    iconBtn.setAttribute('onclick', `toggleOrder('tg' + ${orderNum})`);
     iconBtn.className = 'fa fa-toggle-off fa-2x'
     button.appendChild(iconBtn);
 
@@ -45,7 +64,7 @@ function createOrderCard(orderID) {
     let itemList = document.createElement('ul')
     itemList.className = 'list-group';
     itemList.setAttribute('id', 'smaller');
-    createItemList(itemList, orderID);
+    createItemList(itemList, doc);
 
     // Card Footer
     let cardFooter = document.createElement('div');
@@ -67,11 +86,19 @@ function createOrderCard(orderID) {
     // TO DO: PULL TIME FROM ORDER USING ORDER ID
     let time = document.createElement('small');
     time.className = 'left';
-    time.innerText = '5 minutes ago';
+    const confTime = doc.data().Time;
+    if (confTime) {
+        
+        //let timeElapsed = timeSince(new Date(Date.now() - confTime.seconds));
+        let timeElapsed = timeSince(confTime.toDate());
+        time.innerText = timeElapsed +' ago';
+    }
+
 
     // Card Assembly
     let card = document.createElement('div');
     card.className = 'card';
+    card.setAttribute('id', doc.id)
 
     cardHead.appendChild(title);
     cardHead.appendChild(button);
@@ -86,31 +113,75 @@ function createOrderCard(orderID) {
     card.appendChild(time);
 
     cardContainer.appendChild(card);
+
+    // Toggle Button Event Listener
+    if (iconBtn) {
+        let tg = iconBtn.id;
+        iconBtn.addEventListener('click', function() { toggleOrder(tg); });
+    }
 }
 
 // Add list-group-items to the unordered list (from database)
-function createItemList(list, orderID) {
-    // TO DO: PULL DATA FROM DATABASE TO FILL UP THE LIST
-    var li = document.createElement('li');
-    li.className = 'list-group-item';
-    li.appendChild(document.createTextNode(order.qnt + order.food));
-    list.appendChild(li);
+function createItemList(list, doc) {
+    let food = doc.data().food;
+    for (var key in food) {
+        var li = document.createElement('li');
+        li.className = 'list-group-item';
+        li.appendChild(document.createTextNode(food[key] + 'x ' + key));
+        list.appendChild(li);
+    }
 }
 
 // Initialise the card list as soon as window is loaded
-window.onload = initOrderList = () => {
+async function initOrderList() {
     if (cardContainer) {
         document.getElementById('card-container').replaceWith(cardContainer);
         return;
     }
 
     cardContainer = document.getElementById('card-container');
-    order.forEach((ord) => {
-        // TO DO: PARSE SOME SORT OF ORDER ID SO THAT FOOD MAP CAN BE PULLED
-        createOrderCard(ord);
+
+    const q1 = query(collection(db, "Orders"), where("Status", "==", "Preparing"));
+    const querySnapshot = await getDocs(q1);
+    querySnapshot.forEach((doc) => {
+        createOrderCard(doc);
         orderNum += 1;
+        console.log(doc.id, " => ", doc.data());
     });
-};
+}; 
+
+window.onload = function() {
+    initOrderList();
+
+}
+
+function timeSince(date) {
+
+    var seconds = Math.floor((new Date() - date) / 1000);
+  
+    var interval = seconds / 31536000;
+  
+    if (interval > 1) {
+      return Math.floor(interval) + " years";
+    }
+    interval = seconds / 2592000;
+    if (interval > 1) {
+      return Math.floor(interval) + " months";
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+      return Math.floor(interval) + " days";
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+      return Math.floor(interval) + " hours";
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+      return Math.floor(interval) + " minutes";
+    }
+    return Math.floor(seconds) + " seconds";
+  }
 
 
 // Mock Up: Card
