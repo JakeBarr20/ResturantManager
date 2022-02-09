@@ -1,8 +1,8 @@
 .edit-order {
     max-height: 130px;
     min-height: 130px;
-    min-width: 1500px;
-    max-width: 1500px;
+    min-width: 1300px;
+    max-width: 1300px;
     color:black;
     background-color: orange;
     border-color:transparent;
@@ -11,13 +11,29 @@
     border-radius: 5px;
 }
 
+.tables {
+    max-height: 130px;
+    min-height: 130px;
+    min-width: 325px;
+    max-width: 325px;
+    background-color: orange;
+    z-index: 100%;
+    margin-left:1330px;
+    transform: translateY(-150px);
+    border-radius: 5px;
+}
 .box {
     max-height: 22px;
     min-height: 22px;
-    min-width: 1500px;
-    max-width: 1500px;
+    min-width: 1300px;
+    max-width: 1300px;
     background-color: rgb(212, 138, 0);
     border-radius: 10px;
+}
+
+.card-deck{
+    margin-left: 60px;
+    margin-top: 20px;
 }
 
 .card {
@@ -25,12 +41,9 @@
     min-height: 400px;
     min-width: 250px;
     max-width: 250px;
-
-    /*doesn't work anymore*/
-    margin-top: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-left: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom:20px;
+    
 }
 
 .card-header {
@@ -76,6 +89,27 @@
     right: 2mm;
 }
 
+.cancel-button {
+    word-spacing: normal;
+    text-align: center;
+    text-shadow: none;
+    font-family: Arial, Helvetica, sans-serif;
+    color:white;
+    font-weight: normal;
+    width: 95px;
+    height: 38px;
+    opacity: 1;
+    cursor: pointer;
+    display: center;
+    align-items: center;
+    background: red;
+    border-radius: 5px;
+    background: #e62222;
+    margin-left: 20px;
+    font-size: 15px;
+    transform: translateY(-8px);
+}
+
 .btn-primary-outline {
     background-color: transparent;
     border-color: transparent;
@@ -103,4 +137,3 @@
 #deliver-btn {
     background-color: green;
 }
-
