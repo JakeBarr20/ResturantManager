@@ -6,9 +6,17 @@
     
     button {
         font-size: 40px;
-        padding:10px;
+        padding: 10px;
         border-radius: 10px;
-        margin:20px;
+    }
+    .button2 {
+        font-size: 20px;;
+        background-color: #FC6A03;
+    }
+    .infobutton {
+        font-size: 10px;
+        background-color: #87CEEB;
+        border-radius: 50%;
     }
     #container {
         position: fixed;
@@ -66,6 +74,14 @@
         top: 50%;
     }
 </style>
+<script> 
+function popupAllergies() {
+    var Cal = "(Calories here)";
+    var Allergy = "(Allergies here)";
+    var message = "KCal: " + Cal + "\nAllergies: " + Allergy;
+    alert(message);
+}
+</script>
 <h1>Burger Menu</h1>
 
 </head>
@@ -86,22 +102,28 @@
         <button onclick="window.location.href='kebab';">Kebab</button>
     </div>
     <div id="sub6">
-        <button>HAMBURGER</button>
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
+        <button class="button button2">HAMBURGER</button>
     </div>
     <div id="sub7">
-        <button>CHEESEBURGER</button>
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
+        <button class="button button2">CHEESEBURGER</button>
     </div>
     <div id="sub8">
-        <button>CHICKEN BURGER</button>
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
+        <button class="button button2">CHICKEN BURGER</button>
     </div>
     <div id="sub9">
-        <button>VEGAN BURGER</button>
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
+        <button class="button button2">VEGAN BURGER</button>
     </div>
     <div id="sub10">
-        <button>DOUBLE CHEESE BURGER</button>
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
+        <button class="button button2">DOUBLE CHEESE BURGER</button>
     </div>
     <div id="sub11">
-        <button>FISH BURGER</button>
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
+        <button class="button button2">FISH BURGER</button>
     </div>
 </body>
 </html>

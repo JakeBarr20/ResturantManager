@@ -10,6 +10,11 @@
         border-radius: 10px;
         margin:20px;
     }
+    .infobutton {
+        font-size: 10px;
+        background-color: #87CEEB;
+        border-radius: 50%;
+    }
     #container {
         position: fixed;
         left: 0%;
@@ -66,6 +71,14 @@
         top: 50%;
     }
 </style>
+<script> 
+function popupAllergies() {
+    var Cal = "(Calories here)";
+    var Allergy = "(Allergies here)";
+    var message = "KCal: " + Cal + "\nAllergies: " + Allergy;
+    alert(message);
+}
+</script>
 <h1>CHICKEN</h1>
 
 </head>
@@ -86,21 +99,27 @@
         <button onclick="window.location.href='kebab';">Kebab</button>
     </div>
     <div id="sub6">
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
         <button>ITEM</button>
     </div>
     <div id="sub7">
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
         <button>ITEM</button>
     </div>
     <div id="sub8">
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
         <button>ITEM</button>
     </div>
     <div id="sub9">
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
         <button>ITEM</button>
     </div>
     <div id="sub10">
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
         <button>ITEM</button>
     </div>
     <div id="sub11">
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
         <button>ITEM</button>
     </div>
 </body>
