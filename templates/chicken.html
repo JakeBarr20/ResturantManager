@@ -76,6 +76,16 @@
         left: 70%;
         top: 50%;
     }
+    #counter {
+        position: fixed;
+        left: 40%;
+        top: 80%;
+    }
+    #sentence{
+        position: fixed;
+        left: 30%;
+        top: 84%;
+    }
 </style>
 <script> 
 function popupAllergies() {
@@ -84,32 +94,46 @@ function popupAllergies() {
     var message = "KCal: " + Cal + "\nAllergies: " + Allergy;
     alert(message);
 }
+var data = 0;
+var x = 0;
+function increase(id) {
+document.getElementById("counting").innerText = data;
+x = document.getElementById(id).value;
+data = parseFloat(data) + parseFloat(x);
+document.getElementById("counting").innerText = data;
+}
 </script>
 </head>
 <body style="background-color: #FAFAD2;">
     <div id="sub1">
-        <button class="button order">ITEM</button>
+        <button class="button order" onClick="increase(this.id)" value= 2.00 id = "1">1 PIECES £2.00</button>
         <button class="button infobutton" onclick="popupAllergies()"> i </button>
     </div>
     <div id="sub2">
-        <button class="button order">ITEM</button>
+        <button class="button order" onClick="increase(this.id)" value= 3.00 id = "2">2 PIECE £3.00</button>
         <button class="button infobutton" onclick="popupAllergies()"> i </button>
     </div>
     <div id="sub3">
-        <button class="button order">ITEM</button>
+        <button class="button order" onClick="increase(this.id)" value= 5.00 id = "3">3 PIECE £5.00</button>
         <button class="button infobutton" onclick="popupAllergies()"> i </button>
     </div>
     <div id="sub4">
-        <button class="button order">ITEM</button>
+        <button class="button order" onClick="increase(this.id)" value= 7.00 id = "4">5 PIECE £7.00</button>
         <button class="button infobutton" onclick="popupAllergies()"> i </button>
     </div>
     <div id="sub5">
-        <button class="button order">ITEM</button>
+        <button class="button order"onClick="increase(this.id)" value= 8.00 id = "5">6 WINGS £8.00</button>
         <button class="button infobutton" onclick="popupAllergies()"> i </button>
     </div>
     <div id="sub6">
-        <button class="button order">ITEM</button>
+        <button class="button order" onClick="increase(this.id)" value= 12.00 id = "6">12 WINGS £12.00</button>
         <button class="button infobutton" onclick="popupAllergies()"> i </button>
+    </div>
+    <div id = "counter">
+        <h2 id = "counting">0.0</h2>
+    </div>
+    <div id = "sentence">
+        <h>BALANCE: £</h>
     </div>
     <!-- The main div-->
     <div class="mainSite">

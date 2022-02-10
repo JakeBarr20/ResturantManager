@@ -78,6 +78,16 @@
         left: 70%;
         top: 50%;
     }
+    #counter {
+        position: fixed;
+        left: 40%;
+        top: 80%;
+    }
+    #sentence{
+        position: fixed;
+        left: 30%;
+        top: 84%;
+    }
     </style>
     <script
       defer
@@ -96,32 +106,46 @@ function popupAllergies(Cal, Allergy) {
     var message = "KCal: " + Cal + "\nAllergies: " + Allergy;
     alert(message);
 }
+var data = 0;
+var x = 0;
+function increase(id) {
+document.getElementById("counting").innerText = data;
+x = document.getElementById(id).value;
+data = parseFloat(data) + parseFloat(x);
+document.getElementById("counting").innerText = data;
+}
 </script>
 </head>
 <body style="background-color: #FAFAD2;">
     <div id="sub1">
-        <button class="button order">HAMBURGER</button>
+        <button class="button order" onclick = "increase(this.id)" value = 2.00 id = '1'>HAMBURGER £2.00</button>
         <button class="button infobutton" onclick="popupAllergies(354, 'Egg, Gluten, Milk, Mustard')"> i </button>
     </div>
     <div id="sub2">
-        <button class="button order">CHEESEBURGER</button>
+        <button class="button order" onclick = "increase(this.id)" value = 2.50 id = '2'>CHEESEBURGER £2.50</button>
         <button class="button infobutton" onclick="popupAllergies(303, 'Egg, Gluten, Milk, Mustard, Sesame')"> i </button>
     </div>
     <div id="sub3">
-        <button class="button order">CHICKEN BURGER</button>
+        <button class="button order" onclick = "increase(this.id)" value = 3.00 id = '3'>CHICKEN BURGER £3.00</button>
         <button class="button infobutton" onclick="popupAllergies(515, 'Egg, Gluten, Milk')"> i </button>
     </div>
     <div id="sub4">
-        <button class="button order">VEGAN BURGER</button>
+        <button class="button order" onclick = "increase(this.id)" value = 3.00 id = '4'>VEGAN BURGER £3.00</button>
         <button class="button infobutton" onclick="popupAllergies(124, 'Gluten, Mustard')"> i </button>
     </div>
     <div id="sub5">
-        <button class="button order">DOUBLE CHEESE BURGER</button>
+        <button class="button order" onclick = "increase(this.id)" value = 4.00 id = '5'>DOUBLE CHEESE BURGER £4.00</button>
         <button class="button infobutton" onclick="popupAllergies(437, 'Gluten, Mustard, Sesame')"> i </button>
     </div>
     <div id="sub6">
-        <button class="button order">FISH BURGER</button>
+        <button class="button order" onclick = "increase(this.id)" value = 5.00 id = '6'>TOWER BURGER £5.00</button>
         <button class="button infobutton" onclick="popupAllergies(379, 'Egg, Gluten, Milk, Mustard, Fish')"> i </button>
+    </div>
+    <div id = "counter">
+        <h2 id = "counting">0.0</h2>
+    </div>
+    <div id = "sentence">
+        <h>BALANCE: £</h>
     </div>
     <!-- The main div-->
     <div class="mainSite">
