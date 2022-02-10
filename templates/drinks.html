@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title> Drink</title>
+<title> Drinks</title>
 <style>
     
     button {
         font-size: 40px;
-        padding:10px;
+        padding: 10px;
         border-radius: 10px;
-        margin:20px;
+    }
+    .button2 {
+        font-size: 20px;;
+        background-color: #FC6A03;
     }
     .infobutton {
         font-size: 10px;
@@ -70,6 +73,16 @@
         left: 60%;
         top: 50%;
     }
+    #counter {
+        position: fixed;
+        left: 40%;
+        top: 80%;
+    }
+    #sentence{
+        position: fixed;
+        left: 30%;
+        top: 84%;
+    }
 </style>
 <script> 
 function popupAllergies() {
@@ -78,49 +91,63 @@ function popupAllergies() {
     var message = "KCal: " + Cal + "\nAllergies: " + Allergy;
     alert(message);
 }
+var data = 0;
+var x = 0;
+function increase(id) {
+document.getElementById("counting").innerText = data;
+x = document.getElementById(id).value;
+data = parseFloat(data) + parseFloat(x);
+document.getElementById("counting").innerText = data;
+}
 </script>
-<h1>DRINKS</h1>
+<h1>Drink Menu</h1>
 
 </head>
 <body>
     <div id="container">
-        <button onclick="window.location.href='burgers';">Burgers</button>
+        <button onclick="window.location.href='burgers.html';">Burgers</button>
     </div>
     <div id="sub2">
-        <button onclick="window.location.href='chicken';">Chicken</button>
+        <button onclick="window.location.href='chicken.html';">Chicken</button>
     </div>
     <div id="sub3">
-       <button onclick="window.location.href='meals';">Meal Deals</button> 
+       <button onclick="window.location.href='meals.html';">Meal Deals</button> 
     </div>
     <div id="sub4">
-        <button onclick="window.location.href='drinks';">Drinks</button>
+        <button onclick="window.location.href='drinks.html';">Drinks</button>
     </div>
     <div id="sub5">
-        <button onclick="window.location.href='kebab';">Kebab</button>
+        <button onclick="window.location.href='kebab.html';">Kebab</button>
     </div>
     <div id="sub6">
         <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button>ITEM</button>
+        <button class="button button2" onClick="increase(this.id)" value= 1.50 id = "1">COKE £1.50</button>
     </div>
     <div id="sub7">
         <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button>ITEM</button>
+        <button class="button button2"onClick="increase(this.id)" value= 1.50 id = "2">DIET COKE £1.50</button>
     </div>
     <div id="sub8">
         <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button>ITEM</button>
+        <button class="button button2"onClick="increase(this.id)" value= 1.50 id = "3">ORANGE FANTA £1.50</button>
     </div>
     <div id="sub9">
         <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button>ITEM</button>
+        <button class="button button2"onClick="increase(this.id)" value= 1.50 id = "3">LEMON FANTA £1.50</button>
     </div>
     <div id="sub10">
         <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button>ITEM</button>
+        <button class="button button2"onClick="increase(this.id)" value= 1.50 id = "3">DR PEPPER £3.00</button>
     </div>
     <div id="sub11">
         <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button>ITEM</button>
+        <button class="button button2"onClick="increase(this.id)" value= 0.0 id = "3">WATER £0.00</button>
+    </div>
+    <div id = "counter">
+        <h2 id = "counting">0.0</h2>
+    </div>
+    <div id = "sentence">
+        <h>BALANCE: £</h>
     </div>
 </body>
 </html>
