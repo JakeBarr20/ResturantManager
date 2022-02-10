@@ -2,72 +2,79 @@
 <html>
 <head>
 <title> Kebab</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- The name of the tab-->
+    <title>OXACCA MENU</title>
+
+    <!-- Bootstrap CSS CDN-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+      integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
+      crossorigin="anonymous"
+    />
+    <!-- Our Custom CSS-->
+    <link rel="stylesheet" href="static/navbar.css" />
+    <!-- -->
+    <!-- Scrollbar Custom CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"
+    />
 <style>
-    
-    button {
-        font-size: 40px;
-        padding:10px;
+    .order {
+        background-color: #FC6A03;
+        width: 250px;
+        border: none;
+        color: white;
+        padding: 15px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 24px;
+        margin: 4px;
+        opacity: 0.6;
+        transition: 0.3s;
+        cursor: pointer;
         border-radius: 10px;
-        margin:20px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
     }
+    .order:hover {opacity: 1}
     .infobutton {
         font-size: 10px;
         background-color: #87CEEB;
         border-radius: 50%;
     }
-    #container {
+    #sub1 {
         position: fixed;
-        left: 0%;
-        top: 10%; 
+        left: 30%;
+        top: 10%;
     }
     #sub2 {
         position: fixed;
-        left: 0%;
-        top: 30%;  
+        left: 70%;
+        top: 10%;
     }
     #sub3 {
         position: fixed;
-        left: 0%;
-        top: 50%;
+        left: 30%;
+        top: 30%;
     }
     #sub4 {
         position: fixed;
-        left: 0%;
-        top: 70%;
+        left: 70%;
+        top: 30%;
     }
     #sub5 {
         position: fixed;
-        left: 0%;
-        top: 90%;
+        left: 30%;
+        top: 50%;
     }
     #sub6 {
         position: fixed;
-        left: 20%;
-        top: 10%;
-    }
-    #sub7 {
-        position: fixed;
-        left: 40%;
-        top: 10%;
-    }
-    #sub8 {
-        position: fixed;
-        left: 20%;
-        top: 30%;
-    }
-    #sub9 {
-        position: fixed;
-        left: 50%;
-        top: 30%;
-    }
-    #sub10 {
-        position: fixed;
-        left: 20%;
-        top: 50%;
-    }
-    #sub11 {
-        position: fixed;
-        left: 60%;
+        left: 70%;
         top: 50%;
     }
 </style>
@@ -79,48 +86,110 @@ function popupAllergies() {
     alert(message);
 }
 </script>
-<h1>KEBABS</h1>
-
 </head>
-<body>
-    <div id="container">
-        <button onclick="window.location.href='burgers';">Burgers</button>
+<body style="background-color: #FAFAD2;">
+    <div id="sub1">
+        <button class="button order">ITEM</button>
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
     </div>
     <div id="sub2">
-        <button onclick="window.location.href='chicken';">Chicken</button>
+        <button class="button order">ITEM</button>
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
     </div>
     <div id="sub3">
-       <button onclick="window.location.href='meals';">Meal Deals</button> 
+        <button class="button order">ITEM</button>
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
     </div>
     <div id="sub4">
-        <button onclick="window.location.href='drinks';">Drinks</button>
+        <button class="button order">ITEM</button>
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
     </div>
     <div id="sub5">
-        <button onclick="window.location.href='kebab';">Kebab</button>
+        <button class="button order">ITEM</button>
+        <button class="button infobutton" onclick="popupAllergies()"> i </button>
     </div>
     <div id="sub6">
+        <button class="button order">ITEM</button>
         <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button>ITEM</button>
     </div>
-    <div id="sub7">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button>ITEM</button>
+    <!-- The main div-->
+    <div class="mainSite">
+      <!-- Sidebar-->
+      <nav id="sidebar">
+        <!--Where the title is written and sits at top of sidebar-->
+        <div class="sidebar-header">
+          <h3>OXACCA MENU</h3>
+        </div>
+        <!-- means there is no bullet points, looks cleaner-->
+        <ul class="list-unstyled components">
+          <!-- floating to the right of the welcome message-->
+          <img
+            style="float: right"
+            src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/picnic-food-1591195465.jpg?crop=0.317xw:0.635xh;0.340xw,0.189xh&resize=100:*"
+            alt=""
+            width="100px"
+            height="100px"
+          />
+          <!-- introductory message-->
+          <p><strong>Please Help Yourself To Today's Menu</strong></p>
+          <!-- the side menu list which will be later made dynamic based what is in inside the database-->
+          <li>
+            <a onclick="window.location.href='burgers';">Burgers</a>
+          </li>
+          <li>
+            <a onclick="window.location.href='chicken';">Chicken</a>
+          </li>
+          <li>
+            <a onclick="window.location.href='meals';">Meals</a>
+          </li>
+          <li>
+            <a onclick="window.location.href='drinks';">Drinks</a>
+          </li>
+          <li>
+            <a onclick="window.location.href='kebab';">Kebabs</a>
+          </li>
+          <li>
+            <a onclick="window.location.href='sides';">Sides</a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- What will be within the page-->
+
+      <div id="content">
+        <nav  class="navbar navbar-expand-lg navbar-light bg-light">
+          <div id="contentNav" class="container-fluid">
+            <button type="button" id="sidebarCollapse" class="btn btn-info">
+              <i class="fas fa-align-left"></i>
+              <span
+                >See our menu's selection</span
+              >
+            </button>
+          </div>
+        </nav>
+      </div>
     </div>
-    <div id="sub8">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button>ITEM</button>
-    </div>
-    <div id="sub9">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button>ITEM</button>
-    </div>
-    <div id="sub10">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button>ITEM</button>
-    </div>
-    <div id="sub11">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button>ITEM</button>
-    </div>
+    <!-- jQuery CDN - Slim version (=without AJAX) -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Popper.JS -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+      integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Bootstrap JS -->
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+      integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="static/navbar.js"></script>
 </body>
 </html>
