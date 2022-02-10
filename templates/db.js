@@ -25,14 +25,14 @@ console.log(app);
 
 window.removeDoc = removeDoc;
 
-async function removeDoc(){
-    await deleteDoc(doc(db, "Orders","80"));
+async function removeDoc(id){
+    await deleteDoc(doc(db, "Orders",id));
 }
 
 window.confirmOrder = confirmOrder;
 
-async function confirmOrder(){
-    const orderRef = doc(db, "Orders", "80");
+async function confirmOrder(id){
+    const orderRef = doc(db, "Orders", id);
     await updateDoc(orderRef, {
         Status: "Preparing"
     });
