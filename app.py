@@ -24,11 +24,11 @@ def introUI():
 
 @app.route('/customer')
 def customerUI():
-    return render_template("burgers.html")
+    return render_template("menu.html")
 
 @app.route('/waiter')
 def waiterUI():
-    return '<h1>waiter</h1>'
+    return render_template("waiterUI.html");
 
 @app.route('/kitchen_staff')
 def kitchenStaffUI():
