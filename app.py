@@ -54,5 +54,9 @@ def drinksMenu():
 def kebabMenu():
     return render_template("kebab.html")
 
+@app.route('/sides')
+def sideMenu():
+    return render_template("test.html")
+    
 if __name__ == '__main__':
     app.run(debug=True)
