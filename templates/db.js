@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js";
-import { getFirestore, collection, query, where, orderBy, deleteDoc, doc, setDoc, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
+import { getFirestore, collection, query, where, orderBy, deleteDoc, doc, setDoc, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -24,12 +24,18 @@ const db = getFirestore(app);
 console.log(app);
 
 window.removeDoc = removeDoc;
+window.confirmOrder = confirmOrder;
 
 async function removeDoc(id){
-    await deleteDoc(doc(db, "Orders",id));
+    let Order = 0;
+    const q = query(collection(db, "Orders"), where("OrderNum","==", Number(id)));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(function(doc) {
+        Order = doc.id;
+        console.log(doc.id, " => ", doc.data());
+    });
+    await deleteDoc(doc(db, "Orders", `${Order}`));
 }
-
-window.confirmOrder = confirmOrder;
 
 async function confirmOrder(id){
     const orderRef = doc(db, "Orders", id);
@@ -37,3 +43,4 @@ async function confirmOrder(id){
         Status: "Preparing"
     });
 }
+
