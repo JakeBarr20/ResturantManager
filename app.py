@@ -24,7 +24,7 @@ def introUI():
 
 @app.route('/customer')
 def customerUI():
-    return render_template("firstPage.html")
+    return render_template("burgers.html")
 
 @app.route('/waiter')
 def waiterUI():
