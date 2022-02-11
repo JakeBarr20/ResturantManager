@@ -1,0 +1,26 @@
+.btn{
+    color: white;
+    background-color: orange;
+    border: orange;
+}
+
+.btn:hover{
+    color: orange;
+    background-color: white;
+} 
+
+.card-body{
+    border: orange;
+}
+.p{
+    color: red;
+}
+
+.card-text{
+    color: white;
+    font-weight: bold;
+}
+
+.card-title{
+    color: orange;
+}
