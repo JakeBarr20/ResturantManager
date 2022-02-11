@@ -1,7 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js";
-import { getFirestore, collection, getDocs, query, where } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
+import { doc, updateDoc, getFirestore, collection, getDocs, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 
+// Config
 const firebaseConfig = {
     apiKey: "AIzaSyD_-a7AcOzc2g4awLO2PeneU8enHKBw7cU",
     authDomain: "restaurant-database-92c17.firebaseapp.com",
@@ -37,7 +38,6 @@ function toggleOrder(iconID) {
 
 let orderNum = 1;
 let cardContainer;
-var order = [{},{},{},{}];
 
 // Create a card with all its content
 async function createOrderCard(doc) {
@@ -75,6 +75,7 @@ async function createOrderCard(doc) {
     let deliverBtn = document.createElement('a');
     deliverBtn.style.backgroundColor = 'green';
     deliverBtn.setAttribute('href', '#');
+    deliverBtn.setAttribute('id', 'db' + orderNum);
     deliverBtn.className = 'btn btn-primary-outline';
     deliverBtn.innerText = 'Deliver';
 
@@ -88,12 +89,10 @@ async function createOrderCard(doc) {
     time.className = 'left';
     const confTime = doc.data().Time;
     if (confTime) {
-        
         //let timeElapsed = timeSince(new Date(Date.now() - confTime.seconds));
         let timeElapsed = timeSince(confTime.toDate());
-        time.innerText = timeElapsed +' ago';
+        time.innerText = timeElapsed + ' ago';
     }
-
 
     // Card Assembly
     let card = document.createElement('div');
@@ -117,7 +116,12 @@ async function createOrderCard(doc) {
     // Toggle Button Event Listener
     if (iconBtn) {
         let tg = iconBtn.id;
-        iconBtn.addEventListener('click', function() { toggleOrder(tg); });
+        iconBtn.addEventListener('click', function () { toggleOrder(tg); });
+    }
+
+    // Deliver Button Event Listener
+    if (deliverBtn) {
+        iconBtn.addEventListener('click', function () { changeStatus(deliverBtn.id) });
     }
 }
 
@@ -132,7 +136,7 @@ function createItemList(list, doc) {
     }
 }
 
-// Initialise the card list as soon as window is loaded
+// Initialise the card list
 async function initOrderList() {
     if (cardContainer) {
         document.getElementById('card-container').replaceWith(cardContainer);
@@ -148,44 +152,61 @@ async function initOrderList() {
         orderNum += 1;
         console.log(doc.id, " => ", doc.data());
     });
-}; 
+};
 
-window.onload = function() {
+window.onload = function () {
     initOrderList();
-
 }
 
+// Calculate time elapsed since a date
 function timeSince(date) {
 
     var seconds = Math.floor((new Date() - date) / 1000);
-  
+
     var interval = seconds / 31536000;
-  
+
     if (interval > 1) {
-      return Math.floor(interval) + " years";
+        return Math.floor(interval) + " years";
     }
     interval = seconds / 2592000;
     if (interval > 1) {
-      return Math.floor(interval) + " months";
+        return Math.floor(interval) + " months";
     }
     interval = seconds / 86400;
     if (interval > 1) {
-      return Math.floor(interval) + " days";
+        return Math.floor(interval) + " days";
     }
     interval = seconds / 3600;
     if (interval > 1) {
-      return Math.floor(interval) + " hours";
+        return Math.floor(interval) + " hours";
     }
     interval = seconds / 60;
     if (interval > 1) {
-      return Math.floor(interval) + " minutes";
+        return Math.floor(interval) + " minutes";
     }
     return Math.floor(seconds) + " seconds";
-  }
+}
 
+// Change status of order in DB
+async function changeStatus(childID) {
+    let cardID = getCardID(childID);
+    const orderRef = doc(db, "Orders", cardID);
+    await updateDoc(orderRef, {
+        Status: "Ready"
+    });
+}
+
+// Get the id of card
+function getCardID(childID) {
+    const child = document.getElementById(childID);
+    let parent = child ? child.parentNode : {};
+    do {
+        parent = parent.parentNode;
+    } while (parent.className != 'card');
+    return parent.id;
+}
 
 // Mock Up: Card
-
 /*
         <div class="card">
  
