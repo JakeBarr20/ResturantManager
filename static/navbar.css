@@ -92,6 +92,9 @@ a[aria-expanded="true"] {
   margin-left: -250px;
 }
 
+#contentNav{
+  z-index: 500;
+}
 /* When hovering over links*/
 a,
 a:hover,
@@ -115,13 +118,11 @@ ul ul a {
 
 /*Moves the content to the right when navbar is popped*/
 #content.active {
-  background-color: red;
   margin-left: 250px;
 }
 
 /*Moves the content to the left when the navbar is closed*/
 #content.unactive {
-  background-color: white;
   margin-left: 0px;
 }
 

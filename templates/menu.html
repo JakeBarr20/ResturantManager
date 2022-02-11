@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title> Kebab</title>
+  <head>
+    <title>Kebab</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -24,13 +24,10 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"
     />
 
-    <link rel="stylesheet" href="static/menu.css">
-<script src="static/menu.js"></script>
-
-</head>
-<body style="background-color: #FAFAD2;">
-    {%block content%}
-    {%endblock%}
+    <link rel="stylesheet" href="static/menu.css" />
+    <script src="static/menu.js"></script>
+  </head>
+  <body style="background-color: #fafad2">
     <!-- The main div-->
     <div class="mainSite">
       <!-- Sidebar-->
@@ -76,17 +73,16 @@
       <!-- What will be within the page-->
 
       <div id="content">
-        <nav  class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div id="contentNav" class="container-fluid">
             <button type="button" id="sidebarCollapse" class="btn btn-info">
               <i class="fas fa-align-left"></i>
-              <span
-                >See our menu's selection</span
-              >
+              <span>See our menu's selection</span>
             </button>
           </div>
         </nav>
       </div>
+      {%block content%} {%endblock%}
     </div>
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script
@@ -110,5 +106,5 @@
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="static/navbar.js"></script>
-</body>
+  </body>
 </html>
