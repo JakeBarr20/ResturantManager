@@ -32,13 +32,18 @@ async function removeDoc(id){
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(function(doc) {
         Order = doc.id;
-        console.log(doc.id, " => ", doc.data());
     });
     await deleteDoc(doc(db, "Orders", `${Order}`));
 }
 
 async function confirmOrder(id){
-    const orderRef = doc(db, "Orders", id);
+    let Order = 0;
+    const q = query(collection(db, "Orders"), where("OrderNum","==", Number(id)));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(function(doc) {
+        Order = doc.id;
+    });
+    const orderRef = doc(db, "Orders", `${Order}`);
     await updateDoc(orderRef, {
         Status: "Preparing"
     });
