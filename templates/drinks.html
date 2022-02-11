@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -22,118 +22,81 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"
     />
-<style>
-    .order {
-        background-color: #FC6A03;
-        width: 250px;
-        border: none;
-        color: white;
-        padding: 15px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 24px;
-        margin: 4px;
-        opacity: 0.6;
-        transition: 0.3s;
-        cursor: pointer;
-        border-radius: 10px;
-        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-    }
-    .order:hover {opacity: 1}
-    .infobutton {
-        font-size: 10px;
-        background-color: #87CEEB;
-        border-radius: 50%;
-    }
-    #sub1 {
-        position: fixed;
-        left: 30%;
-        top: 10%;
-    }
-    #sub2 {
-        position: fixed;
-        left: 70%;
-        top: 10%;
-    }
-    #sub3 {
-        position: fixed;
-        left: 30%;
-        top: 30%;
-    }
-    #sub4 {
-        position: fixed;
-        left: 70%;
-        top: 30%;
-    }
-    #sub5 {
-        position: fixed;
-        left: 30%;
-        top: 50%;
-    }
-    #sub6 {
-        position: fixed;
-        left: 70%;
-        top: 50%;
-    }
-    #counter {
-        position: fixed;
-        left: 40%;
-        top: 80%;
-    }
-    #sentence{
-        position: fixed;
-        left: 30%;
-        top: 84%;
-    }
-</style>
-<script> 
-function popupAllergies() {
-    var Cal = "(Calories here)";
-    var Allergy = "(Allergies here)";
-    var message = "KCal: " + Cal + "\nAllergies: " + Allergy;
-    alert(message);
-}
-var data = 0;
-var x = 0;
-function increase(id) {
-document.getElementById("counting").innerText = data;
-x = document.getElementById(id).value;
-data = parseFloat(data) + parseFloat(x);
-document.getElementById("counting").innerText = data;
-}
-</script>
-</head>
-<body style="background-color: #FAFAD2;">
+    <link rel="stylesheet" href="static/menu.css" />
+    <script src="static/menu.js"></script>
+  </head>
+  <body style="background-color: #fafad2">
     <div id="sub1">
-        <button class="button order" onClick="increase(this.id)" value= 1.50 id = "1">COKE £1.50</button>
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
+      <button
+        class="button order"
+        onClick="increase(this.id)"
+        value="1.50"
+        id="1"
+      >
+        COKE £1.50
+      </button>
+      <button class="button infobutton" onclick="popupAllergies()">i</button>
     </div>
     <div id="sub2">
-        <button class="button order" onClick="increase(this.id)" value= 1.50 id = "2">DIET COKE £1.50</button>
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
+      <button
+        class="button order"
+        onClick="increase(this.id)"
+        value="1.50"
+        id="2"
+      >
+        DIET COKE £1.50
+      </button>
+      <button class="button infobutton" onclick="popupAllergies()">i</button>
     </div>
     <div id="sub3">
-        <button class="button order" onClick="increase(this.id)" value= 1.50 id = "3">ORANGE FANTA £1.50</button>
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
+      <button
+        class="button order"
+        onClick="increase(this.id)"
+        value="1.50"
+        id="3"
+      >
+        ORANGE FANTA £1.50
+      </button>
+      <button class="button infobutton" onclick="popupAllergies()">i</button>
     </div>
     <div id="sub4">
-        <button class="button order" onClick="increase(this.id)" value= 1.50 id = "4">LEMON FANTA £1.50</button>
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
+      <button
+        class="button order"
+        onClick="increase(this.id)"
+        value="1.50"
+        id="4"
+      >
+        LEMON FANTA £1.50
+      </button>
+      <button class="button infobutton" onclick="popupAllergies()">i</button>
     </div>
     <div id="sub5">
-        <button class="button order" onClick="increase(this.id)" value= 1.50 id = "5">DR PEPPER £3.00</button>
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
+      <button
+        class="button order"
+        onClick="increase(this.id)"
+        value="1.50"
+        id="5"
+      >
+        DR PEPPER £3.00
+      </button>
+      <button class="button infobutton" onclick="popupAllergies()">i</button>
     </div>
     <div id="sub6">
-        <button class="button order" onClick="increase(this.id)" value= 0.0 id = "6">WATER £0.00</button>
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
+      <button
+        class="button order"
+        onClick="increase(this.id)"
+        value="0.0"
+        id="6"
+      >
+        WATER £0.00
+      </button>
+      <button class="button infobutton" onclick="popupAllergies()">i</button>
     </div>
-    <div id = "counter">
-        <h2 id = "counting">0.0</h2>
+    <div id="counter">
+      <h2 id="counting">0.0</h2>
     </div>
-    <div id = "sentence">
-        <h>BALANCE: £</h>
+    <div id="sentence">
+      <h>BALANCE: £</h>
     </div>
     <!-- The main div-->
     <div class="mainSite">
@@ -180,13 +143,11 @@ document.getElementById("counting").innerText = data;
       <!-- What will be within the page-->
 
       <div id="content">
-        <nav  class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div id="contentNav" class="container-fluid">
             <button type="button" id="sidebarCollapse" class="btn btn-info">
               <i class="fas fa-align-left"></i>
-              <span
-                >See our menu's selection</span
-              >
+              <span>See our menu's selection</span>
             </button>
           </div>
         </nav>
@@ -214,5 +175,5 @@ document.getElementById("counting").innerText = data;
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="static/navbar.js"></script>
-</body>
+  </body>
 </html>
