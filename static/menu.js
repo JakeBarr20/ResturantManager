@@ -1,6 +1,4 @@
-function popupAllergies() {
-    var Cal = "(Calories here)";
-    var Allergy = "(Allergies here)";
+function popupAllergies(Cal, Allergy) {
     var message = "KCal: " + Cal + "\nAllergies: " + Allergy;
     alert(message);
   }
