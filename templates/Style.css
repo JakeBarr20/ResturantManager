@@ -1,12 +1,13 @@
 .edit-order {
     max-height: 130px;
     min-height: 130px;
-    min-width: 1300px;
-    max-width: 1300px;
+    min-width: 810px;
+    max-width: 810px;
     color:black;
     background-color: orange;
     border-color:transparent;
-    margin-top: 5px;
+    margin-top: 15px;
+    margin-left: 20px;
     margin-bottom: 15px;
     border-radius: 5px;
 }
@@ -14,25 +15,25 @@
 .tables {
     max-height: 130px;
     min-height: 130px;
-    min-width: 325px;
-    max-width: 325px;
+    min-width: 810px;
+    max-width: 810px;
     background-color: orange;
     z-index: 100%;
-    margin-left:1330px;
+    margin-left:830px;
     transform: translateY(-150px);
     border-radius: 5px;
 }
 .box {
     max-height: 22px;
     min-height: 22px;
-    min-width: 1300px;
-    max-width: 1300px;
+    min-width: 810px;
+    max-width: 810px;
     background-color: rgb(212, 138, 0);
     border-radius: 10px;
 }
 
 .card-deck{
-    margin-left: 60px;
+    margin-left: 5px;
     margin-top: 20px;
 }
 
@@ -106,6 +107,7 @@
     border-radius: 5px;
     background: #e62222;
     margin-left: 20px;
+    margin-bottom: 22px;
     font-size: 15px;
     transform: translateY(-8px);
 }
