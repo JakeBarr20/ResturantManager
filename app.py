@@ -24,7 +24,7 @@ def introUI():
 
 @app.route('/customer')
 def customerUI():
-    return render_template("menu.html")
+    return render_template("sides.html")
 
 @app.route('/waiter')
 def waiterUI():
@@ -56,7 +56,7 @@ def kebabMenu():
 
 @app.route('/sides')
 def sideMenu():
-    return render_template("test.html")
+    return render_template("sides.html")
     
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,236 +1,77 @@
-{%extends 'menu.html'%}
-{%block content%}
-    <div id="sub1">
-      <button
-        class="button order"
-        onClick="increase(this.id)"
-        value="2.00"
-        id="1"
-      >
-        1 PIECES £2.00
-      </button>
-      <button class="button infobutton" 
-      onclick="popupAllergies(264, '')">i</button>
-    </div>
-    <div id="sub2">
-      <button
-        class="button order"
-        onClick="increase(this.id)"
-        value="3.00"
-        id="2"
-      >
-        2 PIECE £3.00
-      </button>
-      <button class="button infobutton" 
-      onclick="popupAllergies(528,'')">i</button>
-    </div>
-    <div id="sub3">
-      <button
-        class="button order"
-        onClick="increase(this.id)"
-        value="5.00"
-        id="3"
-      >
-        3 PIECE £5.00
-      </button>
-      <button class="button infobutton" 
-      onclick="popupAllergies(792, '')">i</button>
-    </div>
-    <div id="sub4">
-      <button
-        class="button order"
-        onClick="increase(this.id)"
-        value="7.00"
-        id="4"
-      >
-        5 PIECE £7.00
-      </button>
-      <button class="button infobutton" 
-      onclick="popupAllergies(1320, '')">i</button>
-    </div>
-    <div id="sub5">
-      <button
-        class="button order"
-        onClick="increase(this.id)"
-        value="8.00"
-        id="5"
-      >
-        6 WINGS £8.00
-      </button>
-      <button class="button infobutton" 
-      onclick="popupAllergies(1584, '')">i</button>
-    </div>
-    <div id="sub6">
-      <button
-        class="button order"
-        onClick="increase(this.id)"
-        value="12.00"
-        id="6"
-      >
-        12 WINGS £12.00
-      </button>
-      <button class="button infobutton" 
-      onclick="popupAllergies(3168, '')">i</button>
-    </div>
-    <div id="counter">
-      <h2 id="counting">0.0</h2>
-    </div>
-    <div id="sentence">
-      <h>BALANCE: £</h>
-    </div>
-{%endblock%}
-=======
-<!DOCTYPE html>
-<html>
-<head>
-<title> Chicken</title>
-<style>
-    
-    button {
-        font-size: 40px;
-        padding: 10px;
-        border-radius: 10px;
-    }
-    .button2 {
-        font-size: 20px;;
-        background-color: #FC6A03;
-    }
-    .infobutton {
-        font-size: 10px;
-        background-color: #87CEEB;
-        border-radius: 50%;
-    }
-    #container {
-        position: fixed;
-        left: 0%;
-        top: 10%; 
-    }
-    #sub2 {
-        position: fixed;
-        left: 0%;
-        top: 30%;  
-    }
-    #sub3 {
-        position: fixed;
-        left: 0%;
-        top: 50%;
-    }
-    #sub4 {
-        position: fixed;
-        left: 0%;
-        top: 70%;
-    }
-    #sub5 {
-        position: fixed;
-        left: 0%;
-        top: 90%;
-    }
-    #sub6 {
-        position: fixed;
-        left: 20%;
-        top: 10%;
-    }
-    #sub7 {
-        position: fixed;
-        left: 40%;
-        top: 10%;
-    }
-    #sub8 {
-        position: fixed;
-        left: 20%;
-        top: 30%;
-    }
-    #sub9 {
-        position: fixed;
-        left: 50%;
-        top: 30%;
-    }
-    #sub10 {
-        position: fixed;
-        left: 20%;
-        top: 50%;
-    }
-    #sub11 {
-        position: fixed;
-        left: 60%;
-        top: 50%;
-    }
-    #counter {
-        position: fixed;
-        left: 40%;
-        top: 80%;
-    }
-    #sentence{
-        position: fixed;
-        left: 30%;
-        top: 84%;
-    }
-</style>
-<script> 
-function popupAllergies() {
-    var Cal = "(Calories here)";
-    var Allergy = "(Allergies here)";
-    var message = "KCal: " + Cal + "\nAllergies: " + Allergy;
-    alert(message);
-}
-var data = 0;
-var x = 0;
-function increase(id) {
-document.getElementById("counting").innerText = data;
-x = document.getElementById(id).value;
-data = parseFloat(data) + parseFloat(x);
-document.getElementById("counting").innerText = data;
-}
-</script>
-<h1>Chicken Menu</h1>
+{%extends 'menu.html'%}{%block content%}
+<div style="margin-top: 50px;" class="row">
+    <div class="col-sm-3">
+      <div class="card" style="background-image: url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/boom-burger-1518627283.jpg?crop=0.669xw:1.00xh;0.166xw,0&resize=100:*);">
+        <div class="card-body">
+          <h5 class="card-title">Bacon burger </h5>
+          <p class="card-text">Chicken, bacon, cheese, barbecue</p>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="1">1.50</a>
+        </div>
+      </div>
+      <div style="margin-top: 50px; background-image: url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/halloumi-burger-main-1558005486.png?crop=1.00xw:0.789xh;0,0.113xh&resize=100:*);" class="card">
+        <div class="card-body">
+          <h5 class="card-title">Halloumi burger</h5>
+          <p class="card-text">Halloumi burger, topped with lettuce, tomato</p>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="2">6.00</a>
+        </div>
+      </div>
+      <div style="margin-top: 50px; background-image: url(https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/a8/a0/4a/deer-hunter-venison-burger.jpg?w=100&h=100&s=1);" class="card">
+        <div class="card-body">
+          <h5 class="card-title">Venicen burger</h5>
+          <p class="card-text">Not for the faint hearted</p>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="3">7.00</a>
+        </div>
+      </div>
+      <div style="margin-top: 50px; background-image: url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/vegan-burger-2-1578931709.jpg?crop=0.669xw:1.00xh;0.166xw,0&resize=100:*);" class="card">
+        <div class="card-body">
+          <h5 class="card-title">Vegan burgers</h5>
+          <p class="card-text">We support all</p>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="4">9.00</a>
+        </div>
+      </div>
 
-</head>
-<body>
-    <div id="container">
-        <button onclick="window.location.href='burgers.html';">Burgers</button>
     </div>
-    <div id="sub2">
-        <button onclick="window.location.href='chicken.html';">Chicken</button>
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-body" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHHQDriQHziUywIUUqCho-qVtpphkMbzkUCg&usqp=CAU);">
+          <h5 class="card-title">Cheese burger</h5>
+          <p class="card-text">Saving the world one burger at a time</p>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="5">4.00</a>
+        </div>
+      </div>
+      <div style="margin-top: 50px; background-image: url(https://motherclucker.co.uk/wp-content/uploads/elementor/thumbs/Mother-Clucker-Fillet-Burger-11.21-pgjjjac4rspxvxh47rmlrdyy90dpomu9xw58bbqxuw.jpg);" class="card">
+        <div class="card-body">
+          <h5 class="card-title">Chicken burger</h5>
+          <p class="card-text">Not as good as runnymede chicken but eh</p>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="6">10.00</a>
+        </div>
+      </div>
     </div>
-    <div id="sub3">
-       <button onclick="window.location.href='meals.html';">Meal Deals</button> 
-    </div>
-    <div id="sub4">
-        <button onclick="window.location.href='drinks.html';">Drinks</button>
-    </div>
-    <div id="sub5">
-        <button onclick="window.location.href='kebab.html';">Kebab</button>
-    </div>
-    <div id="sub6">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button class="button button2" onClick="increase(this.id)" value= 2.00 id = "1">1 PIECES £2.00</button>
-    </div>
-    <div id="sub7">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button class="button button2"onClick="increase(this.id)" value= 3.00 id = "2">2 PIECE £3.00</button>
-    </div>
-    <div id="sub8">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button class="button button2"onClick="increase(this.id)" value= 5.00 id = "3">3 PIECE £5.00</button>
-    </div>
-    <div id="sub9">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button class="button button2"onClick="increase(this.id)" value= 7.00 id = "3">5 PIECE £7.00</button>
-    </div>
-    <div id="sub10">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button class="button button2"onClick="increase(this.id)" value= 8.00 id = "3">6 WINGS £8.00</button>
-    </div>
-    <div id="sub11">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button class="button button2"onClick="increase(this.id)" value= 12.00 id = "3">12 WINGS £12.00</button>
-    </div>
-    <div id = "counter">
-        <h2 id = "counting">0.0</h2>
-    </div>
-    <div id = "sentence">
-        <h>BALANCE: £</h>
-    </div>
-</body>
-</html>
->>>>>>> e6168d80408e08318d08ca965b8b2ae67d686473
+    <div class="col-sm-3">
+        <div class="card" style="background-image:url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/boom-burger-1518627283.jpg?crop=0.669xw:1.00xh;0.166xw,0&resize=100:*);">
+          <div class="card-body">
+            <h5 class="card-title">Steak burger</h5>
+            <p class="card-text">A bit pricey but well worth it</p>
+            <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+            id="7">8.00</a>
+          </div>
+        </div>
+        <div style="margin-top: 50px; background-image: url(https://veganwholesaler.com/wp-content/uploads/2021/05/Greenvie-Slices-Cheddar-serving-suggestion-2-100x100.jpg); " class="card">
+          <div class="card-body">
+            <h5 class="card-title">Vegetarian burger</h5>
+            <p class="card-text">Not grass, but great for the bone, turn into a cow</p>
+            <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+            id="8">4.00</a>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  
+{%endblock%}
