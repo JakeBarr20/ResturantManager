@@ -49,3 +49,144 @@ async function confirmOrder(id){
     });
 }
 
+
+let cardContainer;
+let orderNum = 1;
+
+async function createOrderCard(doc) {
+  
+    // Card Head
+    let cardHead = document.createElement('div');
+    cardHead.className = 'card-header todo';
+    cardHead.setAttribute('id', 'card-head' + orderNum);
+
+    let title = document.createElement('h5');
+    title.innerText = 'Order #' + orderNum;
+
+    // Card Body
+    let cardBody = document.createElement('div');
+    cardBody.className = 'card-body';
+
+    let itemList = document.createElement('ul')
+    itemList.className = 'list-group';
+    itemList.setAttribute('id', 'smaller');
+    createItemList(itemList, doc);
+
+    // Card Footer
+    
+    let buttongroup = document.createElement('div');
+    buttongroup.class = 'btn-group';
+    let confirmbutton = document.createElement('button');
+    confirmbutton.class = 'confirm-button close';
+    confirmbutton.type = 'button';
+    confirmbutton.style.backgroundColor = 'green';
+    //confirmbutton.setAttribute("id",orderNum);
+    
+    let tickIcon = document.createElement('i');
+    tickIcon.className = 'fa fa-check';
+    confirmbutton.appendChild(tickIcon);
+
+
+    let removebutton = document.createElement('button');
+    removebutton.class = 'cancel-button close';
+    removebutton.type = 'button';
+    removebutton.style.backgroundColor = 'green';
+    
+
+    let timesIcon = document.createElement('i');
+    timesIcon.className = 'fa fa-times';
+    removebutton.appendChild(timesIcon);
+    
+    // Time
+    // TO DO: PULL TIME FROM ORDER USING ORDER ID
+    let time = document.createElement('small');
+    time.className = 'left';
+    const confTime = doc.data().Time;
+    if (confTime) {
+        //let timeElapsed = timeSince(new Date(Date.now() - confTime.seconds));
+        let timeElapsed = timeSince(confTime.toDate());
+        time.innerText = timeElapsed + ' ago';
+    }
+
+    let card = document.createElement('div');
+    card.className = 'card';
+    card.setAttribute('id',doc.id);
+
+    cardHead.appendChild(title);
+    cardBody.appendChild(itemList);
+    buttongroup.appendChild(confirmbutton);
+    buttongroup.appendChild(removebutton);
+    card.appendChild(cardHead);
+    card.appendChild(cardBody);
+    card.appendChild(buttongroup);
+    card.appendChild(time);
+    cardContainer.appendChild(card);
+
+    if(confirmbutton){
+        confirmbutton.addEventListener('click',function(){
+            confirmOrder(confirmbutton.id);
+        })
+    }
+}
+
+async function initOrderList(){
+    
+    if (cardContainer){
+        document.getElementById('card-container').replaceWith(cardContainer);
+        return;        
+    }
+    
+    cardContainer = document.getElementById('card-container');
+    const q1 = query(collection(db,"Orders"),where("Status","==","Waiting"));
+    const querySnapshot = await getDocs(q1);
+    
+    querySnapshot.forEach((doc) => {
+        createOrderCard(doc);
+        orderNum += 1;
+        console.log(doc.id, " => ", doc.data());
+    });
+}
+
+window.onload = function(){
+    initOrderList();
+}
+
+
+function timeSince(date) {
+
+    var seconds = Math.floor((new Date() - date) / 1000);
+
+    var interval = seconds / 31536000;
+
+    if (interval > 1) {
+        return Math.floor(interval) + " years";
+    }
+    interval = seconds / 2592000;
+    if (interval > 1) {
+        return Math.floor(interval) + " months";
+    }
+    interval = seconds / 86400;
+    if (interval > 1) {
+        return Math.floor(interval) + " days";
+    }
+    interval = seconds / 3600;
+    if (interval > 1) {
+        return Math.floor(interval) + " hours";
+    }
+    interval = seconds / 60;
+    if (interval > 1) {
+        return Math.floor(interval) + " minutes";
+    }
+    return Math.floor(seconds) + " seconds";
+}
+
+function createItemList(list, doc) {
+    let food = doc.data().food;
+    for (var key in food) {
+        var li = document.createElement('li');
+        li.className = 'list-group-item';
+        li.appendChild(document.createTextNode(food[key] + 'x ' + key));
+        list.appendChild(li);
+    }
+}
+
