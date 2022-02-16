@@ -107,7 +107,7 @@
     border-radius: 5px;
     background: #e62222;
     margin-left: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 32px;
     font-size: 15px;
     transform: translateX(-20px);
 }
@@ -130,7 +130,7 @@
     background: green;
     margin-left: 20px;
     font-size: 15px;
-    transform: translateX(-20px);
+    transform: translateX(-30px);
 }
 
 .btn-primary-outline {
@@ -147,6 +147,10 @@
 }
 .todo {
     background-color: orange;
+}
+
+.small {
+    font-size: 14px;
 }
 
 #smaller {

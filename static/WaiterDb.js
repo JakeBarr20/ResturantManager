@@ -27,7 +27,6 @@ window.removeOrder = removeOrder;
 window.confirmOrder = confirmOrder;
 
 async function removeOrder(id){
-    alert("lool");
     let Order = 0;
     const q = query(collection(db, "Orders"), where("OrderNum","==", Number(id)));
     const querySnapshot = await getDocs(q);
@@ -59,19 +58,19 @@ async function createOrderCard(doc) {
     // Card Head
     let cardHead = document.createElement('div');
     cardHead.className = 'card-header todo';
-    cardHead.setAttribute('id', 'card-head' + orderNum);
+    cardHead.setAttribute('id', 'card-head' + `${doc.data().OrderNum}`);
 
     let title = document.createElement('h5');
     title.className = 'card-title';
-    title.innerText = 'Order #' + orderNum;
+    title.innerText = 'Order #' + `${doc.data().OrderNum}`;
 
     // Card Body
     let cardBody = document.createElement('div');
     cardBody.className = 'card-body';
 
     let itemList = document.createElement('ul')
-    itemList.className = 'list-group';
-    itemList.setAttribute('id', 'smaller');
+    itemList.className = 'list-group small';
+    itemList.setAttribute('id', `${doc.data().OrderNum}`);
     createItemList(itemList, doc);
 
     // Card Footer
@@ -86,6 +85,7 @@ async function createOrderCard(doc) {
     confirmbutton.innerText = "Confirm ";
     confirmbutton.setAttribute('data-dismiss', 'alert');
     confirmbutton.setAttribute('data-target', '#card' + `${doc.data().OrderNum}`);
+    confirmbutton.setAttribute('onclick', 'confirmOrder(' + `${doc.data().OrderNum}` + ')');
     let tickIcon = document.createElement('i');
     tickIcon.className = 'fa fa-check';
     confirmbutton.appendChild(tickIcon);
@@ -98,6 +98,7 @@ async function createOrderCard(doc) {
     removebutton.innerText = "Cancel ";
     removebutton.setAttribute('data-dismiss', 'alert');
     removebutton.setAttribute('data-target', '#card' + `${doc.data().OrderNum}`);
+    removebutton.setAttribute('onclick', 'removeOrder(' + `${doc.data().OrderNum}` + ')');
     let timesIcon = document.createElement('i');
     timesIcon.className = 'fa fa-times';
     removebutton.appendChild(timesIcon);
@@ -119,8 +120,8 @@ async function createOrderCard(doc) {
 
     cardHead.appendChild(title);
     cardBody.appendChild(itemList);
-    buttongroup.appendChild(confirmbutton);
     buttongroup.appendChild(removebutton);
+    buttongroup.appendChild(confirmbutton);
     card.appendChild(cardHead);
     card.appendChild(cardBody);
     card.appendChild(buttongroup);
