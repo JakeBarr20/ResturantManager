@@ -106,10 +106,10 @@
     background: red;
     border-radius: 5px;
     background: #e62222;
-    margin-left: 20px;
-    margin-bottom: 22px;
+    margin-left: 10px;
+    margin-bottom: 30px;
     font-size: 15px;
-    transform: translateY(-8px);
+    transform: translateX(-20px);
 }
 
 .confirm-button {
@@ -130,7 +130,7 @@
     background: green;
     margin-left: 20px;
     font-size: 15px;
-    transform: translateY(-8px);
+    transform: translateX(-20px);
 }
 
 .btn-primary-outline {

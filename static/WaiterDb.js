@@ -23,10 +23,11 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 console.log(app);
 
-window.removeDoc = removeDoc;
+window.removeOrder = removeOrder;
 window.confirmOrder = confirmOrder;
 
-async function removeDoc(id){
+async function removeOrder(id){
+    alert("lool");
     let Order = 0;
     const q = query(collection(db, "Orders"), where("OrderNum","==", Number(id)));
     const querySnapshot = await getDocs(q);
@@ -61,6 +62,7 @@ async function createOrderCard(doc) {
     cardHead.setAttribute('id', 'card-head' + orderNum);
 
     let title = document.createElement('h5');
+    title.className = 'card-title';
     title.innerText = 'Order #' + orderNum;
 
     // Card Body
@@ -76,23 +78,26 @@ async function createOrderCard(doc) {
     
     let buttongroup = document.createElement('div');
     buttongroup.class = 'btn-group';
+
     let confirmbutton = document.createElement('button');
-    confirmbutton.class = 'confirm-button close';
+    confirmbutton.className = 'confirm-button close';
     confirmbutton.type = 'button';
     confirmbutton.style.backgroundColor = 'green';
-    //confirmbutton.setAttribute("id",orderNum);
-    
+    confirmbutton.innerText = "Confirm ";
+    confirmbutton.setAttribute('data-dismiss', 'alert');
+    confirmbutton.setAttribute('data-target', '#card' + `${doc.data().OrderNum}`);
     let tickIcon = document.createElement('i');
     tickIcon.className = 'fa fa-check';
     confirmbutton.appendChild(tickIcon);
 
 
     let removebutton = document.createElement('button');
-    removebutton.class = 'cancel-button close';
+    removebutton.className = 'cancel-button close';
     removebutton.type = 'button';
-    removebutton.style.backgroundColor = 'green';
-    
-
+    removebutton.style.backgroundColor = 'red';
+    removebutton.innerText = "Cancel ";
+    removebutton.setAttribute('data-dismiss', 'alert');
+    removebutton.setAttribute('data-target', '#card' + `${doc.data().OrderNum}`);
     let timesIcon = document.createElement('i');
     timesIcon.className = 'fa fa-times';
     removebutton.appendChild(timesIcon);
@@ -110,7 +115,7 @@ async function createOrderCard(doc) {
 
     let card = document.createElement('div');
     card.className = 'card';
-    card.setAttribute('id',doc.id);
+    card.setAttribute('id', 'card' + `${doc.data().OrderNum}`);
 
     cardHead.appendChild(title);
     cardBody.appendChild(itemList);
