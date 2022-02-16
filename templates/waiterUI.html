@@ -35,25 +35,35 @@
                 <label for="validationDefault01">Order Number</label>
                 <input type="text" class="form-control" id="validationDefault01" placeholder="order number" style="max-width:235px; min-width:235px;">
               </div>
-              <div class="col-md-4 mb-3" style="max-width:255px; min-width:255px;">
+              <div class="col-md-4 mb-3" style="right:90px;">
+                <label for="quant">Quantity</label>
+                <select name="Quantity" id = "quant" class="form-control" style="max-width: 60px;">
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                  </select>
+              </div>
+              <div class="col-md-4 mb-3" style="max-width:170px; min-width:170px; right:360px;">
                 <label for="validationDefault02">Item</label>
                 <input type="text" class="form-control" id="validationDefault02" placeholder="item">
               </div>
               <div class="col-md-4 mb-3" style="transform: translateX(20px);" >
-                <div class="input-group" style = "position:relative; top:50px;">
+                <div class="input-group" style = "position:relative; top:-35px; left: 530px;">
                     <button href="#" type = "button" class="btn btn-primary-outline" style = "background-color:green; color: white;" onclick = "AddToOrder()">
                         Confirm
                     </button>
                 </div>
               </div>
 
-              <div class="form-check" style = "position:relative; left:700px; bottom:60px;">
+              <div class="form-check" style = "position:relative; left:350px; bottom:60px;">
                 <input class="form-check-input" type="radio" name="Checkbuttons" id="AddCheckbutton" value="option1">
                 <label class="form-check-label" for="AddCheckbutton">
                   Add
                 </label>
               </div>
-              <div class="form-check"  style = "position:relative; left:651px; bottom:30px;">
+              <div class="form-check"  style = "position:relative; left:300px; bottom:30px;">
                 <input class="form-check-input" type="radio" name="Checkbuttons" id="RemoveCheckbutton" value="option2">
                 <label class="form-check-label" for="RemoveCheckbutton">
                   Remove
@@ -73,8 +83,22 @@
     
 
     </div>
-
+    
     <div class="card-deck" id = "card-container">
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
+        <div class = "card"></div>
     <!--
         <div class="card" id="card78">
             <div id="card-head1" class="card-header todo">
