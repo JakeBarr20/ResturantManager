@@ -196,3 +196,20 @@ function createItemList(list, doc) {
     }
 }
 
+
+window.AddItemToDb = async function(item,orderID,quantity){
+
+    let Order = 0;
+    const q = query(collection(db, "Orders"), where("OrderNum","==", orderID));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(function(doc) {
+        Order = doc.id;
+    });
+    const orderRef = doc(db, "Orders", `${Order}`);
+    await updateDoc(orderRef, {
+        food: {
+            item:quantity  //should get the item value from above 
+        }
+    });
+    
+}
