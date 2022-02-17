@@ -1,37 +1,5 @@
 {%extends 'menu.html'%}
 {%block content%}
-<div id="sub1">
-  <button class="button order" onClick="increase(this.id)" value= 6.00 id = "1">DONER £6.00</button>
-  <button class="button infobutton" onclick="popupAllergies(992, 'Gluten, Milk, Soya, Sesame')"> i </button>
-</div>
-<div id="sub2">
-  <button class="button order" onClick="increase(this.id)" value= 6 id = "2">SHISH £6.00</button>
-  <button class="button infobutton" onclick="popupAllergies(522, 'Gluten, Milk, Soya, Sesame')"> i </button>
-</div>
-<div id="sub3">
-  <button class="button order" onClick="increase(this.id)" value= 6.00 id = "3">SHAMI £6.00</button>
-  <button class="button infobutton" onclick="popupAllergies(720, 'Gluten, Milk, Soya, Sesame')"> i </button>
-</div>
-<div id="sub4">
-  <button class="button order" onClick="increase(this.id)" value= 6.00 id = "4">TUNDAY £6.00</button>
-  <button class="button infobutton" onclick="popupAllergies(756, 'Gluten, Milk, Soya, Sesame')"> i </button>
-</div>
-<div id="sub5">
-  <button class="button order" onClick="increase(this.id)" value= 6.00 id = "5">ADANA £6.00</button>
-  <button class="button infobutton" onclick="popupAllergies(1140, 'Gluten, Milk, Soya, Sesame')"> i </button>
-</div>
-<div id="sub6">
-  <button class="button order" onClick="increase(this.id)" value= 6.00 id = "6">VEGAN £6.00</button>
-  <button class="button infobutton" onclick="popupAllergies(408, 'Gluten, Milk, Soya, Sesame')"> i </button>
-</div>
-<div id = "counter">
-  <h2 id = "counting">0.0</h2>
-</div>
-<div id = "sentence">
-  <h>BALANCE: £</h>
-</div>
-{%endblock%}
-=======
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,57 +20,32 @@
         background-color: #87CEEB;
         border-radius: 50%;
     }
-    #container {
-        position: fixed;
-        left: 0%;
-        top: 10%; 
-    }
-    #sub2 {
-        position: fixed;
-        left: 0%;
-        top: 30%;  
-    }
-    #sub3 {
-        position: fixed;
-        left: 0%;
-        top: 50%;
-    }
-    #sub4 {
-        position: fixed;
-        left: 0%;
-        top: 70%;
-    }
-    #sub5 {
-        position: fixed;
-        left: 0%;
-        top: 90%;
-    }
-    #sub6 {
+    #sub1 {
         position: fixed;
         left: 20%;
         top: 10%;
     }
-    #sub7 {
+    #sub2 {
         position: fixed;
         left: 40%;
         top: 10%;
     }
-    #sub8 {
+    #sub3 {
         position: fixed;
         left: 20%;
         top: 30%;
     }
-    #sub9 {
+    #sub4 {
         position: fixed;
         left: 50%;
         top: 30%;
     }
-    #sub10 {
+    #sub5 {
         position: fixed;
         left: 20%;
         top: 50%;
     }
-    #sub11 {
+    #sub6 {
         position: fixed;
         left: 60%;
         top: 50%;
@@ -138,51 +81,37 @@ document.getElementById("counting").innerText = data;
 
 </head>
 <body>
-    <div id="container">
-        <button onclick="window.location.href='burgers.html';">Burgers</button>
+    <div id="sub1">
+      <button class="button order" onClick="increase(this.id)" value= 6.00 id = "1">DONER £6.00</button>
+      <button class="button infobutton" onclick="popupAllergies(992, 'Gluten, Milk, Soya, Sesame')"> i </button>
     </div>
     <div id="sub2">
-        <button onclick="window.location.href='chicken.html';">Chicken</button>
+      <button class="button order" onClick="increase(this.id)" value= 6 id = "2">SHISH £6.00</button>
+      <button class="button infobutton" onclick="popupAllergies(522, 'Gluten, Milk, Soya, Sesame')"> i </button>
     </div>
     <div id="sub3">
-       <button onclick="window.location.href='meals.html';">Meal Deals</button> 
+      <button class="button order" onClick="increase(this.id)" value= 6.00 id = "3">SHAMI £6.00</button>
+      <button class="button infobutton" onclick="popupAllergies(720, 'Gluten, Milk, Soya, Sesame')"> i </button>
     </div>
     <div id="sub4">
-        <button onclick="window.location.href='drinks.html';">Drinks</button>
+      <button class="button order" onClick="increase(this.id)" value= 6.00 id = "4">TUNDAY £6.00</button>
+      <button class="button infobutton" onclick="popupAllergies(756, 'Gluten, Milk, Soya, Sesame')"> i </button>
     </div>
     <div id="sub5">
-        <button onclick="window.location.href='kebab.html';">Kebab</button>
+      <button class="button order" onClick="increase(this.id)" value= 6.00 id = "5">ADANA £6.00</button>
+      <button class="button infobutton" onclick="popupAllergies(1140, 'Gluten, Milk, Soya, Sesame')"> i </button>
     </div>
     <div id="sub6">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button class="button button2" onClick="increase(this.id)" value= 6.00 id = "1">DONER £6.00</button>
-    </div>
-    <div id="sub7">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button class="button button2"onClick="increase(this.id)" value= 6 id = "2">SHISH £6.00</button>
-    </div>
-    <div id="sub8">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button class="button button2"onClick="increase(this.id)" value= 6.00 id = "3">SHAMI £6.00</button>
-    </div>
-    <div id="sub9">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button class="button button2"onClick="increase(this.id)" value= 6.00 id = "3">TUNDAY £6.00</button>
-    </div>
-    <div id="sub10">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button class="button button2"onClick="increase(this.id)" value= 6.00 id = "3">ADANA £6.00</button>
-    </div>
-    <div id="sub11">
-        <button class="button infobutton" onclick="popupAllergies()"> i </button>
-        <button class="button button2"onClick="increase(this.id)" value= 6.00 id = "3">VEGAN £6.00</button>
+      <button class="button order" onClick="increase(this.id)" value= 6.00 id = "6">VEGAN £6.00</button>
+      <button class="button infobutton" onclick="popupAllergies(408, 'Gluten, Milk, Soya, Sesame')"> i </button>
     </div>
     <div id = "counter">
-        <h2 id = "counting">0.0</h2>
+      <h2 id = "counting">0.0</h2>
     </div>
     <div id = "sentence">
-        <h>BALANCE: £</h>
+      <h>BALANCE: £</h>
     </div>
+{%endblock%}
 </body>
 </html>
 >>>>>>> e6168d80408e08318d08ca965b8b2ae67d686473
