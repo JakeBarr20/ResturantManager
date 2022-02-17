@@ -32,7 +32,7 @@ def waiterUI():
 
 @app.route('/kitchen_staff')
 def kitchenStaffUI():
-    return '<h1>kitchen staff</h1>'
+    return render_template("kitchenUI.html")
 
 @app.route('/burgers')
 def burgerMenu():
