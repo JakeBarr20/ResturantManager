@@ -23,15 +23,16 @@ function add(orderID, item, quantity){
                 update(orderID, item, q);
                 count = true;
             }
-            
+
         }
-        if (count == false){alert("Item not in list");}
+        if (count == false){update(orderID, item, quantity);}
 }
 
-function update(orderID, item, quantity){
+function update(orderID, item, quant){
+    console.log(quant);
     var node = document.createElement('li');
     node.className = 'list-group-item';
-    node.appendChild(document.createTextNode(quantity + "x " + item));
+    node.appendChild(document.createTextNode(quant + "x " + item));
     document.getElementById(orderID).appendChild(node);
 }
 
