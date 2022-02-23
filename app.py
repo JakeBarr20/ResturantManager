@@ -57,6 +57,10 @@ def kebabMenu():
 @app.route('/sides')
 def sideMenu():
     return render_template("sides.html")
+
+@app.route('/checkout')
+def checkoutItems():
+    return render_template("checkout.html")
     
 if __name__ == '__main__':
     app.run(debug=True)
