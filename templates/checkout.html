@@ -1,9 +1,11 @@
 {%extends 'menu.html'%}{%block content%}
-<div style="margin-top: 50px;" class="row">
-	<input type="text" id="Order">
-	<input type="submit" value="Submit" onclick="addToList()">
-	<ul id="OrderList">
-	</ul>
-	<button onclick="addToDataBase()"> Checkout Order </button>
-</div>
+<body>
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
+<script src = "checkout.js" defer> </script>
+	<div style="margin-top: 50px;" class="row">
+		<button id = "Checkout" onclick="addDoc()"> Checkout Order </button>
+	</div>
+</body>
 {%endblock%}
