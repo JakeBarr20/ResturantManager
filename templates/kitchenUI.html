@@ -2,31 +2,68 @@
 <html lang="en">
 
 <head>
-    <!-- Meta-Data -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- Stylesheets -->
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500&amp;subset=latin-ext">
-    <link rel="stylesheet" href="/static/KitchenStyle.css">
-    <!-- Scripts -->
-    <script type="module" src="/static/KitchenApp.js"></script>
-    <!--script type="module" src='/static/querying.js'></script-->
+  <!-- Meta-Data -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Stylesheets -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500&amp;subset=latin-ext">
+  <link rel="stylesheet" href="/static/KitchenStyle.css">
+  <!-- Scripts -->
+  <script type="module" src="/static/KitchenApp.js"></script>
+  <!--script type="module" src='/static/querying.js'></script-->
 </head>
 
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar sticky-top navbar-expand-lg" style="background-color:#292929;"></nav>
+  <!-- Navbar -->
+  <nav class="navbar .sticky-top navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarTogglerDemo03"
+        aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <i class="fas fa-bars"></i>
+      </button>
+      <a class="navbar-brand" href="#">KitchenUI</a>
+      <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+        <!-- Multi-Select Buttons -->
+        <ul class="navbar-nav mx-5">
+          <li class="nav-item">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button type="button" id="multi-select1" class="btn btn-secondary">Preparing</button>
+              <button type="button" id="multi-select2" class="btn btn-outline-dark">Ready</button>
+            </div>
+          </li>
+        </ul>
+        <!-- Search Bar -->
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <form class="form-inline">
+              <div class="input-group-addon">
+                <span class="input-group-text" id="basic-addon1">#</span>
+              </div>
+              <input type="search" id="search-input" class="form-control mr-sm-1" placeholder="Order"
+                autocomplete="off" aria-label="Search" aria-describedby="basic-addon1" />
+              <button class="btn btn-outline-primary my-2 my-sm-0" type="submit"
+                data-mdb-ripple-color="dark">Search</button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-    <!-- Card Deck -->
-    <div class="card-deck" id="card-container"></div>
+  <!-- Card Deck -->
+  <div class="card-deck" id="card-container"></div>
 
+  <div class="bottom-right">
+    <button type="button" id="refresh" class="btn btn-info btn-circle btn-xl"><i class="fa fa-refresh"></i></button>
+  </div>
 </body>
 
 </html>
 
-<!-- TO DO: Add Navbar content , make cards easily addable (i.e. reproducable without repeating code)-->
+<!-- TO DO: Add Navbar content-->
