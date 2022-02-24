@@ -207,9 +207,7 @@ window.AddItemToDb = async function(item,orderID,quantity){
     });
     const orderRef = doc(db, "Orders", `${Order}`);
     await updateDoc(orderRef, {
-        food: {
-            item:quantity  //should get the item value from above 
-        }
-    });
+        [`food.${item}`]: quantity  //should get the item value from above 
+    }, {merge:true});
     
 }

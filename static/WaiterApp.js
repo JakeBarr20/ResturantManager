@@ -4,7 +4,7 @@ function AddToOrder(){
     let item = document.getElementById("validationDefault02").value;
     if (document.getElementById("AddCheckbutton").checked){ 
         add(orderID, item, quantity);
-        //window.parent.AddItemToDb(item,orderID,quantity); //calls the function for interacting with database
+        window.parent.AddItemToDb(item,orderID,quantity); //calls the function for interacting with database
     }else if (document.getElementById("RemoveCheckbutton").checked){
         remove(orderID, item, quantity);
     }
