@@ -15,7 +15,15 @@ function increase(id) {
   items = items + newItem + ",";
 }
 
-<<<<<<< HEAD
+ function enterData() {
+  if (confirm('Are you sure you want to checkout this order?') == true) {
+    addDoc();
+    alert('OK, your meal has been sent to the database');
+  } else {
+    alert('You Cancelled Your Order');
+  }
+}
+
 // Make class to activate a css style class that comes over cards when pressed
 $(document).ready(function () {
   console.log("hello world");
@@ -39,8 +47,3 @@ $(function testParams() {
         console.log(x);
     });
 });
-=======
-function getStuff() {
-  alert("Items = " + items +"\nPrice = " + data)
-}
->>>>>>> c73545ce8c839c68dc1c59acbdf75dfb676bb297

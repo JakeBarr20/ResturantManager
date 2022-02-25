@@ -43,4 +43,3 @@ async function confirmOrder(id){
         Status: "Preparing"
     });
 }
-
