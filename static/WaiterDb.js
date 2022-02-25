@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js";
-import { getFirestore, collection, query, where, orderBy, deleteDoc, doc, setDoc, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
+import { getFirestore, collection, query, where, deleteField, deleteDoc, doc, setDoc, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -221,12 +221,13 @@ window.AddItemToDb = async function(item,orderID,quantity){
 
 window.RemoveItemFromDb = async function(item, orderID, quantity){
     let Order = 0;
+    let food = 0;
     let database_quant = quantity;
     const q = query(collection(db, "Orders"), where("OrderNum","==", Number(orderID)));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(function(doc) {
         Order = doc.id;
-        let food = doc.data().food;
+        food = doc.data().food;
         for (var key in food) {
             if(key == item){
                 database_quant = Number(food[item]) - Number(quantity); 
@@ -235,7 +236,13 @@ window.RemoveItemFromDb = async function(item, orderID, quantity){
         }    
     });
     const orderRef = doc(db, "Orders", `${Order}`);
-    await updateDoc(orderRef, {
-        [`food.${item}`]: database_quant.toString()  
-    }, {merge:true});
+    if(Number(food[item]) <= 1){
+        await updateDoc(orderRef, {
+            [`food.${item}`]: deleteField()  
+        }, {merge:true});
+    }else {
+        await updateDoc(orderRef, {
+         [`food.${item}`]: database_quant.toString()  
+        }, {merge:true});
+    }
 }
