@@ -7,6 +7,7 @@ function AddToOrder(){
         window.parent.AddItemToDb(item,orderID,quantity); //calls the function for interacting with database
     }else if (document.getElementById("RemoveCheckbutton").checked){
         remove(orderID, item, quantity);
+        window.parent.RemoveItemFromDb(item,orderID,quantity);
     }
 }
 

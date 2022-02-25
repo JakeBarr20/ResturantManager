@@ -208,15 +208,34 @@ window.AddItemToDb = async function(item,orderID,quantity){
         for (var key in food) {
             if(key == item){
                 database_quant = Number(food[item]) + Number(quantity); 
-                console.log(food[item]);
             }
         }    
     });
 
-    console.log(Order);
     const orderRef = doc(db, "Orders", `${Order}`);
     await updateDoc(orderRef, {
         [`food.${item}`]: database_quant.toString()  
     }, {merge:true});
     
+}
+
+window.RemoveItemFromDb = async function(item, orderID, quantity){
+    let Order = 0;
+    let database_quant = quantity;
+    const q = query(collection(db, "Orders"), where("OrderNum","==", Number(orderID)));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(function(doc) {
+        Order = doc.id;
+        let food = doc.data().food;
+        for (var key in food) {
+            if(key == item){
+                database_quant = Number(food[item]) - Number(quantity); 
+                console.log(food[item]);
+            }
+        }    
+    });
+    const orderRef = doc(db, "Orders", `${Order}`);
+    await updateDoc(orderRef, {
+        [`food.${item}`]: database_quant.toString()  
+    }, {merge:true});
 }
