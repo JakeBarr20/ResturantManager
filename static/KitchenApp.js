@@ -21,6 +21,9 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 console.log(app);
 
+let curStatus = 'Preparing';
+let cardContainer;
+
 // Execute commands when window is opened
 window.onload = function () {
     //const resetBtn = document.getElementById('reset');
@@ -28,6 +31,7 @@ window.onload = function () {
     document.getElementById('refresh').addEventListener('click', function () { rst() });
     document.getElementById('multi-select1').addEventListener('click', function () { toggleViewStatus('Preparing'); });
     document.getElementById('multi-select2').addEventListener('click', function () { toggleViewStatus('Ready'); });
+    document.getElementById('searchBtn').addEventListener('click', function () { searchOrder(this.form); });
     initOrderList('Preparing');
 }
 
@@ -43,7 +47,6 @@ function toggleOrder(iconID) {
             document.getElementById(iconID).className = "fa fa-toggle-on fa-2x";
             document.getElementById("card-head" + ordNum).className = 'card-header prep';
             document.getElementById("deliver-btn" + ordNum).style.display = "block";
-
         }
     }
 }
@@ -56,17 +59,25 @@ function toggleViewStatus(toView) {
     if (toView === 'Preparing') {
         prep.className = 'btn btn-secondary';
         ready.className = 'btn btn-outline-dark';
-        initOrderList(toView);
     }
     else if (toView === 'Ready') {
         prep.className = 'btn btn-outline-dark';
         ready.className = 'btn btn-secondary';
-        initOrderList(toView);
+        
     }
+    curStatus = toView;
+    initOrderList(toView);
 }
 
+// Searches and outputs orders which match input field
+function searchOrder(form) {
+    // if orderNum is an int
+    //let orderNum = parseInt(form.inputbox.value);
+    // if orderNum is a String
+    let orderNum = form.inputbox.value;
 
-let cardContainer;
+    initOrderList(curStatus, orderNum);
+}
 
 // Create a card with all its content
 /*
@@ -204,15 +215,19 @@ function createItemList(list, doc) {
 }
 
 // Initialise the card list
-async function initOrderList(status) {
+async function initOrderList(status, orderNum) {
     // If card deck contains data, clear it
     if (cardContainer) {
         removeAllChildNodes(document.getElementById('card-container'));
     }
 
     cardContainer = document.getElementById('card-container');
-
-    const q1 = query(collection(db, "Orders"), where("Status", "==", status));
+    let q1;
+    if (orderNum != null && orderNum != '') {
+        q1 = query(collection(db, "Orders"), where("Status", "==", status), where("OrderNum", "==", orderNum));
+    } else {
+        q1 = query(collection(db, "Orders"), where("Status", "==", status));   
+    }
     const querySnapshot = await getDocs(q1);
     querySnapshot.forEach((doc) => {
         createOrderCard(doc, status);
