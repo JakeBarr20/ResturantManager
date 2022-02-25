@@ -29,7 +29,6 @@
 
     <link rel="stylesheet" href="static/menu.css" />
     <link rel="stylesheet" href="static/test.css">
-    <script src="static/menu.js"></script>
   </head>
   <body style="background-color: #fafad2">
     <!-- The main div-->
@@ -83,10 +82,14 @@
               <i class="fas fa-align-left"></i>
               <span>See our menu's selection</span>
             </button>
-            <p style="margin-right: 250px; color:white">subtotal: <span>£</span><span id="counting">0</span></p>
         </nav>
       </div>
       {%block content%} {%endblock%}
+      <footer class="text-center text-white fixed-bottom" style="background-color: #f8ac08;">
+        <div class="text-center p-3" style="background-color: rgba(248, 143, 4, 0.2);">
+          <h5 style="margin-right: 250px; color:white">subtotal: <span>£</span><span id="counting">0</span></h5>
+        </div>
+      </footer>
     </div>
     <!-- jQuery CDN-->
     <script
@@ -110,5 +113,6 @@
     <!-- jQuery Custom Scroller CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="static/navbar.js"></script>
+    <script src="static/menu.js"></script>
   </body>
 </html>
