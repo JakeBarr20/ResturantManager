@@ -198,26 +198,25 @@ function createItemList(list, doc) {
 
 
 window.AddItemToDb = async function(item,orderID,quantity){
-    //const q1 = query(collection(db,"Orders"),where("Status","==","Waiting"));
-    //const querySnapshot = await getDocs(q1);
-    //let food = doc.data().food;
-    //for (var key in food) {
-    //    if(key == item){
-    //        let database_quant = Number(food[item]) + quantity; 
-    //        console.log(food[item]);
-    //    }
-   // }
-    
-
     let Order = 0;
-    const q = query(collection(db, "Orders"), where("OrderNum","==", orderID));
+    let database_quant = quantity;
+    const q = query(collection(db, "Orders"), where("OrderNum","==", Number(orderID)));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach(function(doc) {
         Order = doc.id;
+        let food = doc.data().food;
+        for (var key in food) {
+            if(key == item){
+                database_quant = Number(food[item]) + Number(quantity); 
+                console.log(food[item]);
+            }
+        }    
     });
+
+    console.log(Order);
     const orderRef = doc(db, "Orders", `${Order}`);
     await updateDoc(orderRef, {
-        [`food.${item}`]: quantity  //should get the item value from above 
+        [`food.${item}`]: database_quant.toString()  
     }, {merge:true});
     
 }
