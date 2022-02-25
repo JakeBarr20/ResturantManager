@@ -198,6 +198,16 @@ function createItemList(list, doc) {
 
 
 window.AddItemToDb = async function(item,orderID,quantity){
+    //const q1 = query(collection(db,"Orders"),where("Status","==","Waiting"));
+    //const querySnapshot = await getDocs(q1);
+    //let food = doc.data().food;
+    //for (var key in food) {
+    //    if(key == item){
+    //        let database_quant = Number(food[item]) + quantity; 
+    //        console.log(food[item]);
+    //    }
+   // }
+    
 
     let Order = 0;
     const q = query(collection(db, "Orders"), where("OrderNum","==", orderID));

@@ -4,7 +4,7 @@ function AddToOrder(){
     let item = document.getElementById("validationDefault02").value;
     if (document.getElementById("AddCheckbutton").checked){ 
         add(orderID, item, quantity);
-        window.parent.AddItemToDb(item,orderID,quantity); //calls the function for interacting with database
+        //window.parent.AddItemToDb(item,orderID,quantity); //calls the function for interacting with database
     }else if (document.getElementById("RemoveCheckbutton").checked){
         remove(orderID, item, quantity);
     }
@@ -20,8 +20,10 @@ function add(orderID, item, quantity){
                 quantCard = Number((lis[i].innerHTML).substring(0,1));
                 let q = quantCard + Number(quantity);
                 list.removeChild(list.childNodes[i]);
+                //call update outside loop
                 update(orderID, item, q);
                 count = true;
+                break;
             }
 
         }
@@ -52,6 +54,7 @@ function remove(orderID, item, quantity){
                 list.removeChild(list.childNodes[i]);
                 update(orderID, item, q);
                 count = true;
+                break;
             }
         }
         if (count == false){alert("Item not in list");}
