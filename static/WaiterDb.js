@@ -153,9 +153,9 @@ async function initOrderList(){
     });
 }
 
-window.onload = function(){
-    initOrderList();
-}
+//window.onload = function(){
+  //  initOrderList();
+//}
 
 
 function timeSince(date) {
@@ -246,3 +246,60 @@ window.RemoveItemFromDb = async function(item, orderID, quantity){
         }, {merge:true});
     }
 }
+
+
+
+let tables; 
+let box;   
+
+async function createTables(doc,ready){
+    
+    let title = document.createElement('h5');
+    title.className = 'card-title';
+
+    let thistable = document.createElement('button');
+    if (ready){
+        thistable.className = 'circle-table circle-ready';
+        //thistable.setAttribute('onclick', 'deliverToTable()');
+        //need to make a function deliverToTable above this one:
+        // 1.Will change the status of an order to delivered
+        // 2.Turn the button colour back to white
+    }else{
+        thistable.className = 'circle-table';
+    }
+    thistable.innerText = `${doc.data().TableNum}`;
+
+    tables.appendChild(box);
+    box.appendChild(title);
+    box.appendChild(thistable);
+
+}
+
+async function initTables(){
+    tables = document.getElementById('Tables');
+    box = document.getElementById('Box');
+    
+    const q1 = query(collection(db,"Table"));
+    const querySnapshot = await getDocs(q1);
+
+    querySnapshot.forEach((doc) => {
+        createTables(doc,false);
+        console.log(doc.id, " => ", doc.data());
+    });
+
+    for (let i=1;i<=10;i++){    //need amount of elements in Table collection
+        const q2 = query(collection(db,"Orders"),where("TableNum","==",Number(i)),where("Status","==","Ready"));
+        const querySnapshot2 = await getDocs(q2);
+        
+        querySnapshot2.forEach((doc) => {
+            createTables(doc,true);
+            console.log(doc.id, " => ", doc.data());
+        });
+    }
+}
+
+window.onload = function(){
+    initTables();
+    initOrderList();
+}
+
