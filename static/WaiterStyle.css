@@ -1,8 +1,8 @@
 .edit-order {
     max-height: 130px;
     min-height: 130px;
-    min-width: 1080px;
-    max-width: 1080px;
+    min-width: 1090px;
+    max-width: 1090px;
     color:black;
     background-color: orange;
     border-color:transparent;
@@ -13,20 +13,42 @@
 }
 
 .tables {
-    max-height: 130px;
-    min-height: 130px;
-    min-width: 530px;
-    max-width: 530px;
+    max-height: 545px;
+    min-height: 545px;
+    min-width: 250px;
+    max-width: 250px;
     background-color: orange;
     z-index: 100%;
     margin-left:1110px;
     transform: translateY(-172px);
     border-radius: 5px;
 }
+
+.circle-table {
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    margin-bottom: 2px;
+    margin-left: 14px;
+    font-weight: 700;
+}
+
+.circle-ready {
+    background-color: rgb(40, 165, 40);
+    color: white;
+    border-color: black;
+}
+
+.circle-clean {
+    background-color: #e62222;
+    color: white;
+    border-color: black;
+}
+
 .box {
     max-height: 22px;
     min-height: 22px;
-    min-width: 1080px;
+    min-width: 1090px;
     max-width: 810px;
     background-color: rgb(212, 138, 0);
     border-radius: 10px;
@@ -35,7 +57,9 @@
 .card-deck{
     margin-left: 5px;
     margin-top: 20px;
+    width: 1150px;
 }
+
 
 .card {
     max-height: 400px;
@@ -142,9 +166,6 @@
     margin-right: -30px;
 }
 
-.prep {
-    background-color: rebeccapurple;
-}
 .todo {
     background-color: orange;
 }
