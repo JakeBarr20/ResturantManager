@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js";
-import { getFirestore, collection, query, where, deleteField, deleteDoc, doc, setDoc, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
+import { getFirestore, collection, query, where, deleteField, deleteDoc, doc, orderBy, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,6 +26,7 @@ console.log(app);
 window.removeOrder = removeOrder;
 window.confirmOrder = confirmOrder;
 window.deliverToTable = deliverToTable;
+window.helpToTable =helpToTable;
 
 async function removeOrder(id){
     let Order = 0;
@@ -244,16 +245,21 @@ window.RemoveItemFromDb = async function(item, orderID, quantity){
 }
 
 async function deliverToTable(tablen,tableid){
-    alert("hi");
     let table = document.getElementById('T' + tablen);
     table.className = 'circle-table';
-    
     const tablesRef = doc(db, "Table", `${tableid}`);
     await updateDoc(tablesRef, {
-        isReady : false 
+        isReady: false 
     });
-    
-    console.log(tablen);
+}
+
+async function helpToTable(tablen,tableid){
+    let table = document.getElementById('T' + tablen);
+    table.className = 'circle-table';
+    const tablesRef = doc(db, "Table", `${tableid}`);
+    await updateDoc(tablesRef, {
+        needHelp: false 
+    });
 }
 
 let tables; 
@@ -265,13 +271,15 @@ async function createTables(doc,ready){
 
     thistable.innerText = `${doc.data().TableNum}`;
     thistable.setAttribute('id','T'+ `${doc.data().TableNum}`)
+    thistable.setAttribute('type', 'button');
     console.log(thistable.id);
 
     if (ready == "r"){
         thistable.className = 'circle-table circle-ready';
-        thistable.setAttribute('onclick', 'deliverToTable(' + `${doc.data().TableNum}` + ',' + `${doc.id}` + ')');
+        thistable.setAttribute('onclick', 'deliverToTable(' + `${doc.data().TableNum}` + ', "' + `${doc.id}` + '")');
     }else if(ready == "h"){
         thistable.className = 'circle-table circle-clean';
+        thistable.setAttribute('onclick', 'helpToTable(' + `${doc.data().TableNum}` + ', "' + `${doc.id}` + '")');
     }else{
         thistable.className = 'circle-table';
     }
@@ -284,7 +292,7 @@ async function initTables(){
     tables = document.getElementById('Tables');
     box = document.getElementById('Box');
     
-    const q1 = query(collection(db,"Table"),where("isReady","==", true));
+    const q1 = query(collection(db,"Table"),where("isReady","==", true), orderBy("TableNum", "desc"));
     const querySnapshot = await getDocs(q1);
         
     querySnapshot.forEach((doc) => {
@@ -292,7 +300,7 @@ async function initTables(){
         console.log(doc.id, " => ", doc.data());
     });
 
-    const q2 = query(collection(db,"Table"), where("isReady", "==", false), where("needHelp", "==", false));
+    const q2 = query(collection(db,"Table"), where("isReady", "==", false), where("needHelp", "==", false), orderBy("TableNum", "desc"));
     const querySnapshot2 = await getDocs(q2);
 
     querySnapshot2.forEach((doc) => {
@@ -300,7 +308,7 @@ async function initTables(){
         console.log(doc.id, " => ", doc.data());
     });
 
-    const q3 = query(collection(db,"Table"),where("needHelp","==", true));
+    const q3 = query(collection(db,"Table"),where("needHelp","==", true), orderBy("TableNum", "desc"));
     const querySnapshot3 = await getDocs(q3);
         
     querySnapshot3.forEach((doc) => {
