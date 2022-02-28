@@ -25,6 +25,7 @@ console.log(app);
 
 window.removeOrder = removeOrder;
 window.confirmOrder = confirmOrder;
+window.deliverToTable = deliverToTable;
 
 async function removeOrder(id){
     let Order = 0;
@@ -153,11 +154,6 @@ async function initOrderList(){
     });
 }
 
-//window.onload = function(){
-  //  initOrderList();
-//}
-
-
 function timeSince(date) {
 
     var seconds = Math.floor((new Date() - date) / 1000);
@@ -247,26 +243,38 @@ window.RemoveItemFromDb = async function(item, orderID, quantity){
     }
 }
 
-
+async function deliverToTable(tablen,tableid){
+    alert("hi");
+    let table = document.getElementById('T' + tablen);
+    table.className = 'circle-table';
+    
+    const tablesRef = doc(db, "Table", `${tableid}`);
+    await updateDoc(tablesRef, {
+        isReady : false 
+    });
+    
+    console.log(tablen);
+}
 
 let tables; 
 let box;   
 
 async function createTables(doc,ready){
+
     let thistable = document.createElement('button');
+
+    thistable.innerText = `${doc.data().TableNum}`;
+    thistable.setAttribute('id','T'+ `${doc.data().TableNum}`)
+    console.log(thistable.id);
+
     if (ready == "r"){
         thistable.className = 'circle-table circle-ready';
-        //thistable.setAttribute('onclick', 'deliverToTable()');
-        //need to make a function deliverToTable above this one:
-        // 1.Will change the status of an order to delivered
-        // 2.Turn the button colour back to white
+        thistable.setAttribute('onclick', 'deliverToTable(' + `${doc.data().TableNum}` + ',' + `${doc.id}` + ')');
     }else if(ready == "h"){
         thistable.className = 'circle-table circle-clean';
     }else{
         thistable.className = 'circle-table';
     }
-    thistable.innerText = `${doc.data().TableNum}`;
-    thistable.setAttribute('id', `${doc.data().TableNum}`)
     tables.appendChild(box);
     box.appendChild(thistable);
 
