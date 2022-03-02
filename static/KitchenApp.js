@@ -198,7 +198,7 @@ async function initOrderList(orderNum) {
     if (orderNum) {
         q1 = query(collection(db, "Orders"), where("Status", "==", curStatus), where("OrderNum", "==", orderNum));
     } else {
-        q1 = query(collection(db, "Orders"), where("Status", "==", curStatus), orderBy('OrderNum'));
+        q1 = query(collection(db, "Orders"), where("Status", "==", curStatus), orderBy("Time"));
     }
 
     unsubscribe = onSnapshot(q1, (querySnapshot) => {
