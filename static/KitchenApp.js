@@ -31,6 +31,7 @@ console.log(app);
 let currentStatus = 'Preparing';
 let unsubscribe;
 let cardContainer;
+let warning;
 
 
 // Executes commands when window is opened
@@ -224,30 +225,54 @@ async function initOrderList(orderNum) {
 
     // If orderNum is a parmeter, the query type is switched to Search
     let q1;
+    let search = false;
     if (orderNum) {
         q1 = query(collection(db, "Orders"), where("Status", "==", currentStatus), where("OrderNum", "==", orderNum));
+        search = true;
     } else {
         q1 = query(collection(db, "Orders"), where("Status", "==", currentStatus), orderBy("Time"));
     }
 
     // Creates a listener which is used for the implementation of live updates
     unsubscribe = onSnapshot(q1, (querySnapshot) => {
-        let changes = querySnapshot.docChanges();
-        changes.forEach((change) => {
-            let cngData = change.doc.data();
-
-            if (cngData.Status == currentStatus) {
-                if (change.type == 'added') {
-                    createOrderCard(change.doc)
-                } else if (change.type == 'removed') {
-                    let card = document.getElementById(change.doc.id);
-                    cardContainer.removeChild(card);
+        // Search Dependent Display Condition (if search failed, display ...)
+        if (search === true && querySnapshot.empty) {
+            generateWarning(orderNum);
+        } else {
+            // Status Dependent Order Display
+            let changes = querySnapshot.docChanges();
+            changes.forEach((change) => {
+                let cngData = change.doc.data();
+                
+                if (cngData.Status == currentStatus) {
+                    if (change.type == 'added') {
+                        createOrderCard(change.doc)
+                    } else if (change.type == 'removed') {
+                        let card = document.getElementById(change.doc.id);
+                        cardContainer.removeChild(card);
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 };
 
+
+/**
+ * Notifies Kitchen staff if the query is unsucsessful by displaying alerts
+ * @param  {number} orderNum Order Number used to give more detail regarding query
+ */
+function generateWarning(orderNum) {
+    let warning = document.createElement('div');
+    warning.className = "alert alert-warning alert-dismissable fade show";
+    warning.innerHTML = `Order #${orderNum} does not exist 😕`;
+
+    document.body.appendChild(warning);
+    setTimeout (
+        function () {
+        document.body.removeChild(warning);    
+        },2000)
+}
 
 /**
  * Clears card deck by iteratively removing all children
@@ -272,7 +297,7 @@ async function changeStatus(childID) {
     });
 }
 
- 
+
 /**
  * Gets the ID of card that contains the child element
  * @param  {String} childID ID of an element withing a card the Status of which needs to be changed

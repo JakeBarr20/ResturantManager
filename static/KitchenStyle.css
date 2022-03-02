@@ -134,4 +134,10 @@ body{
     border-bottom-right-radius: 4px;
 }
 
+/* Other */
+
+.alert {
+    max-width: max-content;
+
+}
 
