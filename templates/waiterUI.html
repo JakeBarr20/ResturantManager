@@ -10,13 +10,13 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500&amp;subset=latin-ext">
-  <link rel="stylesheet" href="/TeamProject2022_33/static/WaiterStyle.css">
+  <link rel="stylesheet" href="/static/WaiterStyle.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <!-- Scripts -->
-  <script type="module" src="/TeamProject2022_33/static/WaiterDb.js"></script>
-  <script type="text/javascript" src="/TeamProject2022_33/static/WaiterApp.js"></script>
+  <script type="module" src="/static/WaiterDb.js"></script>
+  <script type="text/javascript" src="/static/WaiterApp.js"></script>
   
 </head>
 
@@ -77,20 +77,19 @@
               <div class = "tables" id = "Tables">
                 <div class = "box" style="min-width: 250px;" id = "Box">
                     <h5 class=card-title>Table Manager</h5>
-                    <!--
-                    <button class = "circle-table circle-ready"> 1 </button>
-                    <button class = "circle-table circle-ready"> 2 </button>
-                    <button class = "circle-table circle-ready"> 3 </button>
-                    <button class = "circle-table"> 4 </button>
-                    <button class = "circle-table"> 5 </button>
-                    <button class = "circle-table"> 6 </button>
-                    <button class = "circle-table"> 7 </button>
-                    <button class = "circle-table"> 8 </button>
-                    <button class = "circle-table"> 9 </button>
-                    <button class = "circle-table circle-clean"> 10 </button>
-                    -->
                 </div> 
               </div>
+              <div class="info-box" id = "InfoBox"> </div>
+              <div class = "box" style="position:relative; left:1110px; bottom:370px; min-width: 250px;" id = "Box">
+                  <h5 class=card-title>Information</h5>
+                  <p><span class="green-dot"></span> <b> Ready for delivery</b><br>
+                     <span class="red-dot"></span>  <b>Table needs help</b><br>
+                    <span class="purple-dot"></span> <b> Delivered but not paid</b><br>
+                    <span class="white-dot"></span>  <b>No action needed</b><br>
+                  </p>
+              </div>
+              
+              
             </div>
           </form>
     </div>  
