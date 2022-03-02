@@ -31,7 +31,6 @@ console.log(app);
 let currentStatus = 'Preparing';
 let unsubscribe;
 let cardContainer;
-let warning;
 
 
 // Executes commands when window is opened
