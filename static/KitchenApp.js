@@ -1,8 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js";
-import { doc, updateDoc, getFirestore, collection, getDocs, query, where, setDoc } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
+import { doc, updateDoc, getFirestore, orderBy, collection, getDocs, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 
-// TODO: pull order number from database not locally; synchronise db with ui (live updates)
+// TODO: improve search bar by making it auto-search and disable non-number entries
 
 // Config
 const firebaseConfig = {
@@ -22,18 +22,19 @@ const db = getFirestore(app);
 console.log(app);
 
 let curStatus = 'Preparing';
+let unsubscribe;
 let cardContainer;
+
 
 // Execute commands when window is opened
 window.onload = function () {
-    //const resetBtn = document.getElementById('reset');
-    //resetBtn.addEventListener('click', function() { rst() })
     document.getElementById('refresh').addEventListener('click', function () { rst() });
     document.getElementById('multi-select1').addEventListener('click', function () { toggleViewStatus('Preparing'); });
     document.getElementById('multi-select2').addEventListener('click', function () { toggleViewStatus('Ready'); });
     document.getElementById('searchBtn').addEventListener('click', function () { searchOrder(this.form); });
-    initOrderList('Preparing');
+    initOrderList();
 }
+
 
 // Toggle icon button on card, changes color and unhides button
 function toggleOrder(iconID) {
@@ -51,6 +52,7 @@ function toggleOrder(iconID) {
     }
 }
 
+
 // Toggle of View through Navbar
 function toggleViewStatus(toView) {
     let prep = document.getElementById('multi-select1');
@@ -63,64 +65,29 @@ function toggleViewStatus(toView) {
     else if (toView === 'Ready') {
         prep.className = 'btn btn-outline-dark';
         ready.className = 'btn btn-secondary';
-        
+
     }
     curStatus = toView;
-    initOrderList(toView);
+    initOrderList();
 }
+
 
 // Searches and outputs orders which match input field
 function searchOrder(form) {
-    // if orderNum is an int
-    //let orderNum = parseInt(form.inputbox.value);
-    // if orderNum is a String
-    let orderNum = form.inputbox.value;
-
-    initOrderList(curStatus, orderNum);
+    // Store orderNum in Integer format
+    let orderNum = parseInt(form.inputbox.value);
+    initOrderList(orderNum);
 }
 
-// Create a card with all its content
-/*
-        <div class="card">
- 
-            <div id="card-head1" class="card-header todo">
-                <h5 class="card-title">Order #</h5>
-                <button class="btn right btn-primary-outline">
-                    <i onclick="toggleOrder('tg1')" id="tg1" class="fa fa-toggle-off fa-2x"></i>
-                </button>
-            </div>
-            
- 
-            <div class="card-body">
-                <ul class="list-group" id="smaller">
-                    <li class="list-group-item">3x Burito</li>
-                    <li class="list-group-item">1x Margarita</li>
-                    <li class="list-group-item">1x Donut</li>
-                    <li class="list-group-item">1x Apple</li>
-                    <li class="list-group-item">3x Burito</li>
-                    <li class="list-group-item">1x Margarita</li>
-                    <li class="list-group-item">1x Donut</li>
-                    <li class="list-group-item">1x Apple</li>
-                </ul>
-            </div>
- 
- 
-            <div style="display: none" id="deliver-btn1" class="card-footer border-0">
-                <a style="background-color: green;" href="#" class="btn btn-primary-outline"><i class="fa fa-bell"></i>
-                    Deliver</a>
-            </div>
- 
-            <small class="left">5 minutes ago</small>
- 
-        </div>
-*/
 
-async function createOrderCard(doc, status) {
-    let isPrep = status === 'Preparing';
+// Creation of Card
+async function createOrderCard(doc) {
+    let isPrep = curStatus === 'Preparing';
     let orderNum = doc.data().OrderNum;
+
     // Card Head
     let cardHead = document.createElement('div');
-    cardHead.className = status === 'Preparing' ? 'card-header todo' : 'card-header ready';
+    cardHead.className = isPrep ? 'card-header todo' : 'card-header ready';
     cardHead.setAttribute('id', 'card-head' + orderNum);
 
     let title = document.createElement('h5');
@@ -203,9 +170,12 @@ async function createOrderCard(doc, status) {
     }
 }
 
+
 // Add list-group-items to the unordered list (from database)
 function createItemList(list, doc) {
+    // Sorting food map by alphabetical order
     let food = doc.data().food;
+
     for (var key in food) {
         var li = document.createElement('li');
         li.className = 'list-group-item';
@@ -214,26 +184,40 @@ function createItemList(list, doc) {
     }
 }
 
+
 // Initialise the card list
-async function initOrderList(status, orderNum) {
+async function initOrderList(orderNum) {
     // If card deck contains data, clear it
-    if (cardContainer) {
-        removeAllChildNodes(document.getElementById('card-container'));
-    }
+    if (cardContainer) removeAllChildNodes(document.getElementById('card-container'));
+    // Unsubscribe from onSnapshot, so further changes don't duplicate
+    if (unsubscribe) unsubscribe();
 
     cardContainer = document.getElementById('card-container');
+
     let q1;
-    if (orderNum != null && orderNum != '') {
-        q1 = query(collection(db, "Orders"), where("Status", "==", status), where("OrderNum", "==", orderNum));
+    if (orderNum) {
+        q1 = query(collection(db, "Orders"), where("Status", "==", curStatus), where("OrderNum", "==", orderNum));
     } else {
-        q1 = query(collection(db, "Orders"), where("Status", "==", status));   
+        q1 = query(collection(db, "Orders"), where("Status", "==", curStatus), orderBy('OrderNum'));
     }
-    const querySnapshot = await getDocs(q1);
-    querySnapshot.forEach((doc) => {
-        createOrderCard(doc, status);
-        //console.log(doc.id, " => ", doc.data());
+
+    unsubscribe = onSnapshot(q1, (querySnapshot) => {
+        let changes = querySnapshot.docChanges();
+        changes.forEach((change) => {
+            let cngData = change.doc.data();
+
+            if (cngData.Status == curStatus) {
+                if (change.type == 'added') {
+                    createOrderCard(change.doc)
+                } else if (change.type == 'removed') {
+                    let card = document.getElementById(change.doc.id);
+                    cardContainer.removeChild(card);
+                }
+            }
+        });
     });
 };
+
 
 // Used to clear card deck
 function removeAllChildNodes(parent) {
@@ -241,6 +225,28 @@ function removeAllChildNodes(parent) {
         parent.removeChild(parent.firstChild);
     }
 }
+
+
+// Change status of order in DB - Delivery Button
+async function changeStatus(childID) {
+    let cardID = getCardID(childID);
+    const orderRef = doc(db, "Orders", cardID);
+    await updateDoc(orderRef, {
+        Status: "Ready"
+    });
+}
+
+
+// Get the id of card
+function getCardID(childID) {
+    const child = document.getElementById(childID);
+    let parent = child ? child.parentNode : {};
+    do {
+        parent = parent.parentNode;
+    } while (parent.className != 'card');
+    return parent.id;
+}
+
 
 // Calculate time elapsed since a date
 function timeSince(date) {
@@ -271,28 +277,8 @@ function timeSince(date) {
     return Math.floor(seconds) + " seconds";
 }
 
-// Change status of order in DB
-async function changeStatus(childID) {
-    console.log(childID);
-    let cardID = getCardID(childID);
-    const orderRef = doc(db, "Orders", cardID);
-    await updateDoc(orderRef, {
-        Status: "Ready"
-    });
-}
-
-// Get the id of card
-function getCardID(childID) {
-    const child = document.getElementById(childID);
-    let parent = child ? child.parentNode : {};
-    do {
-        parent = parent.parentNode;
-    } while (parent.className != 'card');
-    console.log(parent.id);
-    return parent.id;
-}
-
-// Reset all orders to Preparing for testing purposes
+// %debug%
+// Reset all orders to Preparing for debug purposes
 async function rst() {
     let refs = [];
     const ordersRef = await getDocs(collection(db, "Orders"));
@@ -308,3 +294,39 @@ async function updOrder(ref) {
 }
 
 
+// Mock-Up of Card in HTML
+
+/*
+        <div class="card">
+ 
+            <div id="card-head1" class="card-header todo">
+                <h5 class="card-title">Order #</h5>
+                <button class="btn right btn-primary-outline">
+                    <i onclick="toggleOrder('tg1')" id="tg1" class="fa fa-toggle-off fa-2x"></i>
+                </button>
+            </div>
+            
+ 
+            <div class="card-body">
+                <ul class="list-group" id="smaller">
+                    <li class="list-group-item">3x Burito</li>
+                    <li class="list-group-item">1x Margarita</li>
+                    <li class="list-group-item">1x Donut</li>
+                    <li class="list-group-item">1x Apple</li>
+                    <li class="list-group-item">3x Burito</li>
+                    <li class="list-group-item">1x Margarita</li>
+                    <li class="list-group-item">1x Donut</li>
+                    <li class="list-group-item">1x Apple</li>
+                </ul>
+            </div>
+ 
+ 
+            <div style="display: none" id="deliver-btn1" class="card-footer border-0">
+                <a style="background-color: green;" href="#" class="btn btn-primary-outline"><i class="fa fa-bell"></i>
+                    Deliver</a>
+            </div>
+ 
+            <small class="left">5 minutes ago</small>
+ 
+        </div>
+*/
