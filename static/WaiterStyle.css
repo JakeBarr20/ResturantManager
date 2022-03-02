@@ -13,26 +13,29 @@
 }
 
 .tables {
-    max-height: 545px;
-    min-height: 545px;
+    max-height: 555px;
+    min-height: 555px;
     min-width: 250px;
     max-width: 250px;
     background-color: orange;
     z-index: 100%;
     margin-left:1110px;
-    margin-bottom:10px;
+    margin-bottom:25px;
     transform: translateY(-172px);
     border-radius: 5px;
 }
 
 .circle-table {
     color:black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border-radius: 50%;
-    height: 100px;
-    width: 100px;
-    margin-bottom: 2px;
-    margin-left: 14px;
+    height: 90px;
+    width: 90px;
+    margin-bottom: 15px;
+    margin-left: 20px;
     font-weight: 700;
+    font-size: 30px;
+
 }
 
 .circle-ready {
@@ -198,6 +201,7 @@
     background-color: green;
     border-radius: 50%;
     display: inline-block;
+    margin-left: 5px;
   }
 
 .red-dot {
@@ -206,6 +210,7 @@
     background-color: red;
     border-radius: 50%;
     display: inline-block;
+    margin-left: 5px;
 }
 .purple-dot {
     height: 25px;
@@ -213,6 +218,7 @@
     background-color: purple;
     border-radius: 50%;
     display: inline-block;
+    margin-left: 5px;
 }
 .white-dot {
     height: 25px;
@@ -220,6 +226,7 @@
     background-color: white;
     border-radius: 50%;
     display: inline-block;
+    margin-left: 5px;
 }
 
 .info-box {
