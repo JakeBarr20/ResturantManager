@@ -2,9 +2,15 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js";
 import { doc, updateDoc, getFirestore, orderBy, collection, getDocs, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 
-// TODO: improve search bar by making it auto-search and disable non-number entries
+/* Additional Features: 
 
-// Config
+    - disable non-number entries for search
+    - improve search bar by making it auto-search
+    - implementation of giving orders priority
+    - ability to review delivery history
+*/
+
+// Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyD_-a7AcOzc2g4awLO2PeneU8enHKBw7cU",
     authDomain: "restaurant-database-92c17.firebaseapp.com",
@@ -15,7 +21,7 @@ const firebaseConfig = {
     measurementId: "G-5PQJ0CN4YQ"
 };
 
-// Initialize Firebase
+// Firebase Initialization
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
