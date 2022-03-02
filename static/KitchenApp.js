@@ -2,9 +2,15 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js";
 import { doc, updateDoc, getFirestore, orderBy, collection, getDocs, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 
-// TODO: improve search bar by making it auto-search and disable non-number entries
+/* Additional Features: 
 
-// Config
+    - disable non-number entries for search
+    - improve search bar by making it auto-search
+    - implementation of giving orders priority
+    - ability to review delivery history
+*/
+
+// Firebase Configuration
 const firebaseConfig = {
     apiKey: "AIzaSyD_-a7AcOzc2g4awLO2PeneU8enHKBw7cU",
     authDomain: "restaurant-database-92c17.firebaseapp.com",
@@ -15,20 +21,21 @@ const firebaseConfig = {
     measurementId: "G-5PQJ0CN4YQ"
 };
 
-// Initialize Firebase
+// Firebase Initialization
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 console.log(app);
 
-let curStatus = 'Preparing';
+// Global Variables
+let currentStatus = 'Preparing';
 let unsubscribe;
 let cardContainer;
 
 
-// Execute commands when window is opened
+// Executes commands when window is opened
+// Appends EventListeners to buttons
 window.onload = function () {
-    document.getElementById('refresh').addEventListener('click', function () { rst() });
     document.getElementById('multi-select1').addEventListener('click', function () { toggleViewStatus('Preparing'); });
     document.getElementById('multi-select2').addEventListener('click', function () { toggleViewStatus('Ready'); });
     document.getElementById('searchBtn').addEventListener('click', function () { searchOrder(this.form); });
@@ -36,7 +43,11 @@ window.onload = function () {
 }
 
 
-// Toggle icon button on card, changes color and unhides button
+
+/**
+ * Toggles toggle icon button on card, changes color and unhides deliver button
+ * @param  {String} iconID ID of toggle-icon, card specific
+ */
 function toggleOrder(iconID) {
     if (document.getElementById(iconID)) {
         let ordNum = iconID.substring(2);
@@ -53,7 +64,10 @@ function toggleOrder(iconID) {
 }
 
 
-// Toggle of View through Navbar
+/**
+ * Toggles the View through Navbar buttons
+ * @param  {String} toView The status of the cards that are to be displayed
+ */
 function toggleViewStatus(toView) {
     let prep = document.getElementById('multi-select1');
     let ready = document.getElementById('multi-select2');
@@ -67,12 +81,15 @@ function toggleViewStatus(toView) {
         ready.className = 'btn btn-secondary';
 
     }
-    curStatus = toView;
+    currentStatus = toView;
     initOrderList();
 }
 
 
-// Searches and outputs orders which match input field
+/**
+ * Searches and outputs orders which match input field
+ * @param  {form} form Reference to the form that contains input box
+ */
 function searchOrder(form) {
     // Store orderNum in Integer format
     let orderNum = parseInt(form.inputbox.value);
@@ -80,9 +97,12 @@ function searchOrder(form) {
 }
 
 
-// Creation of Card
+/**
+ * Renders card on screen based on data in database
+ * @param  {doc} doc Refernce to a document pulled from Firestore db
+ */
 async function createOrderCard(doc) {
-    let isPrep = curStatus === 'Preparing';
+    let isPrep = currentStatus === 'Preparing';
     let orderNum = doc.data().OrderNum;
 
     // Card Head
@@ -93,7 +113,7 @@ async function createOrderCard(doc) {
     let title = document.createElement('h5');
     title.innerText = 'Order #' + orderNum;
 
-    // Toggle button
+    // Toggle Button
     let button = document.createElement('button');
     button.className = 'btn right btn-primary-outline'
 
@@ -117,6 +137,7 @@ async function createOrderCard(doc) {
     cardFooter.setAttribute('id', 'deliver-btn' + orderNum);
     cardFooter.style.display = 'none';
 
+    // Delivery Button
     let deliverBtn = document.createElement('a');
     deliverBtn.style.backgroundColor = 'green';
     deliverBtn.setAttribute('href', '#');
@@ -171,7 +192,11 @@ async function createOrderCard(doc) {
 }
 
 
-// Add list-group-items to the unordered list (from database)
+/**
+ * Adds food items to an unordered list (from database)
+ * @param  {ul} list Reference to an unordered list
+ * @param  {doc} doc Refernce to the Order document from db
+ */
 function createItemList(list, doc) {
     // Sorting food map by alphabetical order
     let food = doc.data().food;
@@ -185,28 +210,33 @@ function createItemList(list, doc) {
 }
 
 
-// Initialise the card list
+/**
+ * Initialises the card list
+ * @param  {number} orderNum Optional parameter used for Search queries
+ */
 async function initOrderList(orderNum) {
-    // If card deck contains data, clear it
+    // If card deck contains data, clears it, used upon re-initialization of cardContainer
     if (cardContainer) removeAllChildNodes(document.getElementById('card-container'));
-    // Unsubscribe from onSnapshot, so further changes don't duplicate
+    // Closes data stream of onSnapshot in order ot avoid data duplication, used upon re-initialization of onSnaphsot
     if (unsubscribe) unsubscribe();
 
     cardContainer = document.getElementById('card-container');
 
+    // If orderNum is a parmeter, the query type is switched to Search
     let q1;
     if (orderNum) {
-        q1 = query(collection(db, "Orders"), where("Status", "==", curStatus), where("OrderNum", "==", orderNum));
+        q1 = query(collection(db, "Orders"), where("Status", "==", currentStatus), where("OrderNum", "==", orderNum));
     } else {
-        q1 = query(collection(db, "Orders"), where("Status", "==", curStatus), orderBy('OrderNum'));
+        q1 = query(collection(db, "Orders"), where("Status", "==", currentStatus), orderBy("Time"));
     }
 
+    // Creates a listener which is used for the implementation of live updates
     unsubscribe = onSnapshot(q1, (querySnapshot) => {
         let changes = querySnapshot.docChanges();
         changes.forEach((change) => {
             let cngData = change.doc.data();
 
-            if (cngData.Status == curStatus) {
+            if (cngData.Status == currentStatus) {
                 if (change.type == 'added') {
                     createOrderCard(change.doc)
                 } else if (change.type == 'removed') {
@@ -219,7 +249,10 @@ async function initOrderList(orderNum) {
 };
 
 
-// Used to clear card deck
+/**
+ * Clears card deck by iteratively removing all children
+ * @param  {Element} parent Reference to the parent element which needs to be cleared
+ */
 function removeAllChildNodes(parent) {
     while (parent.firstChild) {
         parent.removeChild(parent.firstChild);
@@ -227,7 +260,10 @@ function removeAllChildNodes(parent) {
 }
 
 
-// Change status of order in DB - Delivery Button
+/**
+ * Changes status of order in DB - Delivery Button
+ * @param  {String} childID ID of an element withing a card the Status of which needs to be changed
+ */
 async function changeStatus(childID) {
     let cardID = getCardID(childID);
     const orderRef = doc(db, "Orders", cardID);
@@ -236,11 +272,16 @@ async function changeStatus(childID) {
     });
 }
 
-
-// Get the id of card
+ 
+/**
+ * Gets the ID of card that contains the child element
+ * @param  {String} childID ID of an element withing a card the Status of which needs to be changed
+ */
 function getCardID(childID) {
     const child = document.getElementById(childID);
+    // if child exists get the parent node
     let parent = child ? child.parentNode : {};
+    // keep getting the parent node until you reach the card div
     do {
         parent = parent.parentNode;
     } while (parent.className != 'card');
@@ -248,7 +289,10 @@ function getCardID(childID) {
 }
 
 
-// Calculate time elapsed since a date
+/**
+ * Calculates time elapsed since a date (order time)
+ * @param  {Date} date Date/Time of order
+ */
 function timeSince(date) {
 
     var seconds = Math.floor((new Date() - date) / 1000);
@@ -277,25 +321,8 @@ function timeSince(date) {
     return Math.floor(seconds) + " seconds";
 }
 
-// %debug%
-// Reset all orders to Preparing for debug purposes
-async function rst() {
-    let refs = [];
-    const ordersRef = await getDocs(collection(db, "Orders"));
-    ordersRef.forEach((doc) => {
-        updOrder(doc.id);
-    });
-}
-async function updOrder(ref) {
-    const orderRef = doc(db, "Orders", ref);
-    await updateDoc(orderRef, {
-        Status: "Preparing"
-    });
-}
-
 
 // Mock-Up of Card in HTML
-
 /*
         <div class="card">
  
