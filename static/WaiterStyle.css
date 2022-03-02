@@ -40,7 +40,11 @@
     color: white;
     border-color: black;
 }
-
+.circle-payed {
+    background-color: purple;
+    color: white;
+    border-color: black;
+}
 .circle-clean {
     background-color: #e62222;
     color: white;

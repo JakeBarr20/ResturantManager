@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js";
-import { getFirestore, collection, query, where, deleteField, deleteDoc, doc, orderBy, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
+import { getFirestore, collection, query, where, deleteField, deleteDoc, doc, orderBy, getDocs, updateDoc,getDoc } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -27,6 +27,7 @@ window.removeOrder = removeOrder;
 window.confirmOrder = confirmOrder;
 window.deliverToTable = deliverToTable;
 window.helpToTable =helpToTable;
+window.pay = pay;
 
 async function removeOrder(id){
     let Order = 0;
@@ -244,6 +245,25 @@ window.RemoveItemFromDb = async function(item, orderID, quantity){
     }
 }
 
+async function pay(tablen,tableid){
+    const tablesRef = doc(db, "Table", `${tableid}`);
+    await updateDoc(tablesRef, {
+        havePayed: true 
+    });
+    let table = document.getElementById('T' + tablen);
+    table.className = 'circle-table';
+}
+
+async function havepayed(tablen,tableid){
+    const tablesRef = doc(db, "Table", `${tableid}`);
+    const docSnap = await getDoc(tablesRef);
+    if(docSnap.data().havePayed==false){
+        let table = document.getElementById('T' + tablen);
+        table.className = 'circle-table circle-payed';
+        table.setAttribute('onclick', 'pay(' + `${docSnap.data().TableNum}` + ', "' + `${docSnap.id}` + '")');
+    }
+}
+
 async function deliverToTable(tablen,tableid){
     let table = document.getElementById('T' + tablen);
     table.className = 'circle-table';
@@ -251,6 +271,7 @@ async function deliverToTable(tablen,tableid){
     await updateDoc(tablesRef, {
         isReady: false 
     });
+    havepayed(tablen,tableid);
 }
 
 async function helpToTable(tablen,tableid){
