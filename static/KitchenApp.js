@@ -1,8 +1,8 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js";
-import { doc, updateDoc, getFirestore, orderBy, collection, getDocs, query, where, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
+import { doc, updateDoc, getFirestore, orderBy, collection, getDocs, query, where, onSnapshot } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 
-// TODO: fix duplication glitch in onSnapshot, improve search bar by making it auto-search and disable non-number entries
+// TODO: improve search bar by making it auto-search and disable non-number entries
 
 // Config
 const firebaseConfig = {
@@ -22,6 +22,7 @@ const db = getFirestore(app);
 console.log(app);
 
 let curStatus = 'Preparing';
+let unsubscribe;
 let cardContainer;
 
 
@@ -64,7 +65,7 @@ function toggleViewStatus(toView) {
     else if (toView === 'Ready') {
         prep.className = 'btn btn-outline-dark';
         ready.className = 'btn btn-secondary';
-        
+
     }
     curStatus = toView;
     initOrderList();
@@ -73,56 +74,17 @@ function toggleViewStatus(toView) {
 
 // Searches and outputs orders which match input field
 function searchOrder(form) {
-    // If Order Number is an Integer ...
+    // Store orderNum in Integer format
     let orderNum = parseInt(form.inputbox.value);
-    // If Order Number is a String ...
-    //let orderNum = form.inputbox.value;
     initOrderList(orderNum);
 }
-
-
-// Create a card with all its content
-/*
-        <div class="card">
- 
-            <div id="card-head1" class="card-header todo">
-                <h5 class="card-title">Order #</h5>
-                <button class="btn right btn-primary-outline">
-                    <i onclick="toggleOrder('tg1')" id="tg1" class="fa fa-toggle-off fa-2x"></i>
-                </button>
-            </div>
-            
- 
-            <div class="card-body">
-                <ul class="list-group" id="smaller">
-                    <li class="list-group-item">3x Burito</li>
-                    <li class="list-group-item">1x Margarita</li>
-                    <li class="list-group-item">1x Donut</li>
-                    <li class="list-group-item">1x Apple</li>
-                    <li class="list-group-item">3x Burito</li>
-                    <li class="list-group-item">1x Margarita</li>
-                    <li class="list-group-item">1x Donut</li>
-                    <li class="list-group-item">1x Apple</li>
-                </ul>
-            </div>
- 
- 
-            <div style="display: none" id="deliver-btn1" class="card-footer border-0">
-                <a style="background-color: green;" href="#" class="btn btn-primary-outline"><i class="fa fa-bell"></i>
-                    Deliver</a>
-            </div>
- 
-            <small class="left">5 minutes ago</small>
- 
-        </div>
-*/
 
 
 // Creation of Card
 async function createOrderCard(doc) {
     let isPrep = curStatus === 'Preparing';
     let orderNum = doc.data().OrderNum;
-    
+
     // Card Head
     let cardHead = document.createElement('div');
     cardHead.className = isPrep ? 'card-header todo' : 'card-header ready';
@@ -226,9 +188,9 @@ function createItemList(list, doc) {
 // Initialise the card list
 async function initOrderList(orderNum) {
     // If card deck contains data, clear it
-    if (cardContainer) {
-        removeAllChildNodes(document.getElementById('card-container'));
-    }
+    if (cardContainer) removeAllChildNodes(document.getElementById('card-container'));
+    // Unsubscribe from onSnapshot, so further changes don't duplicate
+    if (unsubscribe) unsubscribe();
 
     cardContainer = document.getElementById('card-container');
 
@@ -236,21 +198,22 @@ async function initOrderList(orderNum) {
     if (orderNum) {
         q1 = query(collection(db, "Orders"), where("Status", "==", curStatus), where("OrderNum", "==", orderNum));
     } else {
-        q1 = query(collection(db, "Orders"), where("Status", "==", curStatus), orderBy('OrderNum'));   
+        q1 = query(collection(db, "Orders"), where("Status", "==", curStatus), orderBy('OrderNum'));
     }
-    const unsubscribe = onSnapshot(q1, (querySnapshot) => {
-        let changes = querySnapshot.docChanges();
 
+    unsubscribe = onSnapshot(q1, (querySnapshot) => {
+        let changes = querySnapshot.docChanges();
         changes.forEach((change) => {
-            let cngStatus = change.doc.data().Status;
-            if (cngStatus == curStatus) {
+            let cngData = change.doc.data();
+
+            if (cngData.Status == curStatus) {
                 if (change.type == 'added') {
                     createOrderCard(change.doc)
                 } else if (change.type == 'removed') {
                     let card = document.getElementById(change.doc.id);
                     cardContainer.removeChild(card);
                 }
-            } 
+            }
         });
     });
 };
@@ -266,7 +229,6 @@ function removeAllChildNodes(parent) {
 
 // Change status of order in DB - Delivery Button
 async function changeStatus(childID) {
-    console.log(childID);
     let cardID = getCardID(childID);
     const orderRef = doc(db, "Orders", cardID);
     await updateDoc(orderRef, {
@@ -282,7 +244,6 @@ function getCardID(childID) {
     do {
         parent = parent.parentNode;
     } while (parent.className != 'card');
-    console.log(parent.id);
     return parent.id;
 }
 
@@ -316,8 +277,8 @@ function timeSince(date) {
     return Math.floor(seconds) + " seconds";
 }
 
-
-// Reset all orders to Preparing for testing purposes
+// %debug%
+// Reset all orders to Preparing for debug purposes
 async function rst() {
     let refs = [];
     const ordersRef = await getDocs(collection(db, "Orders"));
@@ -333,3 +294,39 @@ async function updOrder(ref) {
 }
 
 
+// Mock-Up of Card in HTML
+
+/*
+        <div class="card">
+ 
+            <div id="card-head1" class="card-header todo">
+                <h5 class="card-title">Order #</h5>
+                <button class="btn right btn-primary-outline">
+                    <i onclick="toggleOrder('tg1')" id="tg1" class="fa fa-toggle-off fa-2x"></i>
+                </button>
+            </div>
+            
+ 
+            <div class="card-body">
+                <ul class="list-group" id="smaller">
+                    <li class="list-group-item">3x Burito</li>
+                    <li class="list-group-item">1x Margarita</li>
+                    <li class="list-group-item">1x Donut</li>
+                    <li class="list-group-item">1x Apple</li>
+                    <li class="list-group-item">3x Burito</li>
+                    <li class="list-group-item">1x Margarita</li>
+                    <li class="list-group-item">1x Donut</li>
+                    <li class="list-group-item">1x Apple</li>
+                </ul>
+            </div>
+ 
+ 
+            <div style="display: none" id="deliver-btn1" class="card-footer border-0">
+                <a style="background-color: green;" href="#" class="btn btn-primary-outline"><i class="fa fa-bell"></i>
+                    Deliver</a>
+            </div>
+ 
+            <small class="left">5 minutes ago</small>
+ 
+        </div>
+*/
