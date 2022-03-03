@@ -1,8 +1,8 @@
 .edit-order {
     max-height: 130px;
     min-height: 130px;
-    min-width: 810px;
-    max-width: 810px;
+    min-width: 1090px;
+    max-width: 1090px;
     color:black;
     background-color: orange;
     border-color:transparent;
@@ -13,20 +13,51 @@
 }
 
 .tables {
-    max-height: 130px;
-    min-height: 130px;
-    min-width: 810px;
-    max-width: 810px;
+    max-height: 555px;
+    min-height: 555px;
+    min-width: 250px;
+    max-width: 250px;
     background-color: orange;
     z-index: 100%;
-    margin-left:830px;
-    transform: translateY(-150px);
+    margin-left:1110px;
+    margin-bottom:25px;
+    transform: translateY(-172px);
     border-radius: 5px;
 }
+
+.circle-table {
+    color:black;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 50%;
+    height: 90px;
+    width: 90px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    font-weight: 700;
+    font-size: 30px;
+
+}
+
+.circle-ready {
+    background-color: rgb(40, 165, 40);
+    color: white;
+    border-color: black;
+}
+.circle-payed {
+    background-color: purple;
+    color: white;
+    border-color: black;
+}
+.circle-clean {
+    background-color: #e62222;
+    color: white;
+    border-color: black;
+}
+
 .box {
     max-height: 22px;
     min-height: 22px;
-    min-width: 810px;
+    min-width: 1090px;
     max-width: 810px;
     background-color: rgb(212, 138, 0);
     border-radius: 10px;
@@ -35,7 +66,9 @@
 .card-deck{
     margin-left: 5px;
     margin-top: 20px;
+    width: 1150px;
 }
+
 
 .card {
     max-height: 400px;
@@ -106,10 +139,10 @@
     background: red;
     border-radius: 5px;
     background: #e62222;
-    margin-left: 20px;
-    margin-bottom: 22px;
+    margin-left: 10px;
+    margin-bottom: 32px;
     font-size: 15px;
-    transform: translateY(-8px);
+    transform: translateX(-20px);
 }
 
 .confirm-button {
@@ -130,7 +163,7 @@
     background: green;
     margin-left: 20px;
     font-size: 15px;
-    transform: translateY(-8px);
+    transform: translateX(-30px);
 }
 
 .btn-primary-outline {
@@ -142,11 +175,12 @@
     margin-right: -30px;
 }
 
-.prep {
-    background-color: rebeccapurple;
-}
 .todo {
     background-color: orange;
+}
+
+.small {
+    font-size: 14px;
 }
 
 #smaller {
@@ -160,3 +194,50 @@
 #deliver-btn {
     background-color: green;
 }
+
+.green-dot {
+    height: 25px;
+    width: 25px;
+    background-color: green;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+  }
+
+.red-dot {
+    height: 25px;
+    width: 25px;
+    background-color: red;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+}
+.purple-dot {
+    height: 25px;
+    width: 25px;
+    background-color: purple;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+}
+.white-dot {
+    height: 25px;
+    width: 25px;
+    background-color: white;
+    border-radius: 50%;
+    display: inline-block;
+    margin-left: 5px;
+}
+
+.info-box {
+    max-height: 200px;
+    min-height: 200px;
+    min-width: 250px;
+    max-width: 250px;
+    background-color: orange;
+    z-index: 100%;
+    margin-left:1110px;
+    transform: translateY(-172px);
+    border-radius: 5px;
+}
+

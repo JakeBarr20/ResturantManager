@@ -20,11 +20,7 @@
   
 </head>
 
-<body style="background-color:white;">
-    <nav class="navbar navbar-dark bg-dark">
-        <!-- Add Navbar content , sort out margins in between cards, make cards easily addable (i.e. reproducable without repeating code)-->
-    </nav>
-
+<body style="background-color:rgb(255, 251, 251); background-image: url('https://www.designbolts.com/wp-content/uploads/2012/12/Arches-Simple-White-Seamless-Pattern.jpg');">
     <div class="edit-order">
         <div class = "box">
             <h5 class=card-title>Edit Order</h5>
@@ -35,154 +31,65 @@
                 <label for="validationDefault01">Order Number</label>
                 <input type="text" class="form-control" id="validationDefault01" placeholder="order number" style="max-width:235px; min-width:235px;">
               </div>
-              <div class="col-md-4 mb-3" style="max-width:255px; min-width:255px;">
+              <div class="col-md-4 mb-3" style="right:90px;">
+                <label for="quant">Quantity</label>
+                <select name="Quantity" id = "quant" class="form-control" style="max-width: 60px;">
+                    <option value=1>1</option>
+                    <option value=2>2</option>
+                    <option value=3>3</option>
+                    <option value=4>4</option>
+                    <option value=5>5</option>
+                    <option value=6>6</option>
+                    <option value=7>7</option>
+                    <option value=8>8</option>
+                    <option value=9>9</option>
+
+                  </select>
+              </div>
+              <div class="col-md-4 mb-3" style="max-width:170px; min-width:170px; right:360px;">
                 <label for="validationDefault02">Item</label>
                 <input type="text" class="form-control" id="validationDefault02" placeholder="item">
               </div>
               <div class="col-md-4 mb-3" style="transform: translateX(20px);" >
-                <div class="input-group" style = "position:relative; top:50px;">
+                <div class="input-group" style = "position:relative; top:-35px; left: 530px;">
                     <button href="#" type = "button" class="btn btn-primary-outline" style = "background-color:green; color: white;" onclick = "AddToOrder()">
                         Confirm
                     </button>
                 </div>
               </div>
 
-              <div class="form-check" style = "position:relative; left:700px; bottom:60px;">
+              <div class="form-check" style = "position:relative; left:350px; bottom:60px;">
                 <input class="form-check-input" type="radio" name="Checkbuttons" id="AddCheckbutton" value="option1">
                 <label class="form-check-label" for="AddCheckbutton">
                   Add
                 </label>
               </div>
-              <div class="form-check"  style = "position:relative; left:651px; bottom:30px;">
+              <div class="form-check"  style = "position:relative; left:300px; bottom:30px;">
                 <input class="form-check-input" type="radio" name="Checkbuttons" id="RemoveCheckbutton" value="option2">
                 <label class="form-check-label" for="RemoveCheckbutton">
                   Remove
                 </label>
               </div>
-              <div class = "tables">
-                <div class = "box" style="min-width: 325px;">
-                    <h5 class=card-title>Available Tables</h5>
-                    <p id = "t1" style="margin-left: 10px;">1</p>
-                    <p id = "t2" style="margin-left: 10px;">2</p>
-
+              <div class = "tables" id = "Tables">
+                <div class = "box" style="min-width: 250px;" id = "Box">
+                    <h5 class=card-title>Table Manager</h5>
                 </div> 
               </div>
-            </div>
+              <div class="info-box" id = "InfoBox"> </div>
+              <div class = "box" style="position:relative; left:1110px; bottom:370px; min-width: 250px;" id = "Box">
+                  <h5 class=card-title>Information</h5>
+                  <p><span class="green-dot"></span> <b> Ready for delivery</b><br>
+                     <span class="red-dot"></span>  <b>Table needs help</b><br>
+                    <span class="purple-dot"></span> <b> Order recieved but not paid</b><br>
+                    <span class="white-dot"></span>  <b>No action needed</b><br>
+                  </p>
+              </div>
+              </div>
           </form>
     </div>  
+  </div>
     
-
-    </div>
-
-    <div class="card-deck">
-        <div class="card" id="card78">
-            <div id="card-head1" class="card-header todo">
-                <h5 class="card-title">Order #78</h5>
-            </div>
-            <div class="card-body">
-                <ul class="list-group" id="78" style = "font-size: 14px;">
-                    <li class="list-group-item">3x Burito</li>
-                    <li class="list-group-item">1x Margarita</li>
-                    <li class="list-group-item">1x Donut</li>
-                    <li class="list-group-item">1x Apple</li>
-                    <li class="list-group-item">3x Burito</li>
-                    <li class="list-group-item">1x Margarita</li>
-                    <li class="list-group-item">1x Donut</li>
-                    <li class="list-group-item">1x Apple</li>
-                </ul>
-            </div>
-            <div class = "btn-group">
-                <button data-dismiss="alert" data-target="#card78" type="button" class="confirm-button close" aria-label="Close" style="
-                    background-color: green;" onclick = "confirmOrder('78')">
-                    <i class="fa fa-check"></i> Confirm
-                    <span aria-hidden="true"></span>
-                </button>
-                <button data-dismiss="alert" data-target="#card78" type="button" class="cancel-button close" aria-label="Close" style="
-                background-color:red;" onclick = "removeDoc('78')">
-                    <i class="fa fa-times"></i> Cancel
-                    <span aria-hidden="true"></span>
-                </button>
-            </div>
-        <small class="left">5 minutes ago</small>
-        </div>
-
-        <div class="card" id="card79">
-            <div id="card-head2" class="card-header todo">
-                <h5 class="card-title">Order #79</h5>
-            </div>
-            <div class="card-body">
-                <ul class="list-group" id="79" style = "font-size: 14px;" >
-                    <li class="list-group-item">3x Burito</li>
-                    <li class="list-group-item">1x Margarita</li>
-                    <li class="list-group-item">1x Donut</li>
-                    <li class="list-group-item">1x Apple</li>
-                </ul>
-            </div>
-            <div class = "btn-group">
-                <button data-dismiss="alert" data-target="#card79" type="button" class="confirm-button close" aria-label="Close" style="
-                    background-color: green;" onclick = "confirmOrder('79')">
-                    <i class="fa fa-check"></i> Confirm
-                    <span aria-hidden="true"></span>
-                </button>
-                <button data-dismiss="alert" data-target="#card79" type="button" class="cancel-button close" aria-label="Close" style="
-                background-color:red;" onclick = "removeDoc('79')">
-                    <i class="fa fa-times"></i> Cancel
-                    <span aria-hidden="true"></span>
-                </button>
-            </div>
-            <small class="left">10 minutes ago</small>
-        </div>
-    
-        <div class="card" id="card80">
-            <div id="card-head3" class="card-header todo">
-                <h5 class="card-title">Order #80</h5>
-            </div>
-            <div class="card-body">
-                <ul class="list-group" id="80" style = "font-size: 14px;">
-                    <li class="list-group-item">3x Burito</li>
-                    <li class="list-group-item">1x Margarita</li>
-                    <li class="list-group-item">1x Donut</li>
-                </ul>
-            </div>
-            <div class = "btn-group">
-                <button data-dismiss="alert" data-target="#card80" type="button" class="confirm-button close" aria-label="Close" style="
-                    background-color: green;" onclick = "confirmOrder('80')">
-                    <i class="fa fa-check"></i> Confirm
-                    <span aria-hidden="true"></span>
-                </button>
-                <button data-dismiss="alert" data-target="#card80" type="button" class="cancel-button close" aria-label="Close" style="
-                background-color:red;" onclick = "removeDoc('80')">
-                    <i class="fa fa-times"></i> Cancel
-                    <span aria-hidden="true"></span>
-                </button>
-            </div>
-            <small class="left">15 minutes ago</small>
-        </div>
-        <div class = "card"></div>
-        <div class = "card"></div>
-        <div class = "card"></div>
-        <div class = "card"></div>
-        <div class = "card"></div>
-        <div class = "card"></div>
-        <div class = "card"></div>
-        <div class = "card"></div>
-        <div class = "card"></div>
-        <div class = "card"></div>
-        <div class = "card"></div>
-        <div class = "card"></div>
-        <div class = "card"></div>
-        <div class = "card"></div>
-        <div class = "card"></div>
-        
-    </div>
-    
-    <br>
-    <br>
-   
-    <br>
-    <br>
-    
-    
+    <div class="card-deck" id = "card-container"></div>  
 </body>
 
 </html>
