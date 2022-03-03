@@ -4,114 +4,80 @@
 <html>
 <head>
 <title> Kebab</title>
-<style>
-    
-    button {
-        font-size: 40px;
-        padding: 10px;
-        border-radius: 10px;
-    }
-    .button2 {
-        font-size: 20px;;
-        background-color: #FC6A03;
-    }
-    .infobutton {
-        font-size: 10px;
-        background-color: #87CEEB;
-        border-radius: 50%;
-    }
-    #sub1 {
-        position: fixed;
-        left: 20%;
-        top: 10%;
-    }
-    #sub2 {
-        position: fixed;
-        left: 40%;
-        top: 10%;
-    }
-    #sub3 {
-        position: fixed;
-        left: 20%;
-        top: 30%;
-    }
-    #sub4 {
-        position: fixed;
-        left: 50%;
-        top: 30%;
-    }
-    #sub5 {
-        position: fixed;
-        left: 20%;
-        top: 50%;
-    }
-    #sub6 {
-        position: fixed;
-        left: 60%;
-        top: 50%;
-    }
-    #counter {
-        position: fixed;
-        left: 40%;
-        top: 80%;
-    }
-    #sentence{
-        position: fixed;
-        left: 30%;
-        top: 84%;
-    }
-</style>
-<script> 
-function popupAllergies() {
-    var Cal = "(Calories here)";
-    var Allergy = "(Allergies here)";
-    var message = "KCal: " + Cal + "\nAllergies: " + Allergy;
-    alert(message);
-}
-var data = 0;
-var x = 0;
-function increase(id) {
-document.getElementById("counting").innerText = data;
-x = document.getElementById(id).value;
-data = parseFloat(data) + parseFloat(x);
-document.getElementById("counting").innerText = data;
-}
-</script>
-<h1>Kebab Menu</h1>
+<div style="margin-top: 50px;" class="row">
+    <div class="col-sm-3">
+      <div class="card" style="background-image: url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/boom-burger-1518627283.jpg?crop=0.669xw:1.00xh;0.166xw,0&resize=100:*);">
+        <div class="card-body">
+          <h5 class="card-title">Bacon burger </h5>
+          <p class="card-text">Chicken, bacon, cheese, barbecue</p>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="1">1.50</a>
+        </div>
+      </div>
+      <div style="margin-top: 50px; background-image: url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/halloumi-burger-main-1558005486.png?crop=1.00xw:0.789xh;0,0.113xh&resize=100:*);" class="card">
+        <div class="card-body">
+          <h5 class="card-title">Halloumi burger</h5>
+          <p class="card-text">Halloumi burger, topped with lettuce, tomato</p>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="2">6.00</a>
+        </div>
+      </div>
+      <div style="margin-top: 50px; background-image: url(https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/a8/a0/4a/deer-hunter-venison-burger.jpg?w=100&h=100&s=1);" class="card">
+        <div class="card-body">
+          <h5 class="card-title">Venicen burger</h5>
+          <p class="card-text">Not for the faint hearted</p>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="3">7.00</a>
+        </div>
+      </div>
+      <div style="margin-top: 50px; background-image: url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/vegan-burger-2-1578931709.jpg?crop=0.669xw:1.00xh;0.166xw,0&resize=100:*);" class="card">
+        <div class="card-body">
+          <h5 class="card-title">Vegan burgers</h5>
+          <p class="card-text">We support all</p>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="4">9.00</a>
+        </div>
+      </div>
 
-</head>
-<body>
-    <div id="sub1">
-      <button class="button order" onClick="increase(this.id)" value= 6.00 id = "1">DONER £6.00</button>
-      <button class="button infobutton" onclick="popupAllergies(992, 'Gluten, Milk, Soya, Sesame')"> i </button>
     </div>
-    <div id="sub2">
-      <button class="button order" onClick="increase(this.id)" value= 6 id = "2">SHISH £6.00</button>
-      <button class="button infobutton" onclick="popupAllergies(522, 'Gluten, Milk, Soya, Sesame')"> i </button>
+    <div class="col-sm-3">
+      <div class="card">
+        <div class="card-body" style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHHQDriQHziUywIUUqCho-qVtpphkMbzkUCg&usqp=CAU);">
+          <h5 class="card-title">Cheese burger</h5>
+          <p class="card-text">Saving the world one burger at a time</p>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="5">4.00</a>
+        </div>
+      </div>
+      <div style="margin-top: 50px; background-image: url(https://motherclucker.co.uk/wp-content/uploads/elementor/thumbs/Mother-Clucker-Fillet-Burger-11.21-pgjjjac4rspxvxh47rmlrdyy90dpomu9xw58bbqxuw.jpg);" class="card">
+        <div class="card-body">
+          <h5 class="card-title">Chicken burger</h5>
+          <p class="card-text">Not as good as runnymede chicken but eh</p>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="6">10.00</a>
+        </div>
+      </div>
     </div>
-    <div id="sub3">
-      <button class="button order" onClick="increase(this.id)" value= 6.00 id = "3">SHAMI £6.00</button>
-      <button class="button infobutton" onclick="popupAllergies(720, 'Gluten, Milk, Soya, Sesame')"> i </button>
-    </div>
-    <div id="sub4">
-      <button class="button order" onClick="increase(this.id)" value= 6.00 id = "4">TUNDAY £6.00</button>
-      <button class="button infobutton" onclick="popupAllergies(756, 'Gluten, Milk, Soya, Sesame')"> i </button>
-    </div>
-    <div id="sub5">
-      <button class="button order" onClick="increase(this.id)" value= 6.00 id = "5">ADANA £6.00</button>
-      <button class="button infobutton" onclick="popupAllergies(1140, 'Gluten, Milk, Soya, Sesame')"> i </button>
-    </div>
-    <div id="sub6">
-      <button class="button order" onClick="increase(this.id)" value= 6.00 id = "6">VEGAN £6.00</button>
-      <button class="button infobutton" onclick="popupAllergies(408, 'Gluten, Milk, Soya, Sesame')"> i </button>
-    </div>
-    <div id = "counter">
-      <h2 id = "counting">0.0</h2>
-    </div>
-    <div id = "sentence">
-      <h>BALANCE: £</h>
-    </div>
+    <div class="col-sm-3">
+        <div class="card" style="background-image:url(https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/boom-burger-1518627283.jpg?crop=0.669xw:1.00xh;0.166xw,0&resize=100:*);">
+          <div class="card-body">
+            <h5 class="card-title">Steak burger</h5>
+            <p class="card-text">A bit pricey but well worth it</p>
+            <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+            id="7">8.00</a>
+          </div>
+        </div>
+        <div style="margin-top: 50px; background-image: url(https://veganwholesaler.com/wp-content/uploads/2021/05/Greenvie-Slices-Cheddar-serving-suggestion-2-100x100.jpg); " class="card">
+          <div class="card-body">
+            <h5 class="card-title">Vegetarian burger</h5>
+            <p class="card-text">Not grass, but great for the bone, turn into a cow</p>
+            <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+            id="8">4.00</a>
+          </div>
+        </div>
+      </div>
+  </div>
+  
+  
 {%endblock%}
-</body>
-</html>
->>>>>>> e6168d80408e08318d08ca965b8b2ae67d686473
+>>>>>>> intuitiveMenu

@@ -61,3 +61,31 @@
     left: 30%;
     top: 84%;
 }
+
+#dissappear{
+    display: block;
+}
+
+.dissappear.active{
+    display: none;
+}
+
+.dissappear2{
+    display: block;
+}
+
+.dissappear2.active{
+    display: none;
+}
+
+.appear{
+    display: none;
+}
+
+.appear.active{
+    display: block;
+}
+
+p{
+    font-size: 12px;
+}
