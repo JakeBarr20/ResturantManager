@@ -18,8 +18,8 @@ const db = getFirestore(app);
 console.log(app);
 
 window.addDoc=addDoc;
-async function addDoc() {
-	await setDoc(doc (db, "Orders", "ZX5"), {
+async function addDoc(result) {
+	await setDoc(doc (db, "Orders", result), {
 		OrderNum: 1,
 		Status: "Waiting",
 		Time: new Date().getTime(),
