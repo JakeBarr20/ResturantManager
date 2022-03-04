@@ -62,20 +62,15 @@
     top: 84%;
 }
 
-#dissappear{
+.dissappear{
     display: block;
+    float: right;
+    transition: 3s;
 }
 
 .dissappear.active{
     display: none;
-}
-
-.dissappear2{
-    display: block;
-}
-
-.dissappear2.active{
-    display: none;
+    transition: 4s;
 }
 
 .appear{
@@ -88,4 +83,8 @@
 
 p{
     font-size: 12px;
+}
+
+.card{
+    margin: 0 0 50px 0;
 }

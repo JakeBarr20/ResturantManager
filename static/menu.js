@@ -15,7 +15,6 @@ function increase(id) {
   items = items + newItem + ",";
 }
 
-<<<<<<< HEAD
 // Make class to activate a css style class that comes over cards when pressed
 $(document).ready(function () {
   console.log("hello world");
@@ -36,11 +35,37 @@ function popAllergies() {
 $(function testParams() {
     $('#dissappear').click(function(){
         let x = $(this).attr('value');
-        console.log(x);
+        console.log(x);2
     });
 });
-=======
+
+$(function item1Appear() {
+  $('.item1').click(function(){
+      $(".dissappear").toggleClass("active");
+      $(".appear").toggleClass("active");      
+  });
+});
+
+
 function getStuff() {
   alert("Items = " + items +"\nPrice = " + data)
 }
->>>>>>> c73545ce8c839c68dc1c59acbdf75dfb676bb297
+
+function sendUserInfo(){
+  let userInfo={
+    'name': 'John Brown',
+    'type': 'admin',
+  }
+  console.log(userInfo)
+  const request = new XMLHttpRequest()
+  console.log(userInfo)
+  request.open('POST', '/processUserInfo/${JSON.stringify(userInfo)}')
+  console.log(userInfo)
+  request.onload = () => {
+    const flaskMessage = request.responseText
+    console.log(flaskMessage)
+  }
+  console.log(userInfo)
+  request.send();
+  console.log(userInfo)
+}

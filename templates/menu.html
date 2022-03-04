@@ -70,9 +70,6 @@
           <li>
             <a onclick="window.location.href='sides';">Sides</a>
           </li>
-          <li>
-            <a onclick="window.location.href='checkout'">Checkout</a>
-          </li>
         </ul>
       </nav>
 
@@ -90,7 +87,9 @@
       {%block content%} {%endblock%}
       <footer class="text-center text-white fixed-bottom" style="background-color: #f8ac08;">
         <div class="text-center p-3" style="background-color: rgba(248, 143, 4, 0.2);">
-          <h5 style="margin-right: 250px; color:white">subtotal: <span>£</span><span id="counting">0</span></h5>
+          <h5 style="float: left; color:white">subtotal: <span>£</span><span id="counting">0</span></h5>
+          <button onclick="sendUserInfo()">DOG</button>
+          <button onclick="window.location.href='checkout'"style="float: right; margin: 10px; background-color: rgb(8, 248, 48); color: white; border-radius: 10px;"><strong>Proceed To Checkout</strong></button>
         </div>
       </footer>
     </div>
