@@ -1,3 +1,7 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Burgers</title>
 {%extends 'menu.html'%}{%block content%}
 <div style="margin-top: 50px;" class="row">
     <div class="card">
@@ -6,7 +10,7 @@
           <h5 class="card-title">Bacon Burger</h5>
           <a href="#" class="btn btn-primary" onClick="increase(this.id)"
           id="1">1.50</a>
-          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(440, 'milk, wheat, sesame and gluten')"><i class="fas fa-info-circle"></i> details</button>
         </div>
     </div>
     <div class="card">
@@ -15,7 +19,7 @@
           <h5 class="card-title">Halloumi Burger</h5>
           <a href="#" class="btn btn-primary" onClick="increase(this.id)"
           id="2">6.00</a>
-          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(794, 'milk, wheat, sesame and gluten')"><i class="fas fa-info-circle"></i> details</button>
         </div>
     </div>
     <div class="card">
@@ -24,7 +28,7 @@
           <h5 class="card-title">Venison Burger</h5>
           <a href="#" class="btn btn-primary" onClick="increase(this.id)"
           id="3">7.00</a>
-          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(985, 'eggs, wheat, sesame, celery and gluten')"><i class="fas fa-info-circle"></i> details</button>
         </div>
     </div>
     <div class="card">
@@ -33,7 +37,7 @@
           <h5 class="card-title">Vegan Burgers</h5>
           <a href="#" class="btn btn-primary" onClick="increase(this.id)"
           id="4">9.00</a>
-          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(893, 'soy, wheat, sesame, celery and gluten')"><i class="fas fa-info-circle"></i> details</button>
         </div>
     </div>
     <div class="card">
@@ -42,7 +46,7 @@
           <h5 class="card-title">Cheese Burgers</h5>
           <a href="#" class="btn btn-primary" onClick="increase(this.id)"
           id="5">4.00</a>
-          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(777, 'milk, wheat, sesame and gluten')"><i class="fas fa-info-circle"></i> details</button>
         </div>
     </div>
     <div class="card">
@@ -51,7 +55,7 @@
           <h5 class="card-title">Chicken Burgers</h5>
           <a href="#" class="btn btn-primary" onClick="increase(this.id)"
           id="6">10.00</a>
-          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(936, 'eggs, wheat, sesame, celery and gluten')"><i class="fas fa-info-circle"></i> details</button>
         </div>
     </div>
     <div class="card">
@@ -60,7 +64,7 @@
           <h5 class="card-title">Steak Burgers</h5>
           <a href="#" class="btn btn-primary" onClick="increase(this.id)"
           id="7">8.00</a>
-          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(1192, 'milk, eggs, wheat, mustard and gluten')"><i class="fas fa-info-circle"></i> details</button>
         </div>
     </div>
     <div class="card">
@@ -69,7 +73,7 @@
           <h5 class="card-title">Vegetarian Burgers</h5>
           <a href="#" class="btn btn-primary" onClick="increase(this.id)"
           id="8">4.00</a>
-          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(952, 'soy, wheat, sesame and gluten')"><i class="fas fa-info-circle"></i> details</button>
         </div>
     </div>
   </div>

@@ -1,11 +1,10 @@
 {%extends 'menu.html'%}{%block content%}
+<head>
+	<script type = "module" src = "static/checkout.js"> </script>
+</head>
 <body>
-<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-auth.js"></script>
-<script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
-<script src = "checkout.js" defer> </script>
 	<div style="margin-top: 50px;" class="row">
-		<button id = "Checkout" onclick="addDoc()"> Checkout Order </button>
+		<button id = "Checkout" type = "button" onclick="enterData()"> Checkout Order </button>
 	</div>
 </body>
 {%endblock%}
