@@ -26,6 +26,26 @@ function availability() {
   document.getElementById("testCard").style.display = "none";
 }
 
+function makeUID() {
+  let result = "";
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  for ( let i = 0; i < 20; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength)); 
+  }
+  return result;
+}
+
+function enterData() {
+  if (confirm('Are you sure you want to checkout this order?') == true) {
+    const result = makeUID();
+    addDoc(result);
+    alert('OK, your meal has been sent to the database');
+  } else {
+    alert('You Cancelled Your Order');
+  }
+}
+
 function popAllergies() {
   console.log("its running");
   $(".dissappear").toggleClass("active");
