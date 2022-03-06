@@ -27,6 +27,14 @@ function availability() {
   document.getElementById("testCard").style.display = "none";
 }
 
+function openModal(modal) {
+  document.getElementById(modal).style.display = "block";
+}
+
+function closeModal(modal) {
+  document.getElementById(modal).style.display = "none";
+}
+
 function makeUID() {
   let result = "";
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -38,17 +46,14 @@ function makeUID() {
 }
 
 function enterData() {
-  if (confirm('Are you sure you want to checkout this order?') == true) {
-    const result = makeUID();
-    orderNo = orderNo + 1;
-    if (orderNo > 100) {
-      orderNo = 1;
-    }
-    addDoc(result, orderNo);
-    alert('OK, your meal has been sent to the database');
-  } else {
-    alert('You Cancelled Your Order');
+  const result = makeUID();
+  orderNo = orderNo + 1;
+  if (orderNo > 100) {
+    orderNo = 1;
   }
+  addDoc(result, orderNo);
+  closeModal('myModal');
+  openModal('closeModal');
 }
 
 function popAllergies() {
