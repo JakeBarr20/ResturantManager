@@ -18,9 +18,9 @@ const db = getFirestore(app);
 console.log(app);
 
 window.addDoc=addDoc;
-async function addDoc(result) {
+async function addDoc(result, orderNo) {
 	await setDoc(doc (db, "Orders", result), {
-		OrderNum: 1,
+		OrderNum: orderNo,
 		Status: "Waiting",
 		Time: new Date().getTime(),
 		food: {cheeseburger: '1', hamburger: '2'}

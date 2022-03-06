@@ -6,6 +6,7 @@ function popupAllergies(Cal, Allergy) {
 let data = 0;
 let x = 0;
 let items = "";
+let orderNo = 100;
 
 function increase(id) {
   x = document.getElementById(id).innerHTML;
@@ -39,7 +40,11 @@ function makeUID() {
 function enterData() {
   if (confirm('Are you sure you want to checkout this order?') == true) {
     const result = makeUID();
-    addDoc(result);
+    orderNo = orderNo + 1;
+    if (orderNo > 100) {
+      orderNo = 1;
+    }
+    addDoc(result, orderNo);
     alert('OK, your meal has been sent to the database');
   } else {
     alert('You Cancelled Your Order');
