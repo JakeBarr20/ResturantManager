@@ -56,6 +56,10 @@ function enterData() {
   openModal('closeModal');
 }
 
+function alertWaiter(tableNo) {
+  needsHelp(tableNo.value);
+}
+
 function popAllergies() {
   console.log("its running");
   $(".dissappear").toggleClass("active");
