@@ -41,6 +41,7 @@ window.deliverToTable = deliverToTable;
 window.helpToTable = helpToTable;
 window.AddItemToDb = AddItemToDb;
 window.RemoveItemFromDb = RemoveItemFromDb;
+window.waiterChange = waiterChange;
 window.pay = pay;
 
 /**
@@ -440,10 +441,12 @@ async function createTables(doc, ready) {
  * @async
  * @method  
  */
-async function initTables() {
+async function initTablesStatus() {
+  console.log("yes");
   tables = document.getElementById("Tables");
   box = document.getElementById("Box");
-
+  let waiter = document.getElementById("waiter").value;
+  
   const q1 = query(
     collection(db, "Table"),
     where("isReady", "==", true),
@@ -452,7 +455,9 @@ async function initTables() {
   const querySnapshot = await getDocs(q1);
 
   querySnapshot.forEach((doc) => {
-    createTables(doc, "r");
+    if(doc.data().Waiter == waiter || waiter == 0){
+      createTables(doc, "r");
+    }
     console.log(doc.id, " => ", doc.data());
   });
 
@@ -465,7 +470,9 @@ async function initTables() {
   const querySnapshot2 = await getDocs(q2);
 
   querySnapshot2.forEach((doc) => {
-    createTables(doc, "none");
+    if(doc.data().Waiter == waiter || waiter == 0){
+      createTables(doc, "None");
+    }
     console.log(doc.id, " => ", doc.data());
   });
 
@@ -477,15 +484,28 @@ async function initTables() {
   const querySnapshot3 = await getDocs(q3);
 
   querySnapshot3.forEach((doc) => {
-    createTables(doc, "h");
+    if(doc.data().Waiter == waiter || waiter == 0){
+      createTables(doc, "h");
+    }
     console.log(doc.id, " => ", doc.data());
   });
+}
+
+function waiterChange(){
+  let count = 10;
+  let table = 0;
+  while(count > 0){
+    table = document.getElementById("T"+count);
+    table.remove();
+    count = count - 1;
+  }
+  initTablesStatus();
 }
 
 /**
  * Creates the orders from the database when the window loads
  */
 window.onload = function () {
-  initTables();
+  initTablesStatus();
   initOrderList();
 };
