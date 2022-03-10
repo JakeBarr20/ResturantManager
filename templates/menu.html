@@ -18,6 +18,7 @@
     />
     <!-- Our Custom CSS-->
     <link rel="stylesheet" href="static/navbar.css" />
+    <link rel="stylesheet" href="static/checkout.css"/>
     <!-- -->
     
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -71,9 +72,6 @@
           <li>
             <a onclick="window.location.href='sides';">Sides</a>
           </li>
-          <li>
-            <a onclick="window.location.href='checkout'">Checkout</a>
-          </li>
         </ul>
       </nav>
 
@@ -91,7 +89,24 @@
       {%block content%} {%endblock%}
       <footer class="text-center text-white fixed-bottom" style="background-color: #f8ac08;">
         <div class="text-center p-3" style="background-color: rgba(248, 143, 4, 0.2);">
-          <h5 style="margin-right: 250px; color:white">subtotal: <span>£</span><span id="counting">0</span></h5>
+          <h5 style="float: left; color:white">subtotal: <span>£</span><span id="counting">0</span></h5>
+          <button onclick="openModal('helpModal')" style="float: left; margin: 10px; background-color: rgb(8, 248, 48); color: white; border-radius: 10px;">HELP</button>
+          <div id="helpModal" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('helpModal')">&times;</span>
+              <h3>Please enter your table number:</h3>
+              <input type = "text" id="tableNo" class="form-control">
+              <button class = "btn btn-primary" id = "Confirm" type = "button" onclick="closeModal('helpModal'); alertWaiter(tableNo); openModal('closeHelpModal')">Confirm</button>
+            </div>
+          </div>
+          <div id="closeHelpModal" class="modal">
+            <div class="modal-content">
+              <span class="close" onclick="closeModal('closeHelpModal')">&times;</span>
+              <h3>Ok, the waiter has been notified.</h3>
+            </div>
+          </div>
+          <button onclick="sendUserinfo()">DOG</button>
+          <button onclick="window.location.href='checkout'"style="float: right; margin: 10px; background-color: rgb(8, 248, 48); color: white; border-radius: 10px;"><strong>Proceed To Checkout</strong></button>
         </div>
       </footer>
     </div>
@@ -118,5 +133,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
     <script src="static/navbar.js"></script>
     <script src="static/menu.js"></script>
+    <script type = "module" src="static/menuDb.js"> </script>
   </body>
 </html>
