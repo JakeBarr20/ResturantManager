@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
+import { getFirestore, doc, updateDoc, query, collection, where, getDocs} from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyD_-a7AcOzc2g4awLO2PeneU8enHKBw7cU",
@@ -17,12 +17,16 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 console.log(app);
 
-window.addDoc=addDoc;
-async function addDoc(result, orderNo) {
-	await setDoc(doc (db, "Orders", result), {
-		OrderNum: orderNo,
-		Status: "Waiting",
-		Time: new Date().getTime(),
-		food: {cheeseburger: '1', hamburger: '2'}
+window.needsHelp=needsHelp;
+async function needsHelp(tableNo) {
+    let id = 0;
+    const q = query(collection(db, "Table"), where("TableNum","==",Number(tableNo)));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(function(doc) {
+        id=doc.id;
+    });
+	const tablesRef = doc(db, "Table", `${id}`);
+	await updateDoc(tablesRef, {
+		needHelp: true,
 	});
 }

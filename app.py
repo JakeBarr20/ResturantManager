@@ -1,5 +1,7 @@
+
 import flask
 from flask import Flask, request, render_template
+import json
 
 app = Flask(__name__)
 
@@ -62,5 +64,18 @@ def sideMenu():
 def checkoutItems():
     return render_template("checkout.html")
     
+@app.route('/processUserInfo/<string:userInfo>', methods=['POST'])
+def processUserInfo(userInfo):
+    userInfo=json.loads(userInfo)
+    print()
+    print('USER INFO RECEIVED')
+    print('----------------------')
+    print(f"User Name: {userInfo['name']}")
+    print(f"User Name: {userInfo['type']}")
+    print()
+
+    return "Info received successfully"
+
+
 if __name__ == '__main__':
     app.run(debug=True)
