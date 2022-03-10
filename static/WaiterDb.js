@@ -491,6 +491,10 @@ async function initTablesStatus() {
   });
 }
 
+/**
+ * Changes tables displayed depending on waiter
+ * @method
+ */
 function waiterChange(){
   let count = 10;
   let table = 0;
