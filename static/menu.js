@@ -7,7 +7,7 @@ let data = 0;
 let x = 0;
 let items = "";
 let orderNo = 100;
-
+// This function is for when a user clicks on an item and itd price is added to the counter
 function increase(id) {
   x = document.getElementById(id).innerHTML;
   newItem=document.getElementById(id).name
