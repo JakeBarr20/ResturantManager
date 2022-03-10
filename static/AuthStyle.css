@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500&amp;subset=latin-ext);
+
 .stretched-link::after {
     position: absolute;
     top: 0;
@@ -12,7 +14,7 @@
 /* HTML */
 body {
 	min-height: 100vh;
-
+	font-family: 'Nunito';
 	overflow: hidden;
 	background: #EEB27B;
 	background-image: linear-gradient(to right bottom, #f3d503, #f3d503, #f3d503, #f3d503, #f3d503, #f5d317, #f6d222, #f7d02b, #f9cc3b, #fbc948, #fbc654, #fbc35f);
