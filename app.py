@@ -28,7 +28,7 @@ def customerUI():
 
 @app.route('/waiter')
 def waiterUI():
-    return render_template("waiterUI.html");
+    return render_template("waiterUI.html")
 
 @app.route('/kitchen_staff')
 def kitchenStaffUI():
