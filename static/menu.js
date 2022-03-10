@@ -8,6 +8,7 @@ let x = 0;
 let items = "";
 let orderNo = 100;
 // This function is for when a user clicks on an item and itd price is added to the counter
+//Counter still refreshes when we change submenus so this needs modifyin
 function increase(id) {
   x = document.getElementById(id).innerHTML;
   newItem=document.getElementById(id).name
