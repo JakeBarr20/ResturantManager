@@ -66,12 +66,12 @@ function popAllergies() {
   $(".appear").toggleClass("active");
 }
 
-$(function testParams() {
-    $('#dissappear').click(function(){
-        let x = $(this).attr('value');
-        console.log(x);2
-    });
-});
+//$(function testParams() {
+  //  $('.buttonAdd').click(function(){
+    //    let x = $(this).attr('value');
+      //  console.log(x);
+    //});
+//});
 
 $(function item1Appear() {
   $('.item1').click(function(){
@@ -93,7 +93,7 @@ function sendUserInfo(){
   console.log(userInfo)
   const request = new XMLHttpRequest()
   console.log(userInfo)
-  request.open('POST', '/processUserInfo/${JSON.stringify(userInfo)}')
+  request.open('POST', `/processUserInfo/${JSON.stringify(userInfo)}`)
   console.log(userInfo)
   request.onload = () => {
     const flaskMessage = request.responseText
@@ -102,4 +102,9 @@ function sendUserInfo(){
   console.log(userInfo)
   request.send();
   console.log(userInfo)
+}
+
+function getTableNumberFromTextBox(){
+  let tabNumber = document.getElementById("inputId").value;
+  document.getElementById("tableNumber").innerHTML=tabNumber
 }

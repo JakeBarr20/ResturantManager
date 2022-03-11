@@ -83,13 +83,15 @@
               <i class="fas fa-align-left"></i>
               <span>See our menu's selection</span>
             </button>
+            <button type="button" onclick="getTableNumberFromTextBox();">Set table</button>
+            <input style="margin-right: 300px;" type="text" placeholder="Tablenumber" id="inputId">
+            <h6 style="margin-right: 200px; margin-left: 10px;">You are sat at: <span id="tableNumber"></span></h6>
         </nav>
       </div>
       {%block content%} {%endblock%}
       <footer class="text-center text-white fixed-bottom" style="background-color: #f8ac08;">
         <div class="text-center p-3" style="background-color: rgba(248, 143, 4, 0.2);">
           <h5 style="float: left; color:white">subtotal: <span>£</span><span id="counting">0</span></h5>
-          <button onclick="openModal('helpModal')" style="float: left; margin: 10px; background-color: rgb(8, 248, 48); color: white; border-radius: 10px;">HELP</button>
           <div id="helpModal" class="modal">
             <div class="modal-content">
               <span class="close" onclick="closeModal('helpModal')">&times;</span>
@@ -104,7 +106,7 @@
               <h3>Ok, the waiter has been notified.</h3>
             </div>
           </div>
-          <button onclick="sendUserinfo()">DOG</button>
+          <button onclick="openModal('helpModal')" style=" margin: 10px; background-color: red; color: white; border-radius: 10px;">HELP</button>
           <button onclick="window.location.href='checkout'"style="float: right; margin: 10px; background-color: rgb(8, 248, 48); color: white; border-radius: 10px;"><strong>Proceed To Checkout</strong></button>
         </div>
       </footer>

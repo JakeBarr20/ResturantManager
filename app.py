@@ -3,6 +3,8 @@ import flask
 from flask import Flask, request, render_template
 import json
 
+from order import Order
+
 app = Flask(__name__)
 
 
@@ -73,7 +75,6 @@ def processUserInfo(userInfo):
     print(f"User Name: {userInfo['name']}")
     print(f"User Name: {userInfo['type']}")
     print()
-
     return "Info received successfully"
 
 

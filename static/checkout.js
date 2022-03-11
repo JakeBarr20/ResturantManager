@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-analytics.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
+import { getFirestore, doc, setDoc, getDocs, query, collection, where } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyD_-a7AcOzc2g4awLO2PeneU8enHKBw7cU",
@@ -26,3 +26,36 @@ async function addDoc(result, orderNo) {
 		food: {cheeseburger: '1', hamburger: '2'}
 	});
 }
+
+async function displayTableOrder(tabNumber){
+    const q1 = query(collection(db, "Orders"), where("TableNum", "==", 9));
+    const querySnapshot = await getDocs(q1);
+    querySnapshot.forEach((doc) => {
+        createItemList(doc)
+    });
+    
+}
+
+function createItemList(doc){
+    console.log("ran")
+    let food = doc.data().food
+    for (var key in food){
+        var li = document.createElement('li');
+        li.className='list-group-item';
+        li.appendChild(document.createTextNode(food[key] + ' x '+ key));
+        document.getElementById("order").appendChild(li);
+    }
+    let buttonSpace = document.createElement('li');
+    buttonSpace.className='list-group-item';
+    buttonSpace.id='checkout-space'
+    document.getElementById("order").appendChild(buttonSpace);
+    let button = document.createElement('button')
+    button.className='btn btn-primary';
+    button.id='Checkout';
+    button.type='button';
+    button.addEventListener("click", () => openModal('myModal'), false);
+    button.appendChild(document.createTextNode('Checkout Order'))
+    document.getElementById("checkout-space").appendChild(button)
+}
+
+displayTableOrder(9);

@@ -1,71 +1,131 @@
+{%extends 'menu.html'%}{%block content%}
 <!DOCTYPE html>
 <html>
 <head>
-<title> Drinks</title>
-{%extends 'menu.html'%}{%block content%}
+<title> Kebab</title>
 <div style="margin-top: 50px;" class="row">
-    <div class="card">
-      <img class="card-img-top" src="https://is4-ssl.mzstatic.com/image/thumb/Purple111/v4/cc/5a/05/cc5a056a-47e9-2440-4189-1f0a2ff3961e/source/100x100bb.jpg" alt="">
-      <div class="card-body">
-        <h5 class="card-title">Water</h5>
-        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
-        id="1">0.50</a>
-        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(0, 'None')"><i class="fas fa-info-circle"></i> details</button>
+      <div class="card">
+        <img class="dissappear" class="card-img-top"  src="https://photos.bigoven.com/recipe/hero/kfc-secret-spices-fried-chicken-63c0f75000280101a9dfe6b0.jpg?h=300&w=300" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Coca cola</h5>
+          <a href="#" class="buttonAdd" onClick="increase(this.id)"
+          id="1" value="Regular coke">2.00</a>
+          <button class="item1" style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <div class="appear">
+            <h5>Allergies</h5>
+            <p>Served cold in a glass</p>
+            <p>Please ask waitress for lemon  </p>
+            <p>or ice</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="https://ipcdn.freshop.com/resize?url=https://images.freshop.com/00049000061017/834334552f73148fa5cb1049ec51cc72_large.png&width=100&type=webp&quality=80" alt="">
-      <div class="card-body">
-        <h5 class="card-title">Coca Cola</h5>
-        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
-        id="1">1.50</a>
-        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(138, 'None')"><i class="fas fa-info-circle"></i> details</button>
+      <div class="card">
+        <img class="dissappear" class="card-img-top" src="https://photos.bigoven.com/recipe/hero/kfc-secret-spices-fried-chicken-63c0f75000280101a9dfe6b0.jpg?h=300&w=300" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Orange Fanta </h5>
+          <a href="#" class="buttonAdd" onClick="increase(this.id)"
+          id="2" value="Orange fanta">6.50</a>
+          <button class="item1" style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <div class="appear">
+            <h5>Allergies</h5>
+            <p>Served cold in a glass</p>
+            <p>Please ask waitress for lemon  </p>
+            <p>or ice</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="https://ipcdn.freshop.com/resize?url=https://images.freshop.com/00049000053425/23add40f437eed1c93859d512d5f6b04_large.png&width=100&type=webp&quality=80" alt="">
-      <div class="card-body">
-        <h5 class="card-title">Diet Coca Cola</h5>
-        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
-        id="1">1.50</a>
-        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(1, 'None')"><i class="fas fa-info-circle"></i> details</button>
+      <div class="card">
+        <img class="dissappear" class="card-img-top" src="https://photos.bigoven.com/recipe/hero/kfc-secret-spices-fried-chicken-63c0f75000280101a9dfe6b0.jpg?h=300&w=300" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Lemon fanta</h5>
+          <a href="#" class="buttonAdd" onClick="increase(this.id)"
+          id="3" value="Lemon fanta">2.50</a>
+          <button class="item1" style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <div class="appear">
+            <h5>Allergies</h5>
+            <p>Served cold in a glass</p>
+            <p>Please ask waitress for lemon  </p>
+            <p>or ice</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="https://ipcdn.freshop.com/resize?url=https://images.freshop.com/00049000014235/b6f3d8afb22c38dcf0619c746695c74b_large.png&width=100&type=webp&quality=80" alt="">
-      <div class="card-body">
-        <h5 class="card-title">Orange Fanta</h5>
-        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
-        id="1">2.00</a>
-        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(57, 'None')"><i class="fas fa-info-circle"></i> details</button>
+      <div class="card">
+        <img class="dissappear" class="card-img-top" src="https://photos.bigoven.com/recipe/hero/kfc-secret-spices-fried-chicken-63c0f75000280101a9dfe6b0.jpg?h=300&w=300" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Dr Pepper</h5>
+          <a href="#" class="buttonAdd" onClick="increase(this.id)"
+          id="4" value="Dr Pepper">2.50</a>
+          <button class="item1" style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <div class="appear">
+            <h5>Allergies</h5>
+            <p>Served cold in a glass</p>
+            <p>Please ask waitress for lemon  </p>
+            <p>or ice</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="https://img-api.yumapos.co.uk/image/crop/100x100/dc9f02ca-87b7-dc61-afdc-f5d6d64f618e.jpg" alt="">
-      <div class="card-body">
-        <h5 class="card-title">Lemon Fanta</h5>
-        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
-        id="1">2.00</a>
-        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(57, 'None')"><i class="fas fa-info-circle"></i> details</button>
+      <div class="card">
+        <img class="dissappear" class="card-img-top" src="https://photos.bigoven.com/recipe/hero/kfc-secret-spices-fried-chicken-63c0f75000280101a9dfe6b0.jpg?h=300&w=300" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Bottled water </h5>
+          <a href="#" class="buttonAdd" onClick="increase(this.id)"
+          id="5" value="Bottled water">2.50</a>
+          <button class="item1" style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <div class="appear">
+            <h5>Allergies</h5>
+            <p>Served cold in a glass</p>
+            <p>Please ask waitress for lemon  </p>
+            <p>or ice</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="https://ipcdn.freshop.com/resize?url=https://images.freshop.com/00078000060669/f1bcef27b23b784a3699f260ec4cf8ab_large.png&width=100&type=webp&quality=80" alt="">
-      <div class="card-body">
-        <h5 class="card-title">Dr. Pepper</h5>
-        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
-        id="1">2.50</a>
-        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(150, 'None')"><i class="fas fa-info-circle"></i> details</button>
+      <div class="card">
+        <img class="dissappear" class="card-img-top" src="https://photos.bigoven.com/recipe/hero/kfc-secret-spices-fried-chicken-63c0f75000280101a9dfe6b0.jpg?h=300&w=300" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Coffee</h5>
+          <a href="#" class="buttonAdd" onClick="increase(this.id)"
+          id="6" value="Coffee">2.50</a>
+          <button class="item1" style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <div class="appear">
+            <h5>Allergies</h5>
+            <p>Served hot in a cup</p>
+            <p>Please ask waitress for milk  </p>
+            <p>or cream</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="https://www.stylist.co.uk/images/app/uploads/2020/03/09113250/emre-gencer-nzmejsrmc8u-unsplash-256x256.jpg?w=100&h=100&fit=max&auto=format%2Ccompress" alt="">
-      <div class="card-body">
-        <h5 class="card-title">Coffee</h5>
-        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
-        id="1">1.50</a>
-        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(75, 'Milk')"><i class="fas fa-info-circle"></i> details</button>
+      <div class="card">
+        <img class="dissappear" class="card-img-top" src="https://photos.bigoven.com/recipe/hero/kfc-secret-spices-fried-chicken-63c0f75000280101a9dfe6b0.jpg?h=300&w=300" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Tea</h5>
+          <a href="#" class="buttonAdd" onClick="increase(this.id)"
+          id="7" value="Tea">2.50</a>
+          <button class="item1" style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <div class="appear">
+            <h5>Allergies</h5>
+            <p>Served hot in a cup</p>
+            <p>Please ask waitress for a lemon</p>
+            <p>or milk/p>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>  
+      <div class="card">
+        <img class="dissappear" class="card-img-top" src="https://photos.bigoven.com/recipe/hero/kfc-secret-spices-fried-chicken-63c0f75000280101a9dfe6b0.jpg?h=300&w=300" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Hot chocolate</h5>
+          <a href="#" class="buttonAdd" onClick="increase(this.id)"
+          id="8" value="Hot chocolate">6.50</a>
+          <button class="item1" style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <div class="appear">
+            <h5>Allergies</h5>
+            <p>Served hot in a cup</p>
+            <p>Please ask waitress for milk  </p>
+            <p>or whipped cream and marshmellos</p>
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+  
+  
 {%endblock%}

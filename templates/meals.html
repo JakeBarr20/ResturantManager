@@ -1,36 +1,75 @@
-{%extends 'menu.html'%}
-{%block content%}
+{%extends 'menu.html'%}{%block content%}
 <!DOCTYPE html>
 <html>
 <head>
-<title> Meals</title>
+<title> Kebab</title>
 <div style="margin-top: 50px;" class="row">
-    <div class="card">
-      <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHHQDriQHziUywIUUqCho-qVtpphkMbzkUCg&usqp=CAU" alt="">
-      <div class="card-body">
-        <h5 class="card-title">Burger Meal</h5>
-        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
-        id="1">12.50</a>
-        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(1573, 'soy, milk, eggs, wheat, mustard, sesame, celery, gluten and sulphur dioxide')"><i class="fas fa-info-circle"></i> details</button>
+      <div class="card">
+        <img class="dissappear" class="card-img-top"  src="https://photos.bigoven.com/recipe/hero/kfc-secret-spices-fried-chicken-63c0f75000280101a9dfe6b0.jpg?h=300&w=300" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Burger and Chicken</h5>
+          <a href="#" class="buttonAdd" onClick="increase(this.id)"
+          id="1" value="Burger and chicken meal">10.00</a>
+          <button class="item1" style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <div class="appear">
+            <h5>Allergies</h5>
+            <p>This is the one piece meal served hot</p>
+            <p>A dish of chicken pieces </p>
+            <p>On the side is a burger of</p>
+            <p>your choice</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="https://just-eat-prod-eu-res.cloudinary.com/image/upload/c_fill,f_auto,q_auto,h_100,w_100,d_uk:cuisines:kebabs-4.jpg/v1/uk/restaurants/160974.jpg" alt="">
-      <div class="card-body">
-        <h5 class="card-title">Kebab Meal</h5>
-        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
-        id="1">10.00</a>
-        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(1387, 'soy, wheat, mustard, sesame, celery, gluten and sulphur dioxide')"><i class="fas fa-info-circle"></i> details</button>
+      <div class="card">
+        <img class="dissappear" class="card-img-top" src="https://photos.bigoven.com/recipe/hero/kfc-secret-spices-fried-chicken-63c0f75000280101a9dfe6b0.jpg?h=300&w=300" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Kebab and dessert</h5>
+          <a href="#" class="buttonAdd" onClick="increase(this.id)"
+          id="2" value="Kebab and dessert meal">6.50</a>
+          <button class="item1" style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <div class="appear">
+            <h5>Allergies</h5>
+            <p>This is the one piece meal served hot</p>
+            <p>a Turkish dish consisting of spiced chicken </p>
+            <p>cooked on a spit and served in slices, </p>
+            <p>typically with pitta bread.</p>
+            <p>On top of this you get a dessert of</p>
+            <p>of your choice</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <img class="card-img-top" src="https://photos.bigoven.com/recipe/hero/kfc-secret-spices-fried-chicken-63c0f75000280101a9dfe6b0.jpg?h=100&w=100" alt="">
-      <div class="card-body">
-        <h5 class="card-title">Chicken Meal</h5>
-        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
-        id="1">6.50</a>
-        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(2451, 'soy, milk, eggs, wheat, mustard, sesame, celery, gluten and sulphur dioxide')"><i class="fas fa-info-circle"></i> details</button>
+      <div class="card">
+        <img class="dissappear" class="card-img-top" src="https://photos.bigoven.com/recipe/hero/kfc-secret-spices-fried-chicken-63c0f75000280101a9dfe6b0.jpg?h=300&w=300" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Side and a drink</h5>
+          <a href="#" class="buttonAdd" onClick="increase(this.id)"
+          id="3" value="Side and a drink meal">7.00</a>
+          <button class="item1" style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <div class="appear">
+            <h5>Allergies</h5>
+            <p>This is the one piece meal served hot</p>
+            <p>Here for a small snack, this meal</p>
+            <p>is totally for you</p>
+          </div>
+        </div>
       </div>
-    </div>
-</div>
+      <div class="card">
+        <img class="dissappear" class="card-img-top" src="https://photos.bigoven.com/recipe/hero/kfc-secret-spices-fried-chicken-63c0f75000280101a9dfe6b0.jpg?h=300&w=300" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Burger and drink</h5>
+          <a href="#" class="buttonAdd" onClick="increase(this.id)"
+          id="4" value="Burger and drink">6.50</a>
+          <button class="item1" style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;"><i class="fas fa-info-circle"></i> details</button>
+          <div class="appear">
+            <h5>Allergies</h5>
+            <p>This is the one piece meal served hot</p>
+            <p>Burger of your choice</p>
+            <p>Topped off with a nice refreshing drink</p>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+  
+  
 {%endblock%}
