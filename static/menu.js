@@ -45,6 +45,8 @@ function makeUID() {
   return result;
 }
 
+
+
 function enterData() {
   const result = makeUID();
   orderNo = orderNo + 1;

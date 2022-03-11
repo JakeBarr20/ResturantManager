@@ -23,7 +23,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
-let order2 = new Map([])
+let order2 = new Map([]);
 
 window.needsHelp = needsHelp;
 async function needsHelp(tableNo) {
@@ -42,38 +42,78 @@ async function needsHelp(tableNo) {
   });
 }
 
-async function getTableOrder(tabNumber) {
-    let tempStore
-    const q1 = query(collection(db, "Orders"), where("TableNum", "==", tabNumber));
+$(function displayOrderForTable() {
+  $("#getOrder").click(async function () {
+    let tableNum = +document.getElementById("tableNumber").innerHTML;
+    await getSubTotal(tableNum)
+  });
+});
+
+async function getSubTotal(tableNumber){
+  let sTotal
+  const q1 = query(
+      collection(db, "Orders"),
+      where("TableNum", "==", tableNumber)
+    );
+    console.log(tableNumber)
     const querySnapshot = await getDocs(q1);
     querySnapshot.forEach((doc) => {
-        tempStore=new Map(Object.entries(doc.data().food));
+      sTotal=doc.data().Subtotal;
+      console.log(sTotal)
     });
-    return tempStore;
+    document.getElementById("counting").innerHTML=sTotal
 }
 
-async function getTableIdFromNumber(tabNumber){
-    let test
-    const q1 = query(collection(db, "Orders"), where("TableNum", "==", tabNumber));
-    const querySnapshot = await getDocs(q1);
-    querySnapshot.forEach((doc) => {
-        test=doc.id
-    });
-    return test;
+async function getTableOrder(tabNumber) {
+  let tempStore;
+  const q1 = query(
+    collection(db, "Orders"),
+    where("TableNum", "==", tabNumber)
+  );
+  const querySnapshot = await getDocs(q1);
+  querySnapshot.forEach((doc) => {
+    tempStore = new Map(Object.entries(doc.data().food));
+  });
+  return tempStore;
 }
-async function pushItemList(orderID, order){
-    const tablesRef = doc(db, "Orders", orderID);
-    await updateDoc(tablesRef, { 
-        food: Object.fromEntries(order.entries()),
-    });
+
+async function getTableIdFromNumber(tabNumber) {
+  let test;
+  const q1 = query(
+    collection(db, "Orders"),
+    where("TableNum", "==", tabNumber)
+  );
+  const querySnapshot = await getDocs(q1);
+  querySnapshot.forEach((doc) => {
+    test = doc.id;
+  });
+  return test;
 }
+
+async function pushItemList(orderID, order) {
+  const tablesRef = doc(db, "Orders", orderID);
+  await updateDoc(tablesRef, {
+    food: Object.fromEntries(order.entries()),
+  });
+}
+
+async function pushSubTotal(tableNumber) {
+  let id = await getTableIdFromNumber(tableNumber);
+  let sTotal = +document.getElementById("counting").innerHTML
+  console.log(sTotal)
+  console.log(id)
+  const tablesRef = doc(db, "Orders", id);
+  await updateDoc(tablesRef, {
+    Subtotal: sTotal,
+  });
+}
+
 $(function addItem() {
   $(".buttonAdd").click(async function () {
-    console.log(document.getElementById("tableNumber").innerHTML)
-    let tableNumber=document.getElementById("tableNumber").innerHTML
-    console.log(tableNumber==9)
+    console.log(document.getElementById("tableNumber").innerHTML);
+    let tableNumber = +document.getElementById("tableNumber").innerHTML;
     let orderId;
-    order2=await getTableOrder(tableNumber);
+    order2 = await getTableOrder(tableNumber);
     let x = $(this).attr("value");
     if (order2.has(x)) {
       let count = order2.get(x);
@@ -82,14 +122,10 @@ $(function addItem() {
     } else {
       order2.set(x, 1);
     }
-    orderId= await getTableIdFromNumber(tableNumber);
-    pushItemList(orderId, order2)
-    
+    orderId = await getTableIdFromNumber(tableNumber);
+    pushSubTotal(tableNumber)
+    getSubTotal(tableNumber)
+    pushItemList(orderId, order2);
   });
 });
-
-
-
-
-
 
