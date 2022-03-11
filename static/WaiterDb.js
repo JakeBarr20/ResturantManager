@@ -495,14 +495,11 @@ async function initTablesStatus() {
  * Changes tables displayed depending on waiter
  * @method
  */
-function waiterChange(){
-  let count = 10;
-  let table = 0;
-  while(count > 0){
-    table = document.getElementById("T"+count);
-    table.remove();
-    count = count - 1;
-  }
+ function waiterChange(){
+  const table = Array.from(document.getElementsByClassName('circle-table'));
+  table.forEach(t => {
+    t.remove();
+  })
   initTablesStatus();
 }
 
