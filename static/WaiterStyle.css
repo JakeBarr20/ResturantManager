@@ -1,8 +1,8 @@
 .edit-order {
     max-height: 130px;
     min-height: 130px;
-    min-width: 1090px;
-    max-width: 1090px;
+    min-width: 1030px;
+    max-width: 1030px;
     color:black;
     background-color: orange;
     border-color:transparent;
@@ -15,11 +15,11 @@
 .tables {
     max-height: 555px;
     min-height: 555px;
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 235px;
+    max-width: 235px;
     background-color: orange;
     z-index: 100%;
-    margin-left:1110px;
+    margin-left:1040px;
     margin-bottom:25px;
     transform: translateY(-172px);
     border-radius: 5px;
@@ -57,7 +57,7 @@
 .box {
     max-height: 22px;
     min-height: 22px;
-    min-width: 1090px;
+    min-width: 1030px;
     max-width: 810px;
     background-color: rgb(212, 138, 0);
     border-radius: 10px;
@@ -73,8 +73,8 @@
 .card {
     max-height: 400px;
     min-height: 400px;
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 235px;
+    max-width: 235px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-bottom:20px;
     
@@ -161,9 +161,9 @@
     background: green;
     border-radius: 5px;
     background: green;
-    margin-left: 20px;
+    margin-left: 15px;
     font-size: 15px;
-    transform: translateX(-30px);
+    transform: translateX(-15px);
 }
 
 .btn-primary-outline {
@@ -232,11 +232,11 @@
 .info-box {
     max-height: 220px;
     min-height: 220px;
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 235px;
+    max-width: 234px;
     background-color: orange;
     z-index: 100%;
-    margin-left:1110px;
+    margin-left:1040px;
     transform: translateY(-172px);
     border-radius: 5px;
 }
