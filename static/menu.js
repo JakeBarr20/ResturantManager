@@ -47,13 +47,9 @@ function makeUID() {
 
 
 
-function enterData() {
-  const result = makeUID();
-  orderNo = orderNo + 1;
-  if (orderNo > 100) {
-    orderNo = 1;
-  }
-  addDoc(result, orderNo);
+async function enterData() {
+  let tableNumber = +document.getElementById("tableNumber").innerHTML
+  addDoc(tableNumber);
   closeModal('myModal');
   openModal('closeModal');
 }
@@ -63,7 +59,6 @@ function alertWaiter(tableNo) {
 }
 
 function popAllergies() {
-  console.log("its running");
   $(".dissappear").toggleClass("active");
   $(".appear").toggleClass("active");
 }

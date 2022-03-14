@@ -8,6 +8,7 @@ import {
   query,
   collection,
   where,
+  updateDoc,
 } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -26,15 +27,13 @@ const db = getFirestore(app);
 console.log(app);
 
 window.addDoc = addDoc;
-async function addDoc(result, orderNo) {
-  await setDoc(doc(db, "Orders", result), {
-    OrderNum: orderNo,
-    Status: "Waiting",
-    Time: new Date().getTime(),
-    food: { cheeseburger: "1", hamburger: "2" },
+async function addDoc(tableNumber) {
+  let id = await getTableIdFromNumber(tableNumber);
+  const tablesRef = doc(db, "Orders", `${id}`);
+  await updateDoc(tablesRef, {
+    Status: 'Waiting',
   });
 }
-
 async function displayTableOrder(tabNumber) {
   const q1 = query(
     collection(db, "Orders"),
@@ -73,27 +72,27 @@ function createItemList(doc) {
 
 async function pushSubTotal(tableNumber) {
   let id = getTableIdFromNumber(tableNumber);
-  let sTotal = +document.getElementById("counting").innerHTML
-  console.log(sTotal)
+  let sTotal = +document.getElementById("counting").innerHTML;
+  console.log(sTotal);
   const tablesRef = doc(db, "Table", `${id}`);
   await updateDoc(tablesRef, {
     subtotal: sTotal,
   });
 }
 
-async function getSubTotal(tableNumber){
-    let sTotal
-    const q1 = query(
-        collection(db, "Orders"),
-        where("TableNum", "==", tableNumber)
-      );
-      console.log(tableNumber)
-      const querySnapshot = await getDocs(q1);
-      querySnapshot.forEach((doc) => {
-        sTotal=doc.data().Subtotal;
-        console.log(sTotal)
-      });
-      document.getElementById("counting").innerHTML=sTotal
+async function getSubTotal(tableNumber) {
+  let sTotal;
+  const q1 = query(
+    collection(db, "Orders"),
+    where("TableNum", "==", tableNumber)
+  );
+  console.log(tableNumber);
+  const querySnapshot = await getDocs(q1);
+  querySnapshot.forEach((doc) => {
+    sTotal = doc.data().Subtotal;
+    console.log(sTotal);
+  });
+  document.getElementById("counting").innerHTML = sTotal;
 }
 
 async function getTableIdFromNumber(tabNumber) {
@@ -116,4 +115,4 @@ $(function displayOrderForTable() {
   });
 });
 
-getSubTotal(7)
+getSubTotal(7);
