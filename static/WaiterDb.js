@@ -13,6 +13,7 @@ import {
   getDocs,
   updateDoc,
   getDoc,
+  onSnapshot
 } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -196,11 +197,11 @@ async function initOrderList() {
   const q1 = query(collection(db, "Orders"), where("Status", "==", "Waiting"));
   const querySnapshot = await getDocs(q1);
 
-  querySnapshot.forEach((doc) => {
-    createOrderCard(doc);
-    orderNum += 1;
-    console.log(doc.id, " => ", doc.data());
-  });
+  //querySnapshot.forEach((doc) => {
+    //createOrderCard(doc);
+    //orderNum += 1;
+    //console.log(doc.id, " => ", doc.data());
+  //});
 
   // Creates a listener which is used for the implementation of live updates
   unsubscribe = onSnapshot(q1, (querySnapshot) => {
@@ -213,7 +214,7 @@ async function initOrderList() {
         changes.forEach((change) => {
             let cngData = change.doc.data();
             
-            if (cngData.Status == currentStatus) {
+            if (cngData.Status == "Waiting") {
                 if (change.type == 'added') {
                     createOrderCard(change.doc)
                 } else if (change.type == 'removed') {
