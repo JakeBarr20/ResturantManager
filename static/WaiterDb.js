@@ -44,6 +44,8 @@ window.RemoveItemFromDb = RemoveItemFromDb;
 window.waiterChange = waiterChange;
 window.pay = pay;
 
+let unsubscribe;
+
 /**
  * When cancel button is pressed deletes the order from the database using this method
  * @async
@@ -185,9 +187,10 @@ async function createOrderCard(doc) {
 */
 async function initOrderList() {
   if (cardContainer) {
-    document.getElementById("card-container").replaceWith(cardContainer);
-    return;
+    removeAllChildNodes(document.getElementById('card-container'));
   }
+
+  if (unsubscribe) unsubscribe();
 
   cardContainer = document.getElementById("card-container");
   const q1 = query(collection(db, "Orders"), where("Status", "==", "Waiting"));
@@ -198,6 +201,29 @@ async function initOrderList() {
     orderNum += 1;
     console.log(doc.id, " => ", doc.data());
   });
+
+  // Creates a listener which is used for the implementation of live updates
+  unsubscribe = onSnapshot(q1, (querySnapshot) => {
+    // Search Dependent Display Condition (if search failed, display ...)
+    if (querySnapshot.empty) {
+        generateWarning(orderNum);
+    } else {
+        // Status Dependent Order Display
+        let changes = querySnapshot.docChanges();
+        changes.forEach((change) => {
+            let cngData = change.doc.data();
+            
+            if (cngData.Status == currentStatus) {
+                if (change.type == 'added') {
+                    createOrderCard(change.doc)
+                } else if (change.type == 'removed') {
+                    let card = document.getElementById(change.doc.id);
+                    cardContainer.removeChild(card);
+                }
+            }
+        });
+    }
+});
 }
 
 /**
