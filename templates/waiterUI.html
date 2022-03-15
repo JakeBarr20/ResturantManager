@@ -6,6 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Stylesheets -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -51,7 +52,7 @@
                 <input type="text" class="form-control" id="validationDefault02" placeholder="item">
               </div>
               <div class="col-md-4 mb-3" style="transform: translateX(20px);" >
-                <div class="input-group" style = "position:relative; top:-35px; left: 530px;">
+                <div class="input-group" style = "position:relative; top:-35px; left: 500px;">
                     <button href="#" type = "button" class="btn btn-primary-outline" style = "background-color:green; color: white;" onclick = "AddT
                     oOrder()">
                         Confirm
@@ -63,13 +64,13 @@
                 </div>
               </div>
 
-              <div class="form-check" style = "position:relative; left:490px; bottom:60px;">
+              <div class="form-check" style = "position:relative; left:465px; bottom:60px;">
                 <input class="form-check-input" type="radio" name="Checkbuttons" id="AddCheckbutton" value="option1">
                 <label class="form-check-label" for="AddCheckbutton">
                   Add
                 </label>
               </div>
-              <div class="form-check"  style = "position:relative; left:441px; bottom:30px;">
+              <div class="form-check"  style = "position:relative; left:416px; bottom:30px;">
                 <input class="form-check-input" type="radio" name="Checkbuttons" id="RemoveCheckbutton" value="option2">
                 <label class="form-check-label" for="RemoveCheckbutton">
                   Remove
@@ -78,14 +79,14 @@
               
 
               <div class = "tables" id = "Tables">
-                <div class = "box" style="min-width: 250px;" id = "Box">
+                <div class = "box" style="min-width: 235px;" id = "Box">
                     <h5 class=card-title>Table Manager</h5>
                 </div> 
               </div>
               <div class="info-box" id = "InfoBox"> </div>
-              <div class = "box" style="position:relative; left:1110px; bottom:400px; min-width: 250px;" id = "Box">
+              <div class = "box" style="position:relative; left:1040px; bottom:400px; min-width: 235px;" id = "Box">
                   <h5 class=card-title>Information</h5>
-                  <label style="margin-left: 10px;" for="waiter">Waiter</label>
+                  <label style="margin-left: 10px; font-weight: 700;" for="waiter">Waiter</label>
                   <div class="col-md-4 mb-3" style="left: 50px; bottom:35px;">
                     <select name="Quantity" id = "waiter" class="form-control" style="width:80px;">
                         <option value=0>All</option>
@@ -97,11 +98,11 @@
                   <button href="#" type = "button" id = "waiterButton" 
                   class="btn btn-primary-outline" style = "background-color: None; color: white; margin-left:145px; transform: translateY(-90px);"
                   onclick="waiterChange()"> 
-                    <i class = "fa fa-undo";></i>
+                    <i class = "fa fa-undo" style="font-size: 22px;"></i>
                   </button>
                   <p style="transform: translateY(-90px);"><span class="green-dot"></span> <b> Ready for delivery</b><br>
                      <span class="red-dot"></span>  <b>Table needs help</b><br>
-                    <span class="purple-dot"></span> <b> Order recieved but not paid</b><br>
+                    <span class="purple-dot"></span> <b> Food arrived but not paid</b><br>
                     <span class="white-dot"></span>  <b>No action needed</b><br>
                   </p>
               </div>
