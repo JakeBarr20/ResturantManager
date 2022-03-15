@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Burgers</title>
+    <!-- We have made cards for each menu item which consists of a picture of the item, its name, an information button that gives allergy information when pressed and the price-->
+
+{%extends 'menu.html'%}{%block content%}
+<div style="margin-top: 50px;" class="row">
+    <div class="card">
+        <img class="card-img-top" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/boom-burger-1518627283.jpg?crop=0.669xw:1.00xh;0.166xw,0&resize=100:*" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Bacon Burger</h5>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="1">1.50</a>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(440, 'milk, wheat, sesame and gluten')"><i class="fas fa-info-circle"></i> details</button>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/halloumi-burger-main-1558005486.png?crop=1.00xw:0.789xh;0,0.113xh&resize=100:*" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Halloumi Burger</h5>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="2">6.00</a>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(794, 'milk, wheat, sesame and gluten')"><i class="fas fa-info-circle"></i> details</button>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/1a/a8/a0/4a/deer-hunter-venison-burger.jpg?w=100&h=100&s=1" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Venison Burger</h5>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="3">7.00</a>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(985, 'eggs, wheat, sesame, celery and gluten')"><i class="fas fa-info-circle"></i> details</button>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/vegan-burger-2-1578931709.jpg?crop=0.669xw:1.00xh;0.166xw,0&resize=100:*" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Vegan Burgers</h5>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="4">9.00</a>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(893, 'soy, wheat, sesame, celery and gluten')"><i class="fas fa-info-circle"></i> details</button>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHHQDriQHziUywIUUqCho-qVtpphkMbzkUCg&usqp=CAU" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Cheese Burgers</h5>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="5">4.00</a>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(777, 'milk, wheat, sesame and gluten')"><i class="fas fa-info-circle"></i> details</button>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="https://motherclucker.co.uk/wp-content/uploads/elementor/thumbs/Mother-Clucker-Fillet-Burger-11.21-pgjjjac4rspxvxh47rmlrdyy90dpomu9xw58bbqxuw.jpg" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Chicken Burgers</h5>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="6">10.00</a>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(936, 'eggs, wheat, sesame, celery and gluten')"><i class="fas fa-info-circle"></i> details</button>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/boom-burger-1518627283.jpg?crop=0.669xw:1.00xh;0.166xw,0&resize=100:*" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Steak Burgers</h5>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="7">8.00</a>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(1192, 'milk, eggs, wheat, mustard and gluten')"><i class="fas fa-info-circle"></i> details</button>
+        </div>
+    </div>
+    <div class="card">
+        <img class="card-img-top" src="https://veganwholesaler.com/wp-content/uploads/2021/05/Greenvie-Slices-Cheddar-serving-suggestion-2-100x100.jpg)" alt="">
+        <div class="card-body">
+          <h5 class="card-title">Vegetarian Burgers</h5>
+          <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+          id="8">4.00</a>
+          <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(952, 'soy, wheat, sesame and gluten')"><i class="fas fa-info-circle"></i> details</button>
+        </div>
+    </div>
+  </div>
+  
+  
+{%endblock%}

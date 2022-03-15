@@ -13,7 +13,7 @@ import {
   getDocs,
   updateDoc,
   getDoc,
-  onSnapshot
+  onSnapshot,
 } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -463,6 +463,7 @@ async function createTables(doc, ready) {
   box.appendChild(thistable);
 }
 
+let counter = 0;
 /**
  * Decides what the status of the table is and passes it to the createTables
  * @async
@@ -473,7 +474,9 @@ async function initTablesStatus() {
   tables = document.getElementById("Tables");
   box = document.getElementById("Box");
   let waiter = document.getElementById("waiter").value;
-  
+
+  if(unsubscribe) unsubscribe();
+
   const q1 = query(
     collection(db, "Table"),
     where("isReady", "==", true),
@@ -516,6 +519,34 @@ async function initTablesStatus() {
     }
     console.log(doc.id, " => ", doc.data());
   });
+
+  const q4 = query(
+    collection(db, "Table")
+  );
+
+  unsubscribe = onSnapshot(q4, (querySnapshot) => {
+    let changes = querySnapshot.docChanges();
+    changes.forEach((change) => {
+      counter = counter + 1;
+      //counter ignore initial load of tables
+      if(counter > 10){
+        location.reload();
+      }
+    });
+});
+
+
+//  unsubscribe = onSnapshot(q4, (querySnapshot) => {
+//    let changes = querySnapshot.docChanges();
+//    changes.forEach((change) => {
+//        let cngData = change.doc.data();
+//        if (cngData.isReady == true) {
+//          const table = Array.from(document.getElementsByClassName('circle-table'));
+//          table.forEach(t => {t.remove();})
+//          createTables(change.doc, "r");
+//        } 
+//    });
+//});
 }
 
 /**

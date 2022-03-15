@@ -1,0 +1,38 @@
+{%extends 'menu.html'%}
+{%block content%}
+<!DOCTYPE html>
+<html>
+<head>
+        <!-- We have made cards for each menu item which consists of a picture of the item, its name, an information button that gives allergy information when pressed and the price-->
+
+<title> Meals</title>
+<div style="margin-top: 50px;" class="row">
+    <div class="card">
+      <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHHQDriQHziUywIUUqCho-qVtpphkMbzkUCg&usqp=CAU" alt="">
+      <div class="card-body">
+        <h5 class="card-title">Burger Meal</h5>
+        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+        id="1">12.50</a>
+        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(1573, 'soy, milk, eggs, wheat, mustard, sesame, celery, gluten and sulphur dioxide')"><i class="fas fa-info-circle"></i> details</button>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="https://just-eat-prod-eu-res.cloudinary.com/image/upload/c_fill,f_auto,q_auto,h_100,w_100,d_uk:cuisines:kebabs-4.jpg/v1/uk/restaurants/160974.jpg" alt="">
+      <div class="card-body">
+        <h5 class="card-title">Kebab Meal</h5>
+        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+        id="1">10.00</a>
+        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(1387, 'soy, wheat, mustard, sesame, celery, gluten and sulphur dioxide')"><i class="fas fa-info-circle"></i> details</button>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="https://photos.bigoven.com/recipe/hero/kfc-secret-spices-fried-chicken-63c0f75000280101a9dfe6b0.jpg?h=100&w=100" alt="">
+      <div class="card-body">
+        <h5 class="card-title">Chicken Meal</h5>
+        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+        id="1">6.50</a>
+        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(2451, 'soy, milk, eggs, wheat, mustard, sesame, celery, gluten and sulphur dioxide')"><i class="fas fa-info-circle"></i> details</button>
+      </div>
+    </div>
+</div>
+{%endblock%}

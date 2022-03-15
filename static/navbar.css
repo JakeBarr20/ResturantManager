@@ -1,0 +1,142 @@
+@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
+
+/* Means the main background of the website can be white to project 
+colour onto it and going to use poppins as its a bit different */
+body {
+  background: #fafafa;
+  font-family: "Poppins", sans-serif;
+}
+/* Make it so the page follows a constant*/
+p {
+  font-size: 1.1em;
+  font-weight: 300;
+  color: #999;
+  font-family: "Poppins", sans-serif;
+  line-height: 1.7em;
+}
+
+/* responsible for styling the top of the side navbar*/
+#sidebar .sidebar-header {
+  padding: 20px;
+  background: #ff8c00;
+}
+
+/*list components on the sidebar*/
+#sidebar ul.components {
+  padding: 20px 0;
+}
+
+/* paragraph components of an unordered list*/
+#sidebar ul p {
+  padding: 10px;
+  color: #fff;
+}
+
+/*styling the submenu names giving them enough space*/
+#sidebar ul li a {
+  display: block;
+  font-size: 1.1em;
+  padding: 10px;
+}
+
+/* when the active class is run, any list element that is a child of an a element*/
+#sidebar ul li.active > a,
+a[aria-expanded="true"] {
+  color: #fff;
+  background: orange;
+}
+
+/*styles the main content navbar*/
+#contentNav {
+  background-color: #ff8c00;
+  border: #ff8c00;
+  position: fixed;
+  margin: 20px 0 0 -20px;
+}
+
+/* When hovering over the submenus, what happens?*/
+#sidebar ul li a:hover {
+  background: #fff;
+  color: orangered;
+}
+
+/* When hovering over collapsing navbar button change the colours*/
+#sidebarCollapse:hover {
+  background-color: white;
+  border: white;
+  color: orange;
+}
+
+/* Makes the colour of the navbar button orange*/
+#sidebarCollapse {
+  background-color: orange;
+  border: orange;
+}
+
+
+/* Sets sidebar fixed and colour*/
+#sidebar {
+  background: orange;
+  color: white;
+  transition: all 0.5s;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 600;
+}
+
+/* Styling class to move navbar when, active is activated*/
+#sidebar.active {
+  margin-left: -250px;
+}
+
+#contentNav{
+  z-index: 500;
+}
+/* When hovering over links*/
+a,
+a:hover,
+a:focus {
+  transition: all 0.4s;
+  color: inherit;
+  text-decoration: none;
+}
+
+ul ul a {
+  font-size: 0.9em !important;
+  background: orange;
+  padding-left: 30px !important;
+}
+
+/* Makes sure the page is fully taken up by the container*/
+.mainSite {
+  display: flex;
+  width: 100%;
+}
+
+/*Moves the content to the right when navbar is popped*/
+#content.active {
+  margin-left: 250px;
+}
+
+/*Moves the content to the left when the navbar is closed*/
+#content.unactive {
+  margin-left: 0px;
+}
+
+/* defines how fast the content will move when the navbar is moving*/
+#content {
+  transition: all 1s;
+}
+
+/* Caps the page look after a certain size*/
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -250px;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+}

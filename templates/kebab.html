@@ -1,0 +1,55 @@
+{%extends 'menu.html'%}
+{%block content%}
+<!DOCTYPE html>
+<html>
+<head>
+        <!-- We have made cards for each menu item which consists of a picture of the item, its name, an information button that gives allergy information when pressed and the price-->
+
+<title> Kebab</title>
+<div style="margin-top: 50px;" class="row">
+    <div class="card">
+      <img class="card-img-top" src="https://just-eat-prod-eu-res.cloudinary.com/image/upload/c_fill,f_auto,q_auto,h_100,w_100,d_uk:cuisines:kebabs-4.jpg/v1/uk/restaurants/160974.jpg" alt="">
+      <div class="card-body">
+        <h5 class="card-title">Doner Kebab</h5>
+        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+        id="1">5.50</a>
+        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(723, 'gluten, milk and soy')"><i class="fas fa-info-circle"></i> details</button>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="https://just-eat-prod-eu-res.cloudinary.com/image/upload/c_fill,f_auto,q_auto,h_100,w_100,d_uk:cuisines:kebabs-4.jpg/v1/uk/restaurants/160974.jpg" alt="">
+      <div class="card-body">
+        <h5 class="card-title">Lamb Kebab</h5>
+        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+        id="1">7.50</a>
+        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(1006, 'milk and soy')"><i class="fas fa-info-circle"></i> details</button>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="https://just-eat-prod-eu-res.cloudinary.com/image/upload/c_fill,f_auto,q_auto,h_100,w_100,d_uk:cuisines:kebabs-4.jpg/v1/uk/restaurants/160974.jpg" alt="">
+      <div class="card-body">
+        <h5 class="card-title">Vegetarian Kebab</h5>
+        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+        id="1">4.50</a>
+        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(390, 'milk and soy')"><i class="fas fa-info-circle"></i> details</button>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="https://just-eat-prod-eu-res.cloudinary.com/image/upload/c_fill,f_auto,q_auto,h_100,w_100,d_uk:cuisines:kebabs-4.jpg/v1/uk/restaurants/160974.jpg" alt="">
+      <div class="card-body">
+        <h5 class="card-title">Shish Kebab</h5>
+        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+        id="1">5.50</a>
+        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(546, 'milk and soy')"><i class="fas fa-info-circle"></i> details</button>
+      </div>
+    </div>
+    <div class="card">
+      <img class="card-img-top" src="https://just-eat-prod-eu-res.cloudinary.com/image/upload/c_fill,f_auto,q_auto,h_100,w_100,d_uk:cuisines:kebabs-4.jpg/v1/uk/restaurants/160974.jpg" alt="">
+      <div class="card-body">
+        <h5 class="card-title">Adana Kebab</h5>
+        <a href="#" class="btn btn-primary" onClick="increase(this.id)"
+        id="1">7.50</a>
+        <button style="margin-left: 25px; background-color: lightseagreen; color: white; border-radius: 10px; border: white;" onClick="popupAllergies(760, 'milk and soy')"><i class="fas fa-info-circle"></i> details</button>
+      </div>
+    </div>
+{%endblock%}
