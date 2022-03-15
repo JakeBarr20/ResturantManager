@@ -1,8 +1,3 @@
-function popupAllergies(Cal, Allergy) {
-    var message = "KCal: " + Cal + "\nAllergies: " + Allergy;
-    alert(message);
-}
-
 let data = 0;
 let x = 0;
 let items = "";
@@ -44,8 +39,6 @@ function makeUID() {
   }
   return result;
 }
-
-
 
 async function enterData() {
   let tableNumber = +document.getElementById("tableNumber").innerHTML

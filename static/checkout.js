@@ -27,6 +27,11 @@ const db = getFirestore(app);
 console.log(app);
 
 window.addDoc = addDoc;
+window.displayTableOrder=displayTableOrder;
+window.createItemList=createItemList;
+window.pushSubTotal=pushSubTotal;
+window.getSubTotal=getSubTotal;
+window.getTableIdFromNumber=getTableIdFromNumber;
 async function addDoc(tableNumber) {
   let id = await getTableIdFromNumber(tableNumber);
   const tablesRef = doc(db, "Orders", `${id}`);
