@@ -3,16 +3,22 @@ function popupAllergies(Cal, Allergy) {
     alert(message);
 }
 
-let data = 0;
 let x = 0;
 let items = "";
 let orderNo = 100;
 
 function increase(id) {
-  x = document.getElementById(id).innerHTML;
+  x = +document.getElementById(id).innerHTML;
+  let data = +document.getElementById("counting").innerHTML
+  console.log("This is the items value", x)
+  console.log("This is the total before", data)
   newItem=document.getElementById(id).name
+
   data = parseFloat(data) + parseFloat(x);
+  console.log(`Set to ${data}`)
   document.getElementById("counting").innerText = data;
+  console.log(data);
+  console.log(document.getElementById("counting").innerText)
   items = items + newItem + ",";
 }
 
