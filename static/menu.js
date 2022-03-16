@@ -51,8 +51,6 @@ function makeUID() {
   return result;
 }
 
-
-
 async function enterData() {
   let tableNumber = +document.getElementById("tableNumber").innerHTML
   addDoc(tableNumber);
