@@ -55,11 +55,9 @@ async function getSubTotal(tableNumber){
       collection(db, "Orders"),
       where("TableNum", "==", tableNumber)
     );
-    console.log(tableNumber)
     const querySnapshot = await getDocs(q1);
     querySnapshot.forEach((doc) => {
       sTotal=doc.data().Subtotal;
-      console.log(sTotal)
     });
     document.getElementById("counting").innerHTML=sTotal
 }
@@ -100,8 +98,6 @@ async function pushItemList(orderID, order) {
 async function pushSubTotal(tableNumber) {
   let id = await getTableIdFromNumber(tableNumber);
   let sTotal = +document.getElementById("counting").innerHTML
-  console.log(sTotal)
-  console.log(id)
   const tablesRef = doc(db, "Orders", id);
   await updateDoc(tablesRef, {
     Subtotal: sTotal,
@@ -110,7 +106,6 @@ async function pushSubTotal(tableNumber) {
 
 $(function addItem() {
   $(".buttonAdd").click(async function () {
-    console.log(document.getElementById("tableNumber").innerHTML);
     let tableNumber = +document.getElementById("tableNumber").innerHTML;
     let orderId;
     order2 = await getTableOrder(tableNumber);
@@ -123,9 +118,9 @@ $(function addItem() {
       order2.set(x, 1);
     }
     orderId = await getTableIdFromNumber(tableNumber);
-    pushSubTotal(tableNumber)
-    getSubTotal(tableNumber)
-    pushItemList(orderId, order2);
+    await pushSubTotal(tableNumber)
+    await getSubTotal(tableNumber)
+    await pushItemList(orderId, order2);
   });
 });
 
