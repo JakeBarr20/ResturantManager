@@ -46,6 +46,12 @@ window.waiterChange = waiterChange;
 window.pay = pay;
 
 let unsubscribe;
+let counter = 0;
+let cardContainer;
+let orderNum = 1;
+let tables;
+let box;
+let waiterReload;
 
 /**
  * When cancel button is pressed deletes the order from the database using this method
@@ -87,9 +93,6 @@ async function confirmOrder(id) {
     Status: "Preparing",
   });
 }
-
-let cardContainer;
-let orderNum = 1;
 
 /**
  * Creates a card html element
@@ -196,12 +199,6 @@ async function initOrderList() {
   cardContainer = document.getElementById("card-container");
   const q1 = query(collection(db, "Orders"), where("Status", "==", "Waiting"));
   const querySnapshot = await getDocs(q1);
-
-  //querySnapshot.forEach((doc) => {
-    //createOrderCard(doc);
-    //orderNum += 1;
-    //console.log(doc.id, " => ", doc.data());
-  //});
 
   // Creates a listener which is used for the implementation of live updates
   unsubscribe = onSnapshot(q1, (querySnapshot) => {
@@ -425,9 +422,6 @@ async function helpToTable(tablen, tableid) {
   });
 }
 
-let tables;
-let box;
-
 /**
  * Creates a table element in the table manager
  * @async
@@ -463,14 +457,12 @@ async function createTables(doc, ready) {
   box.appendChild(thistable);
 }
 
-let counter = 0;
 /**
  * Decides what the status of the table is and passes it to the createTables
  * @async
  * @method  
  */
 async function initTablesStatus() {
-  console.log("yes");
   tables = document.getElementById("Tables");
   box = document.getElementById("Box");
   let waiter = document.getElementById("waiter").value;
@@ -530,7 +522,7 @@ async function initTablesStatus() {
       let cngData = change.doc.data();
       counter = counter + 1;
       //counter ignore initial load of tables
-      if(counter > 10){
+      if(counter > 10 && waiterReload == false){
         if(cngData.needHelp == true || cngData.isReady == true){
           location.reload();
         }
@@ -544,6 +536,7 @@ async function initTablesStatus() {
  * @method
  */
  function waiterChange(){
+   waiterReload = true;
   const table = Array.from(document.getElementsByClassName('circle-table'));
   table.forEach(t => {
     t.remove();
