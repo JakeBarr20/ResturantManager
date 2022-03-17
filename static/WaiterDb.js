@@ -27,11 +27,7 @@ const firebaseConfig = {
   storageBucket: "restaurant-database-92c17.appspot.com",
   messagingSenderId: "673538791861",
   appId: "1:673538791861:web:3eb8b2c76a041fa64be1fc",
-<<<<<<< HEAD
-  measurementId: "G-5PQJ0CN4YQ"
-=======
   measurementId: "G-5PQJ0CN4YQ",
->>>>>>> WaiterUI
 };
 
 // Initialize Firebase
@@ -531,26 +527,16 @@ async function initTablesStatus() {
   unsubscribe = onSnapshot(q4, (querySnapshot) => {
     let changes = querySnapshot.docChanges();
     changes.forEach((change) => {
+      let cngData = change.doc.data();
       counter = counter + 1;
       //counter ignore initial load of tables
       if(counter > 10){
-        location.reload();
+        if(cngData.needHelp == true || cngData.isReady == true){
+          location.reload();
+        }
       }
     });
 });
-
-
-//  unsubscribe = onSnapshot(q4, (querySnapshot) => {
-//    let changes = querySnapshot.docChanges();
-//    changes.forEach((change) => {
-//        let cngData = change.doc.data();
-//        if (cngData.isReady == true) {
-//          const table = Array.from(document.getElementsByClassName('circle-table'));
-//          table.forEach(t => {t.remove();})
-//          createTables(change.doc, "r");
-//        } 
-//    });
-//});
 }
 
 /**
@@ -564,8 +550,6 @@ async function initTablesStatus() {
   })
   initTablesStatus();
 }
-<<<<<<< HEAD
-=======
 
 /**
  * Creates the orders from the database when the window loads
@@ -574,4 +558,3 @@ window.onload = function () {
   initTablesStatus();
   initOrderList();
 };
->>>>>>> WaiterUI
