@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-auth.js";
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -16,8 +16,32 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // User is signed in, see docs for a list of available properties
+        console.log('hello mr user');
+        // https://firebase.google.com/docs/reference/js/firebase.User
+        const uid = user.uid;
+        // ...
+    } else {
+        // User is signed out
+        // ...
+    }
+});
 
-window.onload = function() {
+// createUserWithEmailAndPassword(auth, email, password)
+//     .then((userCredential) => {
+//         // Signed in 
+//         const user = userCredential.user;
+//         // ...
+//     })
+//     .catch((error) => {
+//         const errorCode = error.code;
+//         const errorMessage = error.message;
+//         // ..
+//     });
+
+window.onload = function () {
     var log = document.getElementById('loginBtn');
     log.addEventListener('click', function () { login(); });
 }
@@ -27,4 +51,16 @@ function login() {
     var password = document.getElementById('psw').value;
 
     console.log(username + ' pass ' + password);
+    signInWithEmailAndPassword(auth, username, password)
+        .then((userCredential) => {
+            // Signed in 
+            console.log(userCredential)
+            const user = userCredential.user;
+            // ...
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            window.alert('ayo, error here');
+        });
 }
