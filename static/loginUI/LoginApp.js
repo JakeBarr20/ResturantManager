@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-auth.js";
+import { getAuth, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-auth.js";
 
 // Firebase Configuration
 const firebaseConfig = {
@@ -15,6 +15,8 @@ const firebaseConfig = {
 // Firebase Initialization
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+let username;
+let password;
 
 onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -42,25 +44,42 @@ onAuthStateChanged(auth, (user) => {
 //     });
 
 window.onload = function () {
+    logout();
     var log = document.getElementById('loginBtn');
     log.addEventListener('click', function () { login(); });
 }
 
-function login() {
-    var username = document.getElementById('usrnm').value;
-    var password = document.getElementById('psw').value;
+function getUserInput() {
+    username = document.getElementById('usrnm').value;
+    password = document.getElementById('psw').value;
+}
 
-    console.log(username + ' pass ' + password);
+function login() {
+    getUserInput();
     signInWithEmailAndPassword(auth, username, password)
         .then((userCredential) => {
             // Signed in 
-            console.log(userCredential)
             const user = userCredential.user;
-            // ...
+
+            if (user.email.includes('kitchen')) {
+                location.href = '/templates/kitchenUI.html';
+            } else if (user.email.includes('waiter')) {
+                location.href = '/templates/waiterUI.html';
+            } else {
+                window.alert('no such man exists');
+            }
         })
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            window.alert('ayo, error here');
+            window.alert('Error: ' + errorMessage);
         });
+}
+
+function logout() {
+    signOut(auth).then(() => {
+        // Sign-out successful.
+      }).catch((error) => {
+        // An error happened.
+      });
 }
