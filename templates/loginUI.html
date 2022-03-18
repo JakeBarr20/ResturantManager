@@ -17,7 +17,6 @@
 	<link rel="stylesheet" href="/static/loginUI/LoginStyle.css">
 	<!-- Scripts -->
 	<script type="module" src="/static/loginUI/LoginApp.js"></script>
-
 </head>
 
 <body>
@@ -25,12 +24,12 @@
         <h1>Login</h1>
         <div class="input-form">
             <div class="field">
-                <input type="text" placeholder="username" required>
+                <input id="usrnm" type="text" placeholder="username" value="" required>
             </div>
             <div class="field">
-                <input type="password" placeholder="password" required>
+                <input id="psw" type="password" placeholder="password" value="" required>
             </div>
-            <button type="submit">Sign In</button>
+			<button type="submit" id="loginBtn">Sign In</button>
         </div>
    </div>
 
