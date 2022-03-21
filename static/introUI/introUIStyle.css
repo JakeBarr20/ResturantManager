@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,500&amp;subset=latin-ext);
+@import url(https://fonts.googleapis.com/css?family=Nunito);
 
 .stretched-link::after {
     position: absolute;
@@ -16,7 +16,6 @@ body {
 	min-height: 100vh;
 	font-family: 'Nunito';
 	overflow: hidden;
-	background: #EEB27B;
 	background-image: linear-gradient(to right bottom, #f3d503, #f3d503, #f3d503, #f3d503, #f3d503, #f5d317, #f6d222, #f7d02b, #f9cc3b, #fbc948, #fbc654, #fbc35f);
 }
 
@@ -28,7 +27,7 @@ img {
 }
 
 .card-deck {
-	margin: auto;
+	margin-top: 100px;
 	align-items: center;
 	justify-content: center;
 }
@@ -56,11 +55,10 @@ img {
 }
 
 .card-title {
-    padding-top: 10px;
+    padding-top: 20px;
     text-align: center;
 	color: black;
 	opacity: 80%;
-	font-weight: lighter;
 }
 
 .center{
@@ -69,8 +67,8 @@ img {
     width: Y px;
     left:50%;
     top:50%;
-    margin-top:- X/2 px;
-    margin-left:- Y/2 px;
+    margin-top:-X/2 px;
+    margin-left: -Y/2 px;
 }
 
 .centered {

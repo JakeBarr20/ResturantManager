@@ -17,6 +17,7 @@ body {
     height: 400px;
     background-color: white;
     border-radius: 15%/15%;
+    box-shadow: 3px 6px #EEB27B;
 }
 
 .center h1 {
@@ -44,12 +45,26 @@ body {
     padding: 0 5px;
     height: 50px;
     font-size: 16px;
+    background: hsla(0, 0%, 100%, 0.2);
+	backdrop-filter: blur(30px);
+    border-radius: 7px;
+    outline-color: #f3d503;
 }
 
 button {
     width: 100%;
-    height: 35px;
-    margin-top: 30px;
+    border-color:#f5d317;
+    height: 40px;
+    margin-top: 60px;
+    background: hsla(0, 0%, 100%, 0.2);
+	backdrop-filter: blur(30px);
+    background-color: #f3d503;
+    border-radius: 25px;
+    box-shadow: 3px 6px aliceblue;
+}
+
+button:focus {
+    outline: none;
 }
 
 
