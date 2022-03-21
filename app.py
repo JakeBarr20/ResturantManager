@@ -19,9 +19,11 @@ def introUI():
         #If the kitchen_staff button is pressed, go to that page.
         elif request.form.get('action3') == 'Kitchen Staff':
             return flask.redirect('/kitchen_staff')
+        elif request.form.get('action4') == 'Login':
+            return flask.redirect('/login')
         else:
             pass
-    return render_template("index.html")
+    return render_template("auth.UI.html")
     #index.html contains the html for the Intro UI.
 
 @app.route('/customer')
@@ -31,6 +33,10 @@ def customerUI():
 @app.route('/waiter')
 def waiterUI():
     return render_template("waiterUI.html")
+
+@app.route('/login')
+def loginUI():
+    return render_template("loginUI.html")
 
 @app.route('/kitchen_staff')
 def kitchenStaffUI():

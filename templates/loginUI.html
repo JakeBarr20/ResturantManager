@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Welcome!</title>
+	<title>Login Page!</title>
 	<!-- Meta-Data -->
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,22 +14,42 @@
 		href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500&amp;subset=latin-ext">
-	<link rel="stylesheet" href="/static/LoginStyle.css">
+	<link rel="stylesheet" href="/static/loginUI/LoginStyle.css">
 	<!-- Scripts -->
-
+	<script type="module" src="/static/loginUI/LoginApp.js"></script>
 </head>
 
 <body>
+	<!-- Login Block-->
     <div class="center">
         <h1>Login</h1>
         <div class="input-form">
+			<!-- Username Field -->
             <div class="field">
-                <input type="text" placeholder="username" required>
+                <input id="usrnm" type="text" placeholder="username" value="" required/>
             </div>
+			<!-- Password Field -->
             <div class="field">
-                <input type="password" placeholder="password" required>
+                <input id="psw" type="password" placeholder="password" value="" required>
+				<i class="fa fa-eye fa-lg" id="togglePassword"></i>
             </div>
-            <button type="submit">Sign In</button>
+
+			<!-- Source for password visibility: https://www.javascripttutorial.net/javascript-dom/javascript-toggle-password-visibility/ -->
+			<script>
+				const togglePassword = document.querySelector("#togglePassword");
+				const password = document.querySelector("#psw");
+		
+				togglePassword.addEventListener("click", function () {
+					// toggle the type attribute
+					const type = password.getAttribute("type") === "password" ? "text" : "password";
+					password.setAttribute("type", type);
+					
+					// toggle the icon
+					this.classList.toggle('fa-eye-slash');
+				});
+			</script>
+			<!-- Submit Button -->
+			<button type="submit" id="loginBtn">Sign In</button>
         </div>
    </div>
 
