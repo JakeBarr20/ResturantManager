@@ -30,7 +30,7 @@ body {
 .input-form {
     padding-left: 30px;
     padding-right: 30px;
-    padding-top: 50px;
+    padding-top: 40px;
     width: 100%;
     height: 80%;
 }
@@ -45,10 +45,25 @@ body {
     padding: 0 5px;
     height: 50px;
     font-size: 16px;
-    background: hsla(0, 0%, 100%, 0.2);
-	backdrop-filter: blur(30px);
-    border-radius: 7px;
-    outline-color: #f3d503;
+
+    border-bottom-style: groove;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+
+    border-color: antiquewhite;
+
+    outline: none;
+}
+
+input:focus {
+    color: orange;
+}
+
+
+.field i {
+    padding-left: 90%;
+    cursor: pointer;
 }
 
 button {
