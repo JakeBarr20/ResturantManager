@@ -56,6 +56,7 @@ function getUserInput() {
 
 function login() {
     getUserInput();
+    console.log(document.getElementById('usrnm').required)
     signInWithEmailAndPassword(auth, username, password)
         .then((userCredential) => {
             // Signed in 
