@@ -32,7 +32,7 @@
     <link rel="stylesheet" href="static/menu.css" />
     <link rel="stylesheet" href="static/test.css">
   </head>
-  <body style="background-color: #fafad2">
+  <body style="background-color:rgb(255, 251, 251); background-image: url('https://www.designbolts.com/wp-content/uploads/2012/12/Arches-Simple-White-Seamless-Pattern.jpg');">
     <!-- The main div-->
     <div class="mainSite">
       <!-- Sidebar-->
@@ -44,15 +44,15 @@
         <!-- means there is no bullet points, looks cleaner-->
         <ul class="list-unstyled components">
           <!-- floating to the right of the welcome message-->
-          <img
-            style="float: right"
-            src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/picnic-food-1591195465.jpg?crop=0.317xw:0.635xh;0.340xw,0.189xh&resize=100:*"
-            alt=""
-            width="100px"
-            height="100px"
-          />
+          <div class="icons" >
+            <i class="fa-solid fa-burger fa-2x"></i>
+            <i class="fa-solid fa-champagne-glasses fa-2x"></i>
+            <br>
+            <i class="fa-solid fa-ice-cream fa-2x"></i>            
+            <i class="fa-solid fa-mug-saucer fa-2x"></i>
+          </div>
           <!-- introductory message-->
-          <p><strong>Please Help Yourself To Today's Menu</strong></p>
+          <p id="sidebarMessage">WELCOME TO OUR MENU</p>
           <!-- the side menu list which will be later made dynamic based what is in inside the database-->
           <li>
             <a onclick="window.location.href='burgers';">Burgers</a>
@@ -84,13 +84,15 @@
               <i class="fas fa-align-left"></i>
               <span>See our menu's selection</span>
             </button>
+            <button type="button" id="getOrder" onclick="getTableNumberFromTextBox();">Set Table</button>
+            <input style="margin-right: 300px;" type="text" placeholder="Table Number" id="inputId">
+            <h6 style="margin-right: 150px; margin-left: 10px;">You are sat at: <span id="tableNumber"></span></h6>
         </nav>
       </div>
       {%block content%} {%endblock%}
       <footer class="text-center text-white fixed-bottom" style="background-color: #f8ac08;">
         <div class="text-center p-3" style="background-color: rgba(248, 143, 4, 0.2);">
-          <h5 style="float: left; color:white">subtotal: <span>£</span><span id="counting">0</span></h5>
-          <button onclick="openModal('helpModal')" style="float: left; margin: 10px; background-color: rgb(8, 248, 48); color: white; border-radius: 10px;">HELP</button>
+          <h5 style="float: left; color:white">Subtotal: <span>£</span><span id="counting">0</span></h5>
           <div id="helpModal" class="modal">
             <div class="modal-content">
               <span class="close" onclick="closeModal('helpModal')">&times;</span>
@@ -105,8 +107,11 @@
               <h3>Ok, the waiter has been notified.</h3>
             </div>
           </div>
-          <button onclick="sendUserinfo()">DOG</button>
-          <button onclick="window.location.href='checkout'"style="float: right; margin: 10px; background-color: rgb(8, 248, 48); color: white; border-radius: 10px;"><strong>Proceed To Checkout</strong></button>
+          <button onclick="openModal('helpModal')" style=" margin: 10px; background-color: red; color: white; border-radius: 10px;">HELP</button>
+          <button onclick="window.location.href='checkout'"style="float: right; margin: 10px; background-color: rgb(8, 248, 48); color: white; border-radius: 10px;"><span><i class="fa-solid fa-basket-shopping">Basket</i></span></button>
+        </div>
+        <div id="statusShow">
+          <p>Status</p>
         </div>
       </footer>
     </div>

@@ -3,6 +3,8 @@ import flask
 from flask import Flask, request, render_template
 import json
 
+from order import Order
+
 app = Flask(__name__)
 
 
@@ -23,7 +25,7 @@ def introUI():
             return flask.redirect('/login')
         else:
             pass
-    return render_template("auth.UI.html")
+    return render_template("index.html")
     #index.html contains the html for the Intro UI.
 
 @app.route('/customer')
@@ -79,7 +81,6 @@ def processUserInfo(userInfo):
     print(f"User Name: {userInfo['name']}")
     print(f"User Name: {userInfo['type']}")
     print()
-
     return "Info received successfully"
 
 

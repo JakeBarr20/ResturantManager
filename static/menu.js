@@ -3,18 +3,43 @@ function popupAllergies(Cal, Allergy) {
     alert(message);
 }
 
-let data = 0;
 let x = 0;
 let items = "";
 let orderNo = 100;
 // This function is for when a user clicks on an item and itd price is added to the counter
 //Counter still refreshes when we change submenus so this needs modifyin
 function increase(id) {
-  x = document.getElementById(id).innerHTML;
+  x = +document.getElementById(id).innerHTML;
+  let data = +document.getElementById("counting").innerHTML
+  console.log("This is the items value", x)
+  console.log("This is the total before", data)
   newItem=document.getElementById(id).name
+
   data = parseFloat(data) + parseFloat(x);
+  data=data.toFixed(2)
+  console.log(`Set to ${data}`)
   document.getElementById("counting").innerText = data;
+  console.log(data);
+  console.log(document.getElementById("counting").innerText)
   items = items + newItem + ",";
+}
+
+function decrease(id){
+  x= +document.getElementById(id).innerHTML;
+  console.log(x)
+  let data = +document.getElementById("counting").innerHTML
+  newItem=document.getElementById(id).name
+
+  data = parseFloat(data) - parseFloat(x);
+  data=data.toFixed(2);
+  if (data <= 0){
+    data = 0
+  }
+  
+  console.log(data)
+  document.getElementById("counting").innerText = data;
+
+
 }
 
 // Make class to activate a css style class that comes over cards when pressed
@@ -46,13 +71,9 @@ function makeUID() {
   return result;
 }
 
-function enterData() {
-  const result = makeUID();
-  orderNo = orderNo + 1;
-  if (orderNo > 100) {
-    orderNo = 1;
-  }
-  addDoc(result, orderNo);
+async function enterData() {
+  let tableNumber = +document.getElementById("tableNumber").innerHTML
+  addDoc(tableNumber);
   closeModal('myModal');
   openModal('closeModal');
 }
@@ -62,17 +83,16 @@ function alertWaiter(tableNo) {
 }
 
 function popAllergies() {
-  console.log("its running");
   $(".dissappear").toggleClass("active");
   $(".appear").toggleClass("active");
 }
 
-$(function testParams() {
-    $('#dissappear').click(function(){
-        let x = $(this).attr('value');
-        console.log(x);2
-    });
-});
+//$(function testParams() {
+  //  $('.buttonAdd').click(function(){
+    //    let x = $(this).attr('value');
+      //  console.log(x);
+    //});
+//});
 
 $(function item1Appear() {
   $('.item1').click(function(){
@@ -94,7 +114,7 @@ function sendUserInfo(){
   console.log(userInfo)
   const request = new XMLHttpRequest()
   console.log(userInfo)
-  request.open('POST', '/processUserInfo/${JSON.stringify(userInfo)}')
+  request.open('POST', `/processUserInfo/${JSON.stringify(userInfo)}`)
   console.log(userInfo)
   request.onload = () => {
     const flaskMessage = request.responseText
@@ -103,4 +123,9 @@ function sendUserInfo(){
   console.log(userInfo)
   request.send();
   console.log(userInfo)
+}
+
+function getTableNumberFromTextBox(){
+  let tabNumber = document.getElementById("inputId").value;
+  document.getElementById("tableNumber").innerHTML=tabNumber
 }
