@@ -64,7 +64,7 @@ p {
 }
 
 .buttonAdd {
-  background-color: orange;
+  background-color: rgb(8, 248, 48);
   color: white;
   padding: 7px;
   border-radius: 10px;
@@ -72,7 +72,7 @@ p {
 }
 
 .buttonRemove {
-  background-color: orange;
+  background-color: red;
   color: white;
   padding: 7px;
   border-radius: 10px;
@@ -113,4 +113,12 @@ p {
 
 ::placeholder {
   color: black;
+}
+
+.item1 {
+  margin-left: 25px;
+  background-color: lightseagreen;
+  color: white;
+  border-radius: 10px;
+  border: white;
 }
