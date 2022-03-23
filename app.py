@@ -23,7 +23,7 @@ def introUI():
             return flask.redirect('/login')
         else:
             pass
-    return render_template("auth.UI.html")
+    return render_template("index.html")
     #index.html contains the html for the Intro UI.
 
 @app.route('/customer')

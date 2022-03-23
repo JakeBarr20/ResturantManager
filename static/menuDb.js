@@ -30,3 +30,16 @@ async function needsHelp(tableNo) {
 		needHelp: true,
 	});
 }
+
+async function getTableStatus(tableNumber){
+    let Status;
+    const qq = query(
+        collection(db,"Orders"),
+        where("TableNum","==", tableNumber)
+    );
+    const querySnapshot = await getDocs(qq);
+    querySnapshot.forEach((doc)=>{
+        Status=doc.Status;
+    });
+    return Status
+}
