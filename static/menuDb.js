@@ -147,3 +147,28 @@ $(function removeItem() {
   });
 });
 
+async function needsHelp(tableNo) {
+    let id = 0;
+    const q = query(collection(db, "Table"), where("TableNum","==",Number(tableNo)));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach(function(doc) {
+        id=doc.id;
+    });
+	const tablesRef = doc(db, "Table", `${id}`);
+	await updateDoc(tablesRef, {
+		needHelp: true,
+	});
+}
+
+async function getTableStatus(tableNumber){
+    let Status;
+    const qq = query(
+        collection(db,"Orders"),
+        where("TableNum","==", tableNumber)
+    );
+    const querySnapshot = await getDocs(qq);
+    querySnapshot.forEach((doc)=>{
+        Status=doc.Status;
+    });
+    return Status
+}

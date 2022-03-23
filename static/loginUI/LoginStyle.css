@@ -17,6 +17,7 @@ body {
     height: 350px;
     background-color: white;
     border-radius: 15%/15%;
+    box-shadow: 3px 6px #EEB27B;
 }
 
 .center h1 {
@@ -29,7 +30,7 @@ body {
 .input-form {
     padding-left: 30px;
     padding-right: 30px;
-    padding-top: 30px;
+    padding-top: 40px;
     width: 100%;
     height: 80%;
 }
@@ -44,14 +45,41 @@ body {
     padding: 0 5px;
     height: 50px;
     font-size: 16px;
+
+    border-bottom-style: groove;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+
+    border-color: antiquewhite;
+
+    outline: none;
+}
+
+input:focus {
+    color: orange;
+}
+
+
+.field i {
+    padding-left: 90%;
+    cursor: pointer;
 }
 
 button {
     width: 100%;
-    height: 35px;
-    margin-top: 30px;
-    border-radius: 20px;
-    background-color: #EEB27B;
+    border-color:#f5d317;
+    height: 40px;
+    margin-top: 60px;
+    background: hsla(0, 0%, 100%, 0.2);
+	backdrop-filter: blur(30px);
+    background-color: #f3d503;
+    border-radius: 25px;
+    box-shadow: 3px 6px aliceblue;
+}
+
+button:focus {
+    outline: none;
 }
 
 

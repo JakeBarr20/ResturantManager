@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Welcome Page!</title>
+	<!-- Meta-Data -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!-- Unzoomable screen -->
+	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+	<!-- Stylesheets -->
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500&amp;subset=latin-ext">
+	<link rel="stylesheet" href="/static/introUI/introUIStyle.css">
+	<!-- Scripts -->
+	<script type="module" src="/static/introUI/vanilla-tilt.js"></script>
+
+</head>
+
+<body>
+	<!-- Logo Image -->
+	<div class="row justify-content-center">
+		<img src="/static/resources/Oxaca-logos.png"></img>
+	</div>
+	<!-- Selection Buttons -->
+	<div class="card-deck">
+		<!-- Customer Button -->
+		<div class="card" id="customer" data-tilt data-tilt-glare>
+			<div class="card-block">
+				<h4 class="card-title">Customer</h4>
+			</div>
+			<a href="menu.html" class="stretched-link"></a>
+			<img class="card-img-top" src="/static/resources/customer.svg" alt="Card image cap">
+		</div>
+		<!-- Staff Button -->
+		<div class="card" data-tilt data-tilt-glare>
+			<div class="card-block">
+				<h4 class="card-title">Staff</h4>
+			</div>
+			<a href="loginUI.html" class="stretched-link"></a>
+			<img class="card-img-top" src="/static/resources/chef.svg" alt="Card image cap">
+		</div>
+	</div>
+</body>
+
+</html>

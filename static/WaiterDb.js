@@ -13,6 +13,7 @@ import {
   getDocs,
   updateDoc,
   getDoc,
+  onSnapshot,
 } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -47,6 +48,8 @@ window.AddItemToDb = AddItemToDb;
 window.RemoveItemFromDb = RemoveItemFromDb;
 window.waiterChange = waiterChange;
 window.pay = pay;
+
+let unsubscribe;
 
 /**
  * When cancel button is pressed deletes the order from the database using this method
@@ -189,19 +192,43 @@ async function createOrderCard(doc) {
 */
 async function initOrderList() {
   if (cardContainer) {
-    document.getElementById("card-container").replaceWith(cardContainer);
-    return;
+    removeAllChildNodes(document.getElementById('card-container'));
   }
+
+  if (unsubscribe) unsubscribe();
 
   cardContainer = document.getElementById("card-container");
   const q1 = query(collection(db, "Orders"), where("Status", "==", "Waiting"));
   const querySnapshot = await getDocs(q1);
 
-  querySnapshot.forEach((doc) => {
-    createOrderCard(doc);
-    orderNum += 1;
-    console.log(doc.id, " => ", doc.data());
-  });
+  //querySnapshot.forEach((doc) => {
+    //createOrderCard(doc);
+    //orderNum += 1;
+    //console.log(doc.id, " => ", doc.data());
+  //});
+
+  // Creates a listener which is used for the implementation of live updates
+  unsubscribe = onSnapshot(q1, (querySnapshot) => {
+    // Search Dependent Display Condition (if search failed, display ...)
+    if (querySnapshot.empty) {
+        generateWarning(orderNum);
+    } else {
+        // Status Dependent Order Display
+        let changes = querySnapshot.docChanges();
+        changes.forEach((change) => {
+            let cngData = change.doc.data();
+            
+            if (cngData.Status == "Waiting") {
+                if (change.type == 'added') {
+                    createOrderCard(change.doc)
+                } else if (change.type == 'removed') {
+                    let card = document.getElementById(change.doc.id);
+                    cardContainer.removeChild(card);
+                }
+            }
+        });
+    }
+});
 }
 
 /**
@@ -440,6 +467,7 @@ async function createTables(doc, ready) {
   box.appendChild(thistable);
 }
 
+let counter = 0;
 /**
  * Decides what the status of the table is and passes it to the createTables
  * @async
@@ -450,7 +478,9 @@ async function initTablesStatus() {
   tables = document.getElementById("Tables");
   box = document.getElementById("Box");
   let waiter = document.getElementById("waiter").value;
-  
+
+  if(unsubscribe) unsubscribe();
+
   const q1 = query(
     collection(db, "Table"),
     where("isReady", "==", true),
@@ -493,20 +523,45 @@ async function initTablesStatus() {
     }
     console.log(doc.id, " => ", doc.data());
   });
+
+  const q4 = query(
+    collection(db, "Table")
+  );
+
+  unsubscribe = onSnapshot(q4, (querySnapshot) => {
+    let changes = querySnapshot.docChanges();
+    changes.forEach((change) => {
+      counter = counter + 1;
+      //counter ignore initial load of tables
+      if(counter > 10){
+        location.reload();
+      }
+    });
+});
+
+
+//  unsubscribe = onSnapshot(q4, (querySnapshot) => {
+//    let changes = querySnapshot.docChanges();
+//    changes.forEach((change) => {
+//        let cngData = change.doc.data();
+//        if (cngData.isReady == true) {
+//          const table = Array.from(document.getElementsByClassName('circle-table'));
+//          table.forEach(t => {t.remove();})
+//          createTables(change.doc, "r");
+//        } 
+//    });
+//});
 }
 
 /**
  * Changes tables displayed depending on waiter
  * @method
  */
-function waiterChange(){
-  let count = 10;
-  let table = 0;
-  while(count > 0){
-    table = document.getElementById("T"+count);
-    table.remove();
-    count = count - 1;
-  }
+ function waiterChange(){
+  const table = Array.from(document.getElementsByClassName('circle-table'));
+  table.forEach(t => {
+    t.remove();
+  })
   initTablesStatus();
 }
 <<<<<<< HEAD
