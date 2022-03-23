@@ -21,36 +21,7 @@
     background-color: #87CEEB;
     border-radius: 50%;
 }
-#sub1 {
-    position: fixed;
-    left: 30%;
-    top: 10%;
-}
-#sub2 {
-    position: fixed;
-    left: 70%;
-    top: 10%;
-}
-#sub3 {
-    position: fixed;
-    left: 30%;
-    top: 30%;
-}
-#sub4 {
-    position: fixed;
-    left: 70%;
-    top: 30%;
-}
-#sub5 {
-    position: fixed;
-    left: 30%;
-    top: 50%;
-}
-#sub6 {
-    position: fixed;
-    left: 70%;
-    top: 50%;
-}
+
 #counter {
     position: fixed;
     left: 40%;
@@ -95,4 +66,40 @@ p{
     padding: 7px;
     border-radius: 10px;
     margin-bottom: 10px;
+}
+
+.icons i{
+    color: white;
+    height: 50px;
+    width: 50px;
+}
+
+.icons{
+    float: right;
+}
+
+#sidebarMessage{
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+#contentNav{
+    color: red;
+    padding-top: 30px;
+}
+
+#getOrder{
+    background-color: black;
+    border-radius: 40px;
+    color: white;
+}
+
+#inputId{
+    border-radius: 40px;
+    color: black;
+}
+
+::placeholder{
+    color: black;
 }

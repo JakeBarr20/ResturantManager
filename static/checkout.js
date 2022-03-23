@@ -120,4 +120,3 @@ $(function displayOrderForTable() {
   });
 });
 
-getSubTotal(7);
