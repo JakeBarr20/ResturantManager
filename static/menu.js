@@ -15,11 +15,30 @@ function increase(id) {
   newItem=document.getElementById(id).name
 
   data = parseFloat(data) + parseFloat(x);
+  data=data.toFixed(2)
   console.log(`Set to ${data}`)
   document.getElementById("counting").innerText = data;
   console.log(data);
   console.log(document.getElementById("counting").innerText)
   items = items + newItem + ",";
+}
+
+function decrease(id){
+  x= +document.getElementById(id).innerHTML;
+  console.log(x)
+  let data = +document.getElementById("counting").innerHTML
+  newItem=document.getElementById(id).name
+
+  data = parseFloat(data) - parseFloat(x);
+  data=data.toFixed(2);
+  if (data <= 0){
+    data = 0
+  }
+  
+  console.log(data)
+  document.getElementById("counting").innerText = data;
+
+
 }
 
 // Make class to activate a css style class that comes over cards when pressed

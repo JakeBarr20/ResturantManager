@@ -49,17 +49,17 @@ $(function displayOrderForTable() {
   });
 });
 
-async function getSubTotal(tableNumber){
+async function getSubTotal(tableNumber) {
   let sTotal
   const q1 = query(
-      collection(db, "Orders"),
-      where("TableNum", "==", tableNumber)
-    );
-    const querySnapshot = await getDocs(q1);
-    querySnapshot.forEach((doc) => {
-      sTotal=doc.data().Subtotal;
-    });
-    document.getElementById("counting").innerHTML=sTotal
+    collection(db, "Orders"),
+    where("TableNum", "==", tableNumber)
+  );
+  const querySnapshot = await getDocs(q1);
+  querySnapshot.forEach((doc) => {
+    sTotal = doc.data().Subtotal;
+  });
+  document.getElementById("counting").innerHTML = sTotal
 }
 
 async function getTableOrder(tabNumber) {
@@ -118,8 +118,31 @@ $(function addItem() {
       order2.set(x, 1);
     }
     orderId = await getTableIdFromNumber(tableNumber);
-    await pushSubTotal(tableNumber)
-    await getSubTotal(tableNumber)
+    await pushSubTotal(tableNumber);
+    await getSubTotal(tableNumber);
+    await pushItemList(orderId, order2);
+  });
+});
+
+$(function removeItem() {
+  $(".buttonRemove").click(async function () {
+    let tableNumber = +document.getElementById("tableNumber").innerHTML;
+    let orderId;
+    order2 = await getTableOrder(tableNumber);
+    let x = $(this).attr("value");
+    console.log(x)
+    if (order2.has(x)) {
+      let count = order2.get(x)
+      if (count <= 1) {
+        order2.delete(x)
+      } else {
+        count = count - 1
+        order2.set(x, count)
+      }
+    }
+    orderId = await getTableIdFromNumber(tableNumber);
+    await pushSubTotal(tableNumber);
+    await getSubTotal(tableNumber);
     await pushItemList(orderId, order2);
   });
 });
