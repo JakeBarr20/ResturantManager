@@ -76,9 +76,9 @@ function login() {
             const user = userCredential.user;
 
             if (user.email.includes('kitchen')) {
-                location.href = '/templates/kitchenUI.html';
+                window.location.href = 'kitchen_staff';
             } else if (user.email.includes('waiter')) {
-                location.href = '/templates/waiterUI.html';
+                window.location.href = 'waiter';
             } else {
                 window.alert('no such man exists');
             }

@@ -3,7 +3,6 @@ import flask
 from flask import Flask, request, render_template
 import json
 
-from order import Order
 
 app = Flask(__name__)
 
@@ -25,7 +24,7 @@ def introUI():
             return flask.redirect('/login')
         else:
             pass
-    return render_template("index.html")
+    return render_template("introUI.html")
     #index.html contains the html for the Intro UI.
 
 @app.route('/customer')
@@ -71,6 +70,10 @@ def sideMenu():
 @app.route('/checkout')
 def checkoutItems():
     return render_template("checkout.html")
+
+@app.route('/tracker')
+def tracker():
+    return render_template("tracker.html")
     
 @app.route('/processUserInfo/<string:userInfo>', methods=['POST'])
 def processUserInfo(userInfo):
