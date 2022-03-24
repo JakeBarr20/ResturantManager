@@ -1,5 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
 
+/* HTML */
+
 body {
 	min-height: 100vh;
     font-family: 'Nunito';
@@ -7,6 +9,8 @@ body {
 	background: #EEB27B;
 	background-image: linear-gradient(to right bottom, #f3d503, #f3d503, #f3d503, #f3d503, #f3d503, #f5d317, #f6d222, #f7d02b, #f9cc3b, #fbc948, #fbc654, #fbc35f);
 }
+
+/* Positioning */
 
 .center {
     position: absolute;
@@ -27,16 +31,18 @@ body {
     border-bottom:1px solid grey;
 }
 
+/* Input fields and button */
+
 .input-form {
     padding-left: 30px;
     padding-right: 30px;
-    padding-top: 40px;
+    padding-top: 30px;
     width: 100%;
     height: 80%;
 }
 
 .field {
-    padding-bottom: 10px;
+    padding-bottom: 0px;
 }
 
 .field input {
@@ -70,7 +76,7 @@ button {
     width: 100%;
     border-color:#f5d317;
     height: 40px;
-    margin-top: 60px;
+    margin-top: 30px;
     background: hsla(0, 0%, 100%, 0.2);
 	backdrop-filter: blur(30px);
     background-color: #f3d503;

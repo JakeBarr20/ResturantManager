@@ -1,24 +1,31 @@
 {%extends 'menu.html'%}{%block content%}
 <head>
-	<script type = "module" src = "static/checkout.js"> </script>
-	<link rel="stylesheet" href="static/checkout.css" />
+  <script type="module" src="static/checkout.js"></script>
+  <link rel="stylesheet" href="static/checkout.css" />
 </head>
 <body>
-	<div style="margin-top: 450px;" class="row">
-		<button class = "btn btn-primary" id = "Checkout" type = "button" onclick="openModal('myModal')"> Checkout Order </button>
-		<div id="myModal" class="modal">
-  			<div class="modal-content">
-    			<span class="close" onclick="closeModal('myModal')">&times;</span>
-    			<h3>Checkout this order?</h3>
-    			<button class = "btn btn-primary" id = "Confirm" type = "button" onclick="enterData()"> Confirm</button>
-  			</div>
-		</div>
-		<div id="closeModal" class="modal">
-  			<div class="modal-content">
-    			<span class="close" onclick="closeModal('closeModal')">&times;</span>
-    			<h3>Your order has been taken.</h3>
-  			</div>
-		</div>
-	</div>
+  <ul id="order" style="margin-bottom: 100px; margin-top: 50px;">
+    <li class="list-group-item"><h1>Your Order</h1></li>
+  </ul>
+  <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('myModal')">&times;</span>
+      <h3>Checkout this order?</h3>
+      <button
+        class="btn btn-primary"
+        id="Confirm"
+        type="button"
+        onclick="enterData()"
+      >
+        Confirm
+      </button>
+    </div>
+  </div>
+  <div id="closeModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('closeModal')">&times;</span>
+      <h3>Your order has been taken.</h3>
+    </div>
+  </div>
 </body>
 {%endblock%}

@@ -10,10 +10,12 @@ class Order:
     def addFoodItem(self, foodItem, foodItemPrice):
         self.order.append(foodItem)
         self.orderPrice+=foodItemPrice
+        self.orderPrice=round(self.orderPrice)
 
     def removeFoodItem(self, foodItem, foodItemPrice):
         if foodItem in self.order: self.order.remove(foodItem)
         self.orderPrice-=foodItemPrice
+        self.orderPrice=round(self.orderPrice)
 
 class AllOrders:
     def __init__(self, orderList):

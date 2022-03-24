@@ -18,6 +18,19 @@ const auth = getAuth(app);
 let username;
 let password;
 
+// Executes commands when window is opened
+// Appends EventListeners to login button
+window.onload = function () {
+    logout();
+    var log = document.getElementById('loginBtn');
+    log.addEventListener('click', function () { login(); });
+}
+
+/**
+ * Checks if the user is signed in, if so, ensures that the signed in user stays logged in
+ * @param  {} auth Authentication information for client requesting data    
+ * @param  {} user User account that has signed in
+ */
 onAuthStateChanged(auth, (user) => {
     if (user) {
         // User is signed in, see docs for a list of available properties
@@ -43,17 +56,17 @@ onAuthStateChanged(auth, (user) => {
 //         // ..
 //     });
 
-window.onload = function () {
-    logout();
-    var log = document.getElementById('loginBtn');
-    log.addEventListener('click', function () { login(); });
-}
-
+/**
+ * Gets username and password from the input form
+ */
 function getUserInput() {
     username = document.getElementById('usrnm').value;
     password = document.getElementById('psw').value;
 }
 
+/**
+ * Attempts to log in the user, if unsuccessfull throws error
+ */
 function login() {
     getUserInput();
     console.log(document.getElementById('usrnm').required)
@@ -69,18 +82,43 @@ function login() {
             } else {
                 window.alert('no such man exists');
             }
+            generateWarning(false);
         })
         .catch((error) => {
+            generateWarning(true)
             const errorCode = error.code;
             const errorMessage = error.message;
-            window.alert('Error: ' + errorMessage);
+            //window.alert('Error: ' + errorMessage);
         });
 }
-
+/**
+ * Logs out the user
+ */
 function logout() {
     signOut(auth).then(() => {
         // Sign-out successful.
       }).catch((error) => {
         // An error happened.
       });
+}
+
+/**
+ * Notifies Kitchen staff if the query is unsucsessful by displaying alerts
+ * @param  {number} orderNum Order Number used to give more detail regarding query
+ */
+ function generateWarning(isWarning) {
+    let warning = document.createElement('div');
+    if (isWarning) {
+        warning.className = "alert alert-danger d-flex align-items-center fade show";
+        warning.innerHTML = `Username or Password incorrect`;
+    } else {
+        warning.className = "alert alert-success d-flex align-items-center fade show";
+        warning.innerHTML = `Sign In successfull!`;
+    }
+
+    document.body.appendChild(warning);
+    setTimeout (
+        function () {
+        document.body.removeChild(warning);    
+        },2000)
 }
