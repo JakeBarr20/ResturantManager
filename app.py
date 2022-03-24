@@ -70,6 +70,10 @@ def sideMenu():
 @app.route('/checkout')
 def checkoutItems():
     return render_template("checkout.html")
+
+@app.route('/tracker')
+def tracker():
+    return render_template("tracker.html")
     
 @app.route('/processUserInfo/<string:userInfo>', methods=['POST'])
 def processUserInfo(userInfo):
