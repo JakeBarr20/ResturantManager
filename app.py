@@ -3,7 +3,6 @@ import flask
 from flask import Flask, request, render_template
 import json
 
-from order import Order
 
 app = Flask(__name__)
 
@@ -25,11 +24,7 @@ def introUI():
             return flask.redirect('/login')
         else:
             pass
-<<<<<<< HEAD
     return render_template("introUI.html")
-=======
-    return render_template("index.html")
->>>>>>> ef79473bd5cb1c98bc648a7d1ef5532068c2d7f5
     #index.html contains the html for the Intro UI.
 
 @app.route('/customer')
