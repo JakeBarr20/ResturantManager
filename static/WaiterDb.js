@@ -27,14 +27,11 @@ const firebaseConfig = {
   storageBucket: "restaurant-database-92c17.appspot.com",
   messagingSenderId: "673538791861",
   appId: "1:673538791861:web:3eb8b2c76a041fa64be1fc",
-<<<<<<< HEAD
-  measurementId: "G-5PQJ0CN4YQ"
-=======
   measurementId: "G-5PQJ0CN4YQ",
->>>>>>> WaiterUI
 };
 
 // Initialize Firebase
+
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
@@ -564,8 +561,6 @@ async function initTablesStatus() {
   })
   initTablesStatus();
 }
-<<<<<<< HEAD
-=======
 
 /**
  * Creates the orders from the database when the window loads
@@ -574,4 +569,3 @@ window.onload = function () {
   initTablesStatus();
   initOrderList();
 };
->>>>>>> WaiterUI
