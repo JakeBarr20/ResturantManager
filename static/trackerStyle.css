@@ -16,6 +16,13 @@
 
 /* HTML */
 
+.stat {
+    font-family:fantasy;
+    font-size: 30px;
+    margin-top: 20px;;
+    margin-bottom: -60px;
+}
+
 body {
 	min-height: 100vh;
 	font-family: 'Nunito';

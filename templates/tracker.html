@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="/static/trackerStyle.css">
 
     <!-- Scripts -->
-	<script type="module" src="/static/introUI/vanilla-tilt.js"></script>
+	<script type="module" src="/static/vanilla-tilt.js"></script>
+	<script type="module" src="/static/tracker.js"></script>
 </head>
 
 <body>
@@ -23,6 +24,12 @@
 	<div class="row justify-content-center">
 		<img src="/static/resources/Oxaca-logos.png"></img>
 	</div>
+
+	
+	<div id="textbox" style="text-align:center;vertical-align:middel" class="stat"><input type="textbox"></div>
+
+
+
 	<!-- Selection Buttons -->
 	<div class="card-deck">
 		<!-- Customer Button -->
@@ -30,14 +37,14 @@
 			<div class="card-block">
 				<h4 class="card-title">Help</h4>
 			</div>
-			<img class="card-img-top" src="/static/resources/customer.svg" alt="Card image cap">
+			<img class="card-img-top" src="/static/resources/undraw_questions_re_1fy7.svg" alt="Card image cap" id="help">
 		</div>
 		<!-- Staff Button -->
 		<div class="card" data-tilt data-tilt-glare>
 			<div class="card-block">
 				<h4 class="card-title">Order again</h4>
 			</div>
-			<img class="card-img-top" src="/static/resources/customer.svg" alt="Card image cap">
+			<img class="card-img-top" src="/static/resources/undraw_completing_re_i7ap.svg" alt="Card image cap" id = "redo">
 		</div>
 	</div>
 </body>
