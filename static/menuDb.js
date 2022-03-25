@@ -41,7 +41,7 @@ async function getSubTotal(tableNumber) {
   let sTotal
   const q1 = query(
     collection(db, "Orders"),
-    where("TableNum", "==", tableNumber)
+    where("TableNum", "==", Number(tableNumber))
   );
   const querySnapshot = await getDocs(q1);
   querySnapshot.forEach((doc) => {
@@ -50,11 +50,11 @@ async function getSubTotal(tableNumber) {
   document.getElementById("counting").innerHTML = sTotal
 }
 
-async function getTableOrder(tabNumber) {
+async function getTableOrder(orderId) {
   let tempStore;
   const q1 = query(
     collection(db, "Orders"),
-    where("TableNum", "==", tabNumber)
+    where("", "==", orderId)
   );
   const querySnapshot = await getDocs(q1);
   querySnapshot.forEach((doc) => {
@@ -94,9 +94,17 @@ async function pushSubTotal(tableNumber) {
 
 $(function addItem() {
   $(".buttonAdd").click(async function () {
-    let tableNumber = +document.getElementById("tableNumber").innerHTML;
     let orderId;
-    order2 = await getTableOrder(tableNumber);
+    let orderDet;
+    let tableNumber = Number(localStorage.tableNum)
+    const q = query(collection(db, "Orders"),
+      where("Status", "==", "Building"), where("TableNum", "==", Number(tableNumber))
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      orderDet = new Map(Object.entries(doc.data().food));
+    });
+    order2=orderDet;
     let x = $(this).attr("value");
     if (order2.has(x)) {
       let count = order2.get(x);
@@ -114,11 +122,18 @@ $(function addItem() {
 
 $(function removeItem() {
   $(".buttonRemove").click(async function () {
-    let tableNumber = +document.getElementById("tableNumber").innerHTML;
     let orderId;
-    order2 = await getTableOrder(tableNumber);
+    let orderDet;
+    let tableNumber = Number(localStorage.tableNum)
+    const q = query(collection(db, "Orders"),
+      where("Status", "==", "Building"), where("TableNum", "==", Number(tableNumber))
+    );
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      orderDet = new Map(Object.entries(doc.data().food));
+    });
+    order2=orderDet;
     let x = $(this).attr("value");
-    console.log(x)
     if (order2.has(x)) {
       let count = order2.get(x)
       if (count <= 1) {
@@ -136,66 +151,64 @@ $(function removeItem() {
 });
 
 async function needsHelp(tableNo) {
-    let id = 0;
-    const q = query(collection(db, "Table"), where("TableNum","==",Number(tableNo)));
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach(function(doc) {
-        id=doc.id;
-    });
-	const tablesRef = doc(db, "Table", `${id}`);
-	await updateDoc(tablesRef, {
-		needHelp: true,
-	});
+  let id = 0;
+  const q = query(collection(db, "Table"), where("TableNum", "==", Number(tableNo)));
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach(function (doc) {
+    id = doc.id;
+  });
+  const tablesRef = doc(db, "Table", `${id}`);
+  await updateDoc(tablesRef, {
+    needHelp: true,
+  });
 }
 
-async function getTableStatus(tableNumber){
-    let Status;
-    const qq = query(
-        collection(db,"Orders"),
-        where("TableNum","==", tableNumber)
-    );
-    const querySnapshot = await getDocs(qq);
-    querySnapshot.forEach((doc)=>{
-        Status=doc.Status;
-    });
-    return Status
+async function getTableStatus(tableNumber) {
+  let Status;
+  const qq = query(
+    collection(db, "Orders"),
+    where("TableNum", "==", tableNumber)
+  );
+  const querySnapshot = await getDocs(qq);
+  querySnapshot.forEach((doc) => {
+    Status = doc.Status;
+  });
+  return Status
 }
 
 function makeUID() {
   let result = "";
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
   const charactersLength = characters.length;
-  for ( let i = 0; i < 20; i++ ) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength)); 
+  for (let i = 0; i < 20; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
   }
   return result;
 }
 
-async function addOrder(tableNumber){
+async function addOrder(tableNumber) {
   let initialOrder
-  const q1=query(collection(db, "Orders"),
-  orderBy("Time", "desc"), limit(1));
+  const q1 = query(collection(db, "Orders"),
+    orderBy("Time", "desc"), limit(1));
   const querySnapshot1 = await getDocs(q1);
   querySnapshot1.forEach((doc) => {
-    initialOrder=doc.data().OrderNum
+    initialOrder = doc.data().OrderNum
   });
-  initialOrder=initialOrder+1;
+  initialOrder = initialOrder + 1;
   // Make new local storage 
-  
+
 
   let id = makeUID();
   localStorage.setItem("OrderId", id);
   const q = query(collection(db, "Orders"),
-  where("Status", "==" ,"Building" ), where("TableNum", "==", Number(tableNumber))
+    where("Status", "==", "Building"), where("TableNum", "==", Number(tableNumber))
   );
   let time = Timestamp.fromDate(new Date());
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach((doc) => {
-    console.log(doc.data());
   });
-  console.log(querySnapshot.empty);
-  if (querySnapshot.empty){
-    await setDoc(doc (db,"Orders",id), {
+  if (querySnapshot.empty) {
+    await setDoc(doc(db, "Orders", id), {
       OrderNum: initialOrder,
       Status: "Building",
       Subtotal: 0,
@@ -204,7 +217,11 @@ async function addOrder(tableNumber){
       food: {}
 
     });
-}
+  }
 }
 
 addOrder(localStorage.tableNum)
+window.onload = function(){
+  getSubTotal(localStorage.tableNum)
+}
+

@@ -26,9 +26,6 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 console.log(app);
 
-window.onload = () => {
-  displayTableOrder(parseInt(localStorage.tableNum))
-}
 
 window.addDoc = addDoc;
 window.displayTableOrder=displayTableOrder;
@@ -50,16 +47,15 @@ async function displayTableOrder(tabNumber) {
     where("TableNum", "==", tabNumber)
   );
   const querySnapshot = await getDocs(q1);
+  console.log("THIS IS IT RIGHT HERE")
+  console.log(querySnapshot.Empty)
   querySnapshot.forEach((doc) => {
     createItemList(doc);
   });
 }
 
 function createItemList(doc) {
-  console.log("ran");
   let x = document.getElementById("order");
-  console.log(x.childNodes);
-  console.log(document.getElementById("order").hasChildNodes());
   let food = doc.data().food;
   for (var key in food) {
     var li = document.createElement("li");
@@ -83,7 +79,6 @@ function createItemList(doc) {
 async function pushSubTotal(tableNumber) {
   let id = getTableIdFromNumber(tableNumber);
   let sTotal = +document.getElementById("counting").innerHTML;
-  console.log(sTotal);
   const tablesRef = doc(db, "Table", `${id}`);
   await updateDoc(tablesRef, {
     subtotal: sTotal,
@@ -96,11 +91,10 @@ async function getSubTotal(tableNumber) {
     collection(db, "Orders"),
     where("TableNum", "==", tableNumber)
   );
-  console.log(tableNumber);
   const querySnapshot = await getDocs(q1);
   querySnapshot.forEach((doc) => {
     sTotal = doc.data().Subtotal;
-    console.log(sTotal);
+
   });
   document.getElementById("counting").innerHTML = sTotal;
 }
@@ -124,4 +118,5 @@ $(function displayOrderForTable() {
     displayTableOrder(tableNum);
   });
 });
-
+console.log(localStorage.tableNum)
+displayTableOrder(Number(localStorage.tableNum))
