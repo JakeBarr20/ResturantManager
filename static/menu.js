@@ -1,3 +1,4 @@
+
 function popupAllergies(Cal, Allergy) {
     var message = "KCal: " + Cal + "\nAllergies: " + Allergy;
     alert(message);
@@ -72,7 +73,8 @@ function makeUID() {
 }
 
 async function enterData() {
-  let tableNumber = +document.getElementById("tableNumber").innerHTML
+  let tableNumber = localStorage.tableNum;
+  // let tableNumber = +document.getElementById("tableNumber").innerHTML
   addDoc(tableNumber);
   closeModal('myModal');
   openModal('closeModal');
@@ -126,6 +128,7 @@ function sendUserInfo(){
 }
 
 function getTableNumberFromTextBox(){
-  let tabNumber = document.getElementById("inputId").value;
+  let tabNumber = localStorage.tableNum;
+//  let tabNumber = document.getElementById("inputId").value;
   document.getElementById("tableNumber").innerHTML=tabNumber
 }
