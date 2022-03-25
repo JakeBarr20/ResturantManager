@@ -21,14 +21,13 @@
       <script type="text/javascript">
         function confirm() {
           enterData();
-          window.location.href = 'tracker';
         }
       </script>
     </div>
   </div>
   <div id="closeModal" class="modal">
     <div class="modal-content">
-      <span class="close" onclick="closeModal('closeModal')">&times;</span>
+      <span class="close" onclick="closeModal('closeModal'); window.location.href = 'tracker';">&times;</span>
       <h3>Your order has been taken.</h3>
     </div>
   </div>
