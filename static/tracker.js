@@ -57,7 +57,7 @@ async function needsHelp() {
   let id = 0;
   const q = query(
     collection(db, "Table"),
-    where("TableNum", "==", Number(TiD))
+    where("TableNum", "==", Number(localStorage.tableNum))
   );
   const querySnapshot = await getDocs(q);
   querySnapshot.forEach(function (doc) {
@@ -71,7 +71,7 @@ async function needsHelp() {
 }
 
 function orderAgain(){
-  location.replace("menu.html");
+  window.location.href='intro';
 } 
 
 window.onload = function(){

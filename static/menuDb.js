@@ -46,6 +46,8 @@ async function getSubTotal(tableNumber) {
   const querySnapshot = await getDocs(q1);
   querySnapshot.forEach((doc) => {
     sTotal = doc.data().Subtotal;
+    console.log(doc.data())
+    console.log(sTotal)
   });
   document.getElementById("counting").innerHTML = sTotal
 }
@@ -221,7 +223,8 @@ async function addOrder(tableNumber) {
 }
 
 addOrder(localStorage.tableNum)
+getSubTotal(Number(localStorage.tableNum))
 window.onload = function(){
-  getSubTotal(localStorage.tableNum)
+  
 }
 
