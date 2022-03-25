@@ -67,6 +67,7 @@ img {
 
 /* Positioning */
 
+/* 
 .center{
     position:absolute;
     height: X px;
@@ -81,6 +82,89 @@ img {
 	position: fixed;
 	top: 50%;
 	left: 50%;
-	/* bring your own prefixes */
+
 	transform: translate(-50%, -50%);
-  }
+  } 
+*/
+
+  /* Positioning */
+
+.center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 350px;
+    background-color: white;
+    border-radius: 15%/15%;
+    box-shadow: 3px 6px #EEB27B;
+}
+
+.center h2 {
+    text-align: left;
+    padding-left: 40px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-bottom:1px solid grey;
+}
+
+h2 i {
+    padding-left: 30px;
+    text-align: right;
+    outline: blanchedalmond;
+}
+
+i span {
+    font-size: 20px;
+    font-family: Nunito;
+}
+
+/* Input fields and button */
+
+.input-form {
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 30px;
+    width: 100%;
+    height: 80%;
+}
+
+.field input {
+    margin-left: 40%;
+
+    width: 40%;
+    padding: 0 5px;
+    height: 100px;
+    font-size: 72px;
+
+    border-bottom-style: none;
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+
+    border-color: antiquewhite;
+
+    outline: none;
+}
+
+input:focus {
+    color: orange;
+    caret-color: transparent;
+}
+
+button {
+    width: 100%;
+    border-color:#f5d317;
+    height: 40px;
+    margin-top: 50px;
+    background: hsla(0, 0%, 100%, 0.2);
+	backdrop-filter: blur(30px);
+    background-color: #f3d503;
+    border-radius: 25px;
+    box-shadow: 3px 6px aliceblue;
+}
+
+button:focus {
+    outline: none;
+}

@@ -88,6 +88,10 @@ button:focus {
     outline: none;
 }
 
+img {
+	width: 400px;
+	height: 120px;
+}
 
 
 

@@ -1,140 +1,143 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <!-- This is the start menu where the customer will be taken once they have seated at their table-->
-    <title>Menu</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <!-- The name of the tab-->
-    <title>OXACCA MENU</title>
 
-    <!-- Bootstrap CSS CDN-->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
-      integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4"
-      crossorigin="anonymous"
-    />
-    <!-- Our Custom CSS-->
-    <link rel="stylesheet" href="static/navbar.css" />
-    <link rel="stylesheet" href="static/checkout.css"/>
-    <!-- -->
-    
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head>
+  <!-- This is the start menu where the customer will be taken once they have seated at their table-->
+  <title>Menu</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- The name of the tab-->
+  <title>OXACCA MENU</title>
 
-    <!-- Scrollbar Custom CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css"
-    />
+  <!-- Bootstrap CSS CDN-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css"
+    integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous" />
+  <!-- Our Custom CSS-->
+  <link rel="stylesheet" href="static/navbar.css" />
+  <link rel="stylesheet" href="static/checkout.css" />
+  <!-- -->
 
-    <link rel="stylesheet" href="static/menu.css" />
-    <link rel="stylesheet" href="static/test.css">
-  </head>
-  <body style="background-color:rgb(255, 251, 251); background-image: url('https://www.designbolts.com/wp-content/uploads/2012/12/Arches-Simple-White-Seamless-Pattern.jpg');">
-    <!-- The main div-->
-    <div class="mainSite">
-      <!-- Sidebar-->
-      <nav id="sidebar">
-        <!--Where the title is written and sits at top of sidebar-->
-        <div class="sidebar-header">
-          <h3>OXACCA MENU</h3>
-        </div>
-        <!-- means there is no bullet points, looks cleaner-->
-        <ul class="list-unstyled components">
-          <!-- floating to the right of the welcome message-->
-          <div class="icons" >
-            <i class="fa-solid fa-burger fa-2x"></i>
-            <i class="fa-solid fa-champagne-glasses fa-2x"></i>
-            <br>
-            <i class="fa-solid fa-ice-cream fa-2x"></i>            
-            <i class="fa-solid fa-mug-saucer fa-2x"></i>
-          </div>
-          <!-- introductory message-->
-          <p id="sidebarMessage">WELCOME TO OUR MENU</p>
-          <!-- the side menu list which will be later made dynamic based what is in inside the database-->
-          <li>
-            <a onclick="window.location.href='burgers';">Burgers</a>
-          </li>
-          <li>
-            <a onclick="window.location.href='chicken';">Chicken</a>
-          </li>
-          <li>
-            <a onclick="window.location.href='meals';">Meals</a>
-          </li>
-          <li>
-            <a onclick="window.location.href='drinks';">Drinks</a>
-          </li>
-          <li>
-            <a onclick="window.location.href='kebab';">Kebabs</a>
-          </li>
-          <li>
-            <a onclick="window.location.href='sides';">Sides</a>
-          </li>
-        </ul>
-      </nav>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+    integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-      <!-- What will be within the page-->
+  <!-- Scrollbar Custom CSS -->
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css" />
 
-      <div id="content">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <div id="contentNav" class="container-fluid">
-            <button type="button" id="sidebarCollapse" class="btn btn-info">
-              <i class="fas fa-align-left"></i>
-              <span>See our menu's selection</span>
-            </button>
-            <button type="button" id="getOrder" onclick="getTableNumberFromTextBox();">Set Table</button>
-            <input style="margin-right: 300px;" type="text" placeholder="Table Number" id="inputId">
-            <h6 style="margin-right: 150px; margin-left: 10px;">You are sat at: <span id="tableNumber"></span></h6>
-        </nav>
+  <link rel="stylesheet" href="static/menu.css" />
+  <link rel="stylesheet" href="static/test.css">
+</head>
+
+<body
+  style="background-color:rgb(255, 251, 251); background-image: url('https://www.designbolts.com/wp-content/uploads/2012/12/Arches-Simple-White-Seamless-Pattern.jpg');">
+  <!-- The main div-->
+  <div class="mainSite">
+    <!-- Sidebar-->
+    <nav id="sidebar">
+      <!--Where the title is written and sits at top of sidebar-->
+      <div class="sidebar-header">
+        <h3>OXACCA MENU</h3>
       </div>
-      {%block content%} {%endblock%}
-      <footer class="text-center text-white fixed-bottom" style="background-color: #f8ac08;">
-        <div class="text-center p-3" style="background-color: rgba(248, 143, 4, 0.2);">
-          <h5 style="float: left; color:white">Subtotal: <span>£</span><span id="counting">0</span></h5>
-          <div id="helpModal" class="modal">
-            <div class="modal-content">
-              <span class="close" onclick="closeModal('helpModal')">&times;</span>
-              <h3>Please enter your table number:</h3>
-              <input type = "text" id="tableNo" class="form-control">
-              <button class = "btn btn-primary" id = "Confirm" type = "button" onclick="closeModal('helpModal'); alertWaiter(tableNo); openModal('closeHelpModal')">Confirm</button>
-            </div>
-          </div>
-          <div id="closeHelpModal" class="modal">
-            <div class="modal-content">
-              <span class="close" onclick="closeModal('closeHelpModal')">&times;</span>
-              <h3>Ok, the waiter has been notified.</h3>
-            </div>
-          </div>
-          <button onclick="openModal('helpModal')" style=" margin: 10px; background-color: red; color: white; border-radius: 10px;">HELP</button>
-          <button onclick="window.location.href='checkout'"style="float: right; margin: 10px; background-color: rgb(8, 248, 48); color: white; border-radius: 10px;"><span><i class="fa-solid fa-basket-shopping">Basket</i></span></button>
+      <!-- means there is no bullet points, looks cleaner-->
+      <ul class="list-unstyled components">
+        <!-- floating to the right of the welcome message-->
+        <div class="icons">
+          <i class="fa-solid fa-burger fa-2x"></i>
+          <i class="fa-solid fa-champagne-glasses fa-2x"></i>
+          <br>
+          <i class="fa-solid fa-ice-cream fa-2x"></i>
+          <i class="fa-solid fa-mug-saucer fa-2x"></i>
         </div>
-      </footer>
-    </div>
-    <!-- jQuery CDN-->
-    <script
-      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Popper.JS -->
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
-      integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
-      crossorigin="anonymous"
-    ></script>
-    <!-- Bootstrap JS -->
-    <script
-      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
-      integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
-      crossorigin="anonymous"
-    ></script>
+        <!-- introductory message-->
+        <p id="sidebarMessage">WELCOME TO OUR MENU</p>
+        <!-- the side menu list which will be later made dynamic based what is in inside the database-->
+        <li>
+          <a onclick="window.location.href='burgers';">Burgers</a>
+        </li>
+        <li>
+          <a onclick="window.location.href='chicken';">Chicken</a>
+        </li>
+        <li>
+          <a onclick="window.location.href='meals';">Meals</a>
+        </li>
+        <li>
+          <a onclick="window.location.href='drinks';">Drinks</a>
+        </li>
+        <li>
+          <a onclick="window.location.href='kebab';">Kebabs</a>
+        </li>
+        <li>
+          <a onclick="window.location.href='sides';">Sides</a>
+        </li>
+      </ul>
+    </nav>
 
-    <!-- jQuery Custom Scroller CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="static/navbar.js"></script>
-    <script src="static/menu.js"></script>
-    <script type = "module" src="static/menuDb.js"> </script>
-  </body>
+    <!-- What will be within the page-->
+
+    <div id="content">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div id="contentNav" class="container-fluid">
+          <button type="button" id="sidebarCollapse" class="btn btn-info">
+            <i class="fas fa-align-left"></i>
+            <span>See our menu's selection</span>
+          </button>
+          <h6 style="margin-right: 150px; margin-left: 10px;">Table Number: <span id="tableNumber">
+              <script type="text/javascript">
+                let tabNumber = localStorage.tableNum;
+                //  let tabNumber = document.getElementById("inputId").value;
+                document.getElementById("tableNumber").innerHTML = tabNumber
+              </script>
+            </span></h6>
+      </nav>
+    </div>
+    {%block content%} {%endblock%}
+    <footer class="text-center text-white fixed-bottom" style="background-color: #f8ac08;">
+      <div class="text-center p-3" style="background-color: rgba(248, 143, 4, 0.2);">
+        <h5 style="float: left; color:white">Subtotal: <span>£</span><span id="counting">0</span></h5>
+        <div id="helpModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('helpModal')">&times;</span>
+            <h3>Please enter your table number:</h3>
+            <input type="text" id="tableNo" class="form-control">
+            <button class="btn btn-primary" id="Confirm" type="button"
+              onclick="closeModal('helpModal'); alertWaiter(tableNo); openModal('closeHelpModal')">Confirm</button>
+          </div>
+        </div>
+        <div id="closeHelpModal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('closeHelpModal')">&times;</span>
+            <h3>Ok, the waiter has been notified.</h3>
+          </div>
+        </div>
+        <button onclick="openModal('helpModal')"
+          style=" margin: 10px; background-color: red; color: white; border-radius: 10px;">HELP</button>
+        <button onclick="window.location.href='checkout'"
+          style="float: right; margin: 10px; background-color: rgb(8, 248, 48); color: white; border-radius: 10px;"><span><i
+              class="fa-solid fa-basket-shopping">Basket</i></span></button>
+      </div>
+    </footer>
+  </div>
+  <!-- jQuery CDN-->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <!-- Popper.JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+    integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+  <!-- Bootstrap JS -->
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"
+    integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm"
+    crossorigin="anonymous"></script>
+
+  <!-- jQuery Custom Scroller CDN -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="static/navbar.js"></script>
+  <script src="static/menu.js"></script>
+  <script type="module" src="static/menuDb.js"> </script>
+</body>
+
 </html>

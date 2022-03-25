@@ -51,7 +51,7 @@ a[aria-expanded="true"] {
   background-color: #ff8c00;
   border: #ff8c00;
   position: fixed;
-  margin: 20px 0 0 -20px;
+  margin: 20px 0 0 -16px;
 }
 
 /* When hovering over the submenus, what happens?*/
@@ -128,7 +128,7 @@ ul ul a {
 
 /* defines how fast the content will move when the navbar is moving*/
 #content {
-  transition: all 1s;
+  transition: all 0.5s;
 }
 
 /* Caps the page look after a certain size*/

@@ -8,10 +8,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<!-- Unzoomable screen -->
-	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'/>
+	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' />
 	<!-- Stylesheets -->
 	<link rel="stylesheet"
 		href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta/css/bootstrap.min.css">
+
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,500&amp;subset=latin-ext">
 	<link rel="stylesheet" href="/static/introUI/introUIStyle.css">
@@ -25,14 +26,15 @@
 	<div class="row justify-content-center">
 		<img src="/static/resources/Oxaca-logos.png"></img>
 	</div>
+
 	<!-- Selection Buttons -->
-	<div class="card-deck">
+	<div class="card-deck" id="introCards">
 		<!-- Customer Button -->
 		<div class="card" id="customer" data-tilt data-tilt-glare>
 			<div class="card-block">
 				<h4 class="card-title">Customer</h4>
 			</div>
-			<a onclick="window.location.href='chicken';" class="stretched-link"></a>
+			<a onclick="selectTable()" class="stretched-link"></a>
 			<img class="card-img-top" src="/static/resources/customer.svg" alt="Card image cap">
 		</div>
 		<!-- Staff button-->
@@ -43,6 +45,57 @@
 			<a onclick="window.location.href='login';" class="stretched-link"></a>
 			<img class="card-img-top" src="/static/resources/chef.svg" alt="Card image cap">
 		</div>
+		<script type="text/javascript">
+			function selectTable() {
+				let cardDeck = document.getElementById('introCards');
+				let selectTbl = document.getElementById('selectTableNum');
+				cardDeck.style.display = 'none';
+				selectTbl.style.display = ''
+
+			}
+		</script>
+
+	</div>
+
+	<!-- Select Table Pop-up -->
+	<div class="center" id="selectTableNum" style='display:none'>
+		<h2>Table Number:
+
+			<i onclick="back()" class="fa fa-arrow-circle-o-left">
+				<span>Back</span>
+			</i>
+			
+		</h2>
+
+		<div class="input-form">
+			<!-- Table Number Field -->
+			<div class="field">
+				<input id="tbNum" type="number" min="1" max="10" placeholder="X" value="" required />
+			</div>
+			<!-- Submit Button -->
+			<button type="submit" onclick="setTable()" id="selectTable">Select</button>
+		</div>
+
+		<script type="text/javascript">
+			function setTable() {
+				tableNum = document.getElementById('tbNum').value
+				if (tableNum != '') {
+					localStorage.setItem('tableNum', tableNum);
+					console.log(localStorage);
+					window.location.href = 'chicken';
+				} else {
+					window.alert('Please Select a Valid Table Number');
+				}
+			}
+
+			function back() {
+				let cardDeck = document.getElementById('introCards');
+				let selectTbl = document.getElementById('selectTableNum');
+				cardDeck.style.display = '';
+				selectTbl.style.display = 'none'
+
+			}
+		</script>
 	</div>
 </body>
 

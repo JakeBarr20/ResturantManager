@@ -96,8 +96,9 @@ p {
 }
 
 #contentNav {
-  color: red;
+  color: white;
   padding-top: 30px;
+  padding-right: 10%;
 }
 
 #getOrder {
