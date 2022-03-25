@@ -1,24 +1,29 @@
 {%extends 'menu.html'%}{%block content%}
+
 <head>
   <script type="module" src="static/checkout.js"></script>
   <link rel="stylesheet" href="static/checkout.css" />
 </head>
+
 <body>
   <ul id="order" style="margin-bottom: 100px; margin-top: 60px;">
-    <li class="list-group-item"><h1>Your Order</h1></li>
+    <li class="list-group-item">
+      <h1>Your Order</h1>
+    </li>
   </ul>
   <div id="myModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal('myModal')">&times;</span>
       <h3>Checkout this order?</h3>
-      <button
-        class="btn btn-primary"
-        id="Confirm"
-        type="button"
-        onclick="enterData(); window.location.href='tracker';"
-      >
+      <button class="btn btn-primary" id="Confirm" type="button" onclick="confirm() ">
         Confirm
       </button>
+      <script type="text/javascript">
+        function confirm() {
+          enterData();
+          window.location.href = 'tracker';
+        }
+      </script>
     </div>
   </div>
   <div id="closeModal" class="modal">

@@ -203,8 +203,7 @@ async function addOrder(tableNumber) {
   // Make new local storage 
 
 
-  let id = makeUID();
-  localStorage.setItem("OrderId", id);
+  
   const q = query(collection(db, "Orders"),
     where("Status", "==", "Building"), where("TableNum", "==", Number(tableNumber))
   );
@@ -213,6 +212,8 @@ async function addOrder(tableNumber) {
   querySnapshot.forEach((doc) => {
   });
   if (querySnapshot.empty) {
+    let id = makeUID(); 
+    localStorage.setItem("OrderId", id);
     await setDoc(doc(db, "Orders", id), {
       OrderNum: initialOrder,
       Status: "Building",

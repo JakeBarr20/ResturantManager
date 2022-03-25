@@ -33,6 +33,7 @@ async function addDoc(tableNumber) {
   let id = localStorage.OrderId;
   
   const tablesRef = doc(db, "Orders", `${id}`);
+  console.log(id);
   await updateDoc(tablesRef, {
     Status: 'Waiting',
   });
