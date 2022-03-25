@@ -29,8 +29,6 @@ const db = getFirestore(app);
 window.addDoc = addDoc;
 window.displayTableOrder=displayTableOrder;
 window.createItemList=createItemList;
-window.pushSubTotal=pushSubTotal;
-window.getSubTotal=getSubTotal;
 async function addDoc(tableNumber) {
   let id = localStorage.OrderId;
   
