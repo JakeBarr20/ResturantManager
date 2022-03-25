@@ -43,7 +43,7 @@ async function addDoc(tableNumber) {
 async function displayTableOrder(tabNumber) {
   const q1 = query(
     collection(db, "Orders"),
-    where("TableNum", "==", tabNumber)
+    where("TableNum", "==", tabNumber), where("Status", "==", "Building")
   );
   const querySnapshot = await getDocs(q1);
   querySnapshot.forEach((doc) => {
