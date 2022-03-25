@@ -12,22 +12,16 @@ let orderNo = 100;
 function increase(id) {
   x = +document.getElementById(id).innerHTML;
   let data = +document.getElementById("counting").innerHTML
-  console.log("This is the items value", x)
-  console.log("This is the total before", data)
   newItem=document.getElementById(id).name
 
   data = parseFloat(data) + parseFloat(x);
   data=data.toFixed(2)
-  console.log(`Set to ${data}`)
   document.getElementById("counting").innerText = data;
-  console.log(data);
-  console.log(document.getElementById("counting").innerText)
   items = items + newItem + ",";
 }
 
 function decrease(id){
   x= +document.getElementById(id).innerHTML;
-  console.log(x)
   let data = +document.getElementById("counting").innerHTML
   newItem=document.getElementById(id).name
 
@@ -36,8 +30,6 @@ function decrease(id){
   if (data <= 0){
     data = 0
   }
-  
-  console.log(data)
   document.getElementById("counting").innerText = data;
 
 
@@ -45,7 +37,6 @@ function decrease(id){
 
 // Make class to activate a css style class that comes over cards when pressed
 $(document).ready(function () {
-  console.log("hello world");
   $().toggleClass();
   $("#test1").toggleClass("active");
 });
@@ -89,12 +80,6 @@ function popAllergies() {
   $(".appear").toggleClass("active");
 }
 
-//$(function testParams() {
-  //  $('.buttonAdd').click(function(){
-    //    let x = $(this).attr('value');
-      //  console.log(x);
-    //});
-//});
 
 $(function item1Appear() {
   $('.item1').click(function(){
@@ -106,25 +91,6 @@ $(function item1Appear() {
 
 function getStuff() {
   alert("Items = " + items +"\nPrice = " + data)
-}
-
-function sendUserInfo(){
-  let userInfo={
-    'name': 'John Brown',
-    'type': 'admin',
-  }
-  console.log(userInfo)
-  const request = new XMLHttpRequest()
-  console.log(userInfo)
-  request.open('POST', `/processUserInfo/${JSON.stringify(userInfo)}`)
-  console.log(userInfo)
-  request.onload = () => {
-    const flaskMessage = request.responseText
-    console.log(flaskMessage)
-  }
-  console.log(userInfo)
-  request.send();
-  console.log(userInfo)
 }
 
 function getTableNumberFromTextBox(){

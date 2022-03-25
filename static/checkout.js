@@ -24,7 +24,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
-console.log(app);
 
 
 window.addDoc = addDoc;
@@ -47,8 +46,6 @@ async function displayTableOrder(tabNumber) {
     where("TableNum", "==", tabNumber)
   );
   const querySnapshot = await getDocs(q1);
-  console.log("THIS IS IT RIGHT HERE")
-  console.log(querySnapshot.Empty)
   querySnapshot.forEach((doc) => {
     createItemList(doc);
   });
@@ -118,5 +115,4 @@ $(function displayOrderForTable() {
     displayTableOrder(tableNum);
   });
 });
-console.log(localStorage.tableNum)
 displayTableOrder(Number(localStorage.tableNum))

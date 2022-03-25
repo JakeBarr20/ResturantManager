@@ -46,8 +46,6 @@ async function getSubTotal(tableNumber) {
   const querySnapshot = await getDocs(q1);
   querySnapshot.forEach((doc) => {
     sTotal = doc.data().Subtotal;
-    console.log(doc.data())
-    console.log(sTotal)
   });
   document.getElementById("counting").innerHTML = sTotal
 }
@@ -188,6 +186,11 @@ function makeUID() {
   return result;
 }
 
+function reloadPageFix(){
+  if (document.getElementById("counting").innerHTML=="undefined"){
+    location.reload(true)
+  }
+}
 async function addOrder(tableNumber) {
   let initialOrder
   const q1 = query(collection(db, "Orders"),
@@ -222,9 +225,11 @@ async function addOrder(tableNumber) {
   }
 }
 
+
 addOrder(localStorage.tableNum)
 getSubTotal(Number(localStorage.tableNum))
-window.onload = function(){
-  
-}
+
+setTimeout(function(){
+  reloadPageFix()
+}, 500);
 
