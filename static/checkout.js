@@ -26,6 +26,10 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 console.log(app);
 
+window.onload = () => {
+  displayTableOrder(parseInt(localStorage.tableNum))
+}
+
 window.addDoc = addDoc;
 window.displayTableOrder=displayTableOrder;
 window.createItemList=createItemList;
