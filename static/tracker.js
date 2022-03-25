@@ -75,6 +75,6 @@ function orderAgain(){
 } 
 
 window.onload = function(){
-  TiD = prompt("Enter your Table Number");
+  TiD = localStorage.tableNum
   getStatus(TiD);
 }
