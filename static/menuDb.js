@@ -186,10 +186,14 @@ async function addOrder(tableNumber){
   let id = makeUID();
   localStorage.setItem("OrderId", id);
   const q = query(collection(db, "Orders"),
-  where("Status", "==" ,"Building" ), where("TableNum", "==", tableNumber)
+  where("Status", "==" ,"Building" ), where("TableNum", "==", Number(tableNumber))
   );
   let time = Timestamp.fromDate(new Date());
   const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    console.log(doc.data());
+  });
+  console.log(querySnapshot.empty);
   if (querySnapshot.empty){
     await setDoc(doc (db,"Orders",id), {
       OrderNum: initialOrder,
