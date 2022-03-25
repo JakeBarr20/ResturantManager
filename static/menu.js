@@ -53,16 +53,6 @@ function closeModal(modal) {
   document.getElementById(modal).style.display = "none";
 }
 
-function makeUID() {
-  let result = "";
-  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  const charactersLength = characters.length;
-  for ( let i = 0; i < 20; i++ ) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength)); 
-  }
-  return result;
-}
-
 async function enterData() {
   let tableNumber = localStorage.tableNum;
   // let tableNumber = +document.getElementById("tableNumber").innerHTML

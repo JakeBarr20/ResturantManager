@@ -71,6 +71,7 @@ a[aria-expanded="true"] {
 #sidebarCollapse {
   background-color: orange;
   border: orange;
+  margin-bottom: 10px;
 }
 
 

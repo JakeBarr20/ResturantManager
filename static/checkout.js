@@ -31,7 +31,6 @@ window.displayTableOrder=displayTableOrder;
 window.createItemList=createItemList;
 window.pushSubTotal=pushSubTotal;
 window.getSubTotal=getSubTotal;
-window.getTableIdFromNumber=getTableIdFromNumber;
 async function addDoc(tableNumber) {
   let id = localStorage.OrderId;
   
@@ -71,42 +70,6 @@ function createItemList(doc) {
   button.addEventListener("click", () => openModal("myModal"), false);
   button.appendChild(document.createTextNode("Checkout Order"));
   document.getElementById("checkout-space").appendChild(button);
-}
-
-async function pushSubTotal(tableNumber) {
-  let id = getTableIdFromNumber(tableNumber);
-  let sTotal = +document.getElementById("counting").innerHTML;
-  const tablesRef = doc(db, "Table", `${id}`);
-  await updateDoc(tablesRef, {
-    subtotal: sTotal,
-  });
-}
-
-async function getSubTotal(tableNumber) {
-  let sTotal;
-  const q1 = query(
-    collection(db, "Orders"),
-    where("TableNum", "==", tableNumber)
-  );
-  const querySnapshot = await getDocs(q1);
-  querySnapshot.forEach((doc) => {
-    sTotal = doc.data().Subtotal;
-
-  });
-  document.getElementById("counting").innerHTML = sTotal;
-}
-
-async function getTableIdFromNumber(tabNumber) {
-  let test;
-  const q1 = query(
-    collection(db, "Orders"),
-    where("TableNum", "==", tabNumber)
-  );
-  const querySnapshot = await getDocs(q1);
-  querySnapshot.forEach((doc) => {
-    test = doc.id;
-  });
-  return test;
 }
 
 $(function displayOrderForTable() {
