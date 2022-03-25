@@ -8,6 +8,10 @@ import {
   collection,
   where,
   getDocs,
+  orderBy,
+  limit,
+  Timestamp,
+  setDoc,
 } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -25,22 +29,6 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 let order2 = new Map([]);
 
-window.needsHelp = needsHelp;
-async function needsHelp(tableNo) {
-  let id = 0;
-  const q = query(
-    collection(db, "Table"),
-    where("TableNum", "==", Number(tableNo))
-  );
-  const querySnapshot = await getDocs(q);
-  querySnapshot.forEach(function (doc) {
-    id = doc.id;
-  });
-  const tablesRef = doc(db, "Table", `${id}`);
-  await updateDoc(tablesRef, {
-    needHelp: true,
-  });
-}
 
 $(function displayOrderForTable() {
   $("#getOrder").click(async function () {
@@ -172,3 +160,47 @@ async function getTableStatus(tableNumber){
     });
     return Status
 }
+
+function makeUID() {
+  let result = "";
+  const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  const charactersLength = characters.length;
+  for ( let i = 0; i < 20; i++ ) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength)); 
+  }
+  return result;
+}
+
+async function addOrder(tableNumber){
+  let initialOrder
+  const q1=query(collection(db, "Orders"),
+  orderBy("Time", "desc"), limit(1));
+  const querySnapshot1 = await getDocs(q1);
+  querySnapshot1.forEach((doc) => {
+    initialOrder=doc.data().OrderNum
+  });
+  initialOrder=initialOrder+1;
+  // Make new local storage 
+  
+
+  let id = makeUID();
+  localStorage.setItem("OrderId", id);
+  const q = query(collection(db, "Orders"),
+  where("Status", "==" ,"Building" ), where("TableNum", "==", tableNumber)
+  );
+  let time = Timestamp.fromDate(new Date());
+  const querySnapshot = await getDocs(q);
+  if (querySnapshot.empty){
+    await setDoc(doc (db,"Orders",id), {
+      OrderNum: initialOrder,
+      Status: "Building",
+      Subtotal: 0,
+      TableNum: Number(tableNumber),
+      Time: time,
+      food: {}
+
+    });
+}
+}
+
+addOrder(localStorage.tableNum)

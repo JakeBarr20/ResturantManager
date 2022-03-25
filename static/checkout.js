@@ -37,7 +37,8 @@ window.pushSubTotal=pushSubTotal;
 window.getSubTotal=getSubTotal;
 window.getTableIdFromNumber=getTableIdFromNumber;
 async function addDoc(tableNumber) {
-  let id = await getTableIdFromNumber(tableNumber);
+  let id = localStorage.OrderId;
+  
   const tablesRef = doc(db, "Orders", `${id}`);
   await updateDoc(tablesRef, {
     Status: 'Waiting',
