@@ -1,4 +1,8 @@
 // As soon as the document is ready to go then this function will run straight away
+
+/**
+ * Within the ready function moves all elements so they are in the right place when user loads the navbar page
+ */
 $(document).ready(function () {
 
     $("#sidebar").mCustomScrollbar({

@@ -25,7 +25,9 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
-
+/**
+ * From the enterData function updates the tables status to waiting once they press checkout moving it to the waiters screen
+ */
 window.addDoc = addDoc;
 window.displayTableOrder=displayTableOrder;
 window.createItemList=createItemList;
@@ -38,6 +40,11 @@ async function addDoc(tableNumber) {
     Status: 'Waiting',
   });
 }
+
+/**
+ * Gets the recent ongoing order of a table and presents it to the customer
+ * @param {number} tabNumber the table your displaying the order for
+ */
 async function displayTableOrder(tabNumber) {
   const q1 = query(
     collection(db, "Orders"),
@@ -49,6 +56,10 @@ async function displayTableOrder(tabNumber) {
   });
 }
 
+/**
+ * Shows the user what they have on their order
+ * @param {doc} doc the list of items on the users order
+ */
 function createItemList(doc) {
   let x = document.getElementById("order");
   let food = doc.data().food;

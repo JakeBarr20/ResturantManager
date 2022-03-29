@@ -29,14 +29,10 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 let order2 = new Map([]);
 
-
-$(function displayOrderForTable() {
-  $("#getOrder").click(async function () {
-    let tableNum = +document.getElementById("tableNumber").innerHTML;
-    await getSubTotal(tableNum)
-  });
-});
-
+/**
+ * Gets the subtotal for the given table number and presents it onto the screen
+ * @param {number} tableNumber describes where the customer is sat
+ */
 async function getSubTotal(tableNumber) {
   let sTotal
   const q1 = query(
@@ -50,32 +46,47 @@ async function getSubTotal(tableNumber) {
   document.getElementById("counting").innerHTML = sTotal
 }
 
+/**
+ * Obtains the table order stored as a map from a given order ID
+ * @param {string} orderId the id to identify a specific order on a given table
+ * @returns{string} their order stored as a Map object to be used for adding and removing from an order
+ */
 async function getTableOrder(orderId) {
-  let tempStore;
+  let customerOrder;
   const q1 = query(
     collection(db, "Orders"),
     where("", "==", orderId)
   );
   const querySnapshot = await getDocs(q1);
   querySnapshot.forEach((doc) => {
-    tempStore = new Map(Object.entries(doc.data().food));
+    customerOrder = new Map(Object.entries(doc.data().food));
   });
-  return tempStore;
+  return customerOrder;
 }
 
+/**
+ * Gets the id of a specific table number from the given table number
+ * @param {number} tabNumber the table number of a table in the resturaunt
+ * @returns {string} the id of the given table 
+ */
 async function getTableIdFromNumber(tabNumber) {
-  let test;
+  let orderID;
   const q1 = query(
     collection(db, "Orders"),
     where("TableNum", "==", tabNumber)
   );
   const querySnapshot = await getDocs(q1);
   querySnapshot.forEach((doc) => {
-    test = doc.id;
+    orderID = doc.id;
   });
-  return test;
+  return orderID;
 }
 
+/**
+ * Updates an order with a given orderID with the correct map of their order
+ * @param {string} orderID - id of the order being changed
+ * @param {Map} order - the customers food and drink order
+ */
 async function pushItemList(orderID, order) {
   const tablesRef = doc(db, "Orders", orderID);
   await updateDoc(tablesRef, {
@@ -83,6 +94,10 @@ async function pushItemList(orderID, order) {
   });
 }
 
+/**
+ * Takes the updated local subtotal and pushes it to the database
+ * @param {number} tableNumber - the table number that the subtotal belongs to
+ */
 async function pushSubTotal(tableNumber) {
   let id = await getTableIdFromNumber(tableNumber);
   let sTotal = +document.getElementById("counting").innerHTML
@@ -92,6 +107,10 @@ async function pushSubTotal(tableNumber) {
   });
 }
 
+/**
+ * Checks if an item is on an order list and if it is then increment its count otherwise add it to the order
+ *  to the order belonging to the most recent order on the table number stored in local storage
+ */
 $(function addItem() {
   $(".buttonAdd").click(async function () {
     let orderId;
@@ -120,6 +139,10 @@ $(function addItem() {
   });
 });
 
+/**
+ * Checks if an item is on an order and if it is then decrease the count of that item by 1 and if its the last item
+ * of that specific food then remove it from the list 
+ */
 $(function removeItem() {
   $(".buttonRemove").click(async function () {
     let orderId;
@@ -163,6 +186,11 @@ async function needsHelp(tableNo) {
   });
 }
 
+/**
+ * Checks how an order is coming along given  
+ * @param {number} tableNumber 
+ * @returns The status of an order i.e. building, waiting, preparing, ready
+ */
 async function getTableStatus(tableNumber) {
   let Status;
   const qq = query(
@@ -176,6 +204,10 @@ async function getTableStatus(tableNumber) {
   return Status
 }
 
+/**
+ * Generates a random order ID for new IDs that are needed on the menu
+ * @returns a string of random characters to represent an order
+ */
 function makeUID() {
   let result = "";
   const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -186,11 +218,15 @@ function makeUID() {
   return result;
 }
 
+/**
+ * Just reloads the page if the subtotal isnt correctly working
+ */
 function reloadPageFix(){
   if (document.getElementById("counting").innerHTML=="undefined"){
     location.reload(true)
   }
 }
+
 async function addOrder(tableNumber) {
   let initialOrder
   const q1 = query(collection(db, "Orders"),
@@ -200,9 +236,6 @@ async function addOrder(tableNumber) {
     initialOrder = doc.data().OrderNum
   });
   initialOrder = initialOrder + 1;
-  // Make new local storage 
-
-
   
   const q = query(collection(db, "Orders"),
     where("Status", "==", "Building"), where("TableNum", "==", Number(tableNumber))
