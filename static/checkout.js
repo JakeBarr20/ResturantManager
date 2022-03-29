@@ -81,11 +81,4 @@ function createItemList(doc) {
   button.appendChild(document.createTextNode("Checkout Order"));
   document.getElementById("checkout-space").appendChild(button);
 }
-
-$(function displayOrderForTable() {
-  $("#getOrder").click(function () {
-    let tableNum = +document.getElementById("tableNumber").innerHTML;
-    displayTableOrder(tableNum);
-  });
-});
 displayTableOrder(Number(localStorage.tableNum))

@@ -227,6 +227,10 @@ function reloadPageFix(){
   }
 }
 
+/**
+ * Creates an appendable order for a customer to order with a random UID and a new order number
+ * @param {number} tableNumber 
+ */
 async function addOrder(tableNumber) {
   let initialOrder
   const q1 = query(collection(db, "Orders"),
